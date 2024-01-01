@@ -2,6 +2,8 @@ import { AcodeLogoBig, KakaoLogo } from '@/public/images';
 import Link from 'next/link';
 
 const page = () => {
+  const kakaoLoginLink = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&\nredirect_uri=${process.env.REDIRECT_URI}&response_type=code`;
+
   return (
     <div className="flex flex-col items-center px-4 w-full h-full">
       <AcodeLogoBig className="mt-[260px] mb-[17px]" />
@@ -10,7 +12,7 @@ const page = () => {
         SNS 계정으로 로그인하기
       </span>
       <Link
-        href="/"
+        href={kakaoLoginLink}
         className="w-full bg-[#FEE500] mb-2.5 rounded-lg h-[52px] inline-flex items-center justify-center relative"
       >
         <KakaoLogo className="absolute left-4" />
