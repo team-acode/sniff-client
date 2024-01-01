@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 const page = () => {
   const kakaoLoginLink = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&\nredirect_uri=${process.env.REDIRECT_URI}&response_type=code`;
-
   return (
     <div className="flex flex-col items-center px-4 w-full h-full">
       <AcodeLogoBig className="mt-[260px] mb-[17px]" />

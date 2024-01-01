@@ -1,3 +1,5 @@
+import { USERNAME_SETTING_REQUIRED } from '@/constants/statusCodes';
+import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 interface RedirectPageProps {
@@ -6,16 +8,22 @@ interface RedirectPageProps {
 }
 
 const page = async ({ params, searchParams }: RedirectPageProps) => {
-  if (!searchParams || !searchParams.code) redirect('/login');
+  if (!searchParams || !searchParams.code || !params.provider)
+    redirect('/login');
 
-  const res = await fetch(
-    `${process.env.SERVER_URL}/login?code=${searchParams.code}&provider=${params.provider}`,
-    { method: 'POST' },
-  );
+  const host = headers().get('host');
+  const protocal = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
+  const res = await fetch(`${protocal}://${host}/api/login`, {
+    method: 'POST',
+    body: JSON.stringify({
+      code: searchParams.code,
+      provider: params.provider,
+    }),
+  });
+
   if (res.ok) {
-    const userInfo = await res.json();
-    console.log(userInfo);
-
+    if (res.statusText === USERNAME_SETTING_REQUIRED)
+      redirect('/mypage/username');
     redirect('/');
   } else {
     redirect('/login');
