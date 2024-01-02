@@ -1,13 +1,18 @@
 import BigLinkButton from '@/components/common/BigLinkButton';
 import { Onboarding } from '@/public/images';
+import { getSession } from '@/utils/auth';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const page = () => {
+  const userInfo = getSession();
+  if (!userInfo) redirect('/login');
   return (
     <div className="relative h-full pt-[135px] px-5">
       <Onboarding className="absolute right-0 top-0 -z-10" />
       <h1 className="text-acodeblack text-[34px] font-semibold  tracking-[-1px]">
-        안여진<span className="ml-2 text-[28px] text-acodegray-500">님,</span>
+        {userInfo.username}
+        <span className="ml-2 text-[28px] text-acodegray-500">님,</span>
         <br />
         환영합니다!
       </h1>
