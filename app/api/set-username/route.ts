@@ -17,11 +17,10 @@ export async function PATCH(request: Request) {
   );
 
   if (res.ok) {
-    const authInfo = await res.json();
     cookies().set(
       'user_info',
       JSON.stringify({
-        ...authInfo,
+        ...JSON.parse(cookies().get('user_info')!.value),
         username,
       }),
       {
