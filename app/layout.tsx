@@ -3,8 +3,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'sniff',
-  description: 'sniff',
+  title: '어코드',
+  description: '향을 새로이 풀어내다',
+  viewport: {
+    width: 'device-width',
+    maximumScale: 1,
+    initialScale: 1,
+  },
 };
 
 const myFont = localFont({

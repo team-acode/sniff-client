@@ -8,6 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        acodeblack: '#1C1818',
+        acodered: 'fffff',
+        acodewhite: 'ff003d',
+        acodegray: {
+          50: '#f7f7f7',
+          100: '#ecebea',
+          200: '#d9d8d7',
+          300: '#c0bebb',
+          400: '#a6a49f',
+          500: '#989592',
+          600: '#85827f',
+          700: '#676461',
+          800: '#413f3d',
+        },
+        acodepoint: '#e31243',
+        acodeerror: '#ff114a',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
