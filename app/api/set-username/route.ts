@@ -1,9 +1,16 @@
 import { FAILED, SUCCESS } from '@/constants/statusCodes';
+import { getSession } from '@/utils/auth';
 import { cookies } from 'next/headers';
 
 const EXP_LIMIT = 1000 * 60 * 60 * 24;
 
 export async function PATCH(request: Request) {
+  const userInfo = getSession();
+  if (!userInfo)
+    return new Response(FAILED, {
+      status: 400,
+    });
+
   const body = await request.json();
   const username = body.username;
   const res = await fetch(
@@ -20,7 +27,7 @@ export async function PATCH(request: Request) {
     cookies().set(
       'user_info',
       JSON.stringify({
-        ...JSON.parse(cookies().get('user_info')!.value),
+        ...userInfo,
         username,
       }),
       {

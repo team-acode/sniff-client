@@ -3,6 +3,7 @@ import {
   LOGIN_FAILED,
   USERNAME_SETTING_REQUIRED,
 } from '@/constants/statusCodes';
+import { TUserInfo } from '@/types';
 import { cookies } from 'next/headers';
 
 const EXP_LIMIT = 1000 * 60 * 60 * 24;
@@ -15,7 +16,7 @@ export const POST = async (request: Request) => {
   );
 
   if (res.ok) {
-    const authInfo = await res.json();
+    const authInfo: TUserInfo = await res.json();
     cookies().set(
       'user_info',
       JSON.stringify({
@@ -30,7 +31,7 @@ export const POST = async (request: Request) => {
       },
     );
 
-    if (!authInfo.name)
+    if (!authInfo.username)
       return new Response(USERNAME_SETTING_REQUIRED, {
         status: 200,
         statusText: USERNAME_SETTING_REQUIRED,
