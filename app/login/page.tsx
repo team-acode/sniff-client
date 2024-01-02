@@ -1,9 +1,13 @@
 import BigLinkButton from '@/components/common/BigLinkButton';
 import { AcodeLogoBig, KakaoLogo } from '@/public/images';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 
 const page = () => {
-  const kakaoLoginLink = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&\nredirect_uri=${process.env.REDIRECT_URI}&response_type=code`;
+  const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
+  const host = headers().get('host');
+  const redirectUri = `${protocol}://${host}/login/kakao`;
+  const kakaoLoginLink = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&\nredirect_uri=${redirectUri}&response_type=code`;
 
   return (
     <div className="flex flex-col items-center px-4 w-full h-full">
