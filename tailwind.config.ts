@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         acodeblack: '#1C1818',
-        acodered: 'fffff',
-        acodewhite: 'ff003d',
+        acodewhite: '#ffffff',
+        acodered: '#ff003d',
         acodegray: {
           50: '#f7f7f7',
           100: '#ecebea',

@@ -10,6 +10,8 @@
   },
   "ignorePatterns": ["next.config.js"],
   "rules": {
+    "react/require-default-props": "off",
+    "react/function-component-definition": "arrow-function",
     "import/prefer-default-export": "off",
     "arrow-body-style": "off",
     "react/react-in-jsx-scope": "off",
