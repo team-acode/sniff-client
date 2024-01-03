@@ -1,7 +1,5 @@
 import PerfumeCategoryBar from '@/components/home/PerfumeCategoryBar';
 import PerfumeListElement from '@/components/home/PerfumeListElement';
-import { ArrowRightIcon } from '@/public/images';
-import Link from 'next/link';
 
 interface PerfumeListProps {
   searchParams: { [key: string]: string | undefined };

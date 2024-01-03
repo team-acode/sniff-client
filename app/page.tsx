@@ -22,7 +22,7 @@ export default function Home({ searchParams }: HomePageProps) {
           계열의 향수
         </h3>
         <Link
-          href=""
+          href="/"
           className="px-3 mt-3.5 w-[125px] h-9 pt-1.5 bg-acodeblack rounded-lg text-acodewhite flex items-center"
         >
           <span className="tracking-[-0.4px] mr-1 font-semibold shrink-0">

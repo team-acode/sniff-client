@@ -79,6 +79,7 @@ const PerfumeCategoryBar = ({
         ))}
       </ul>
       <button
+        type="button"
         className="absolute right-0 bottom-[2px] z-20"
         onClick={() => setIsCategorySpread((state) => !state)}
       >

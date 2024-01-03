@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface PerfumeListElementProps {
   perfume: {
@@ -20,7 +21,10 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
         alt="perfume pg"
         quality={100}
       />
-      <button className="w-full pt-[27px] px-[26px] text-left h-60 bg-gradient-to-b from-black/80 to-[#292323]/20 inline-flex flex-col">
+      <Link
+        href="/"
+        className="w-full pt-[27px] px-[26px] text-left h-60 bg-gradient-to-b from-black/80 to-[#292323]/20 inline-flex flex-col"
+      >
         <div className="flex">
           <h2 className="h0 text-acodewhite mr-2">{perfume.name}</h2>
           <span className="body2 font-medium pt-1.5 text-acodegray-300">
@@ -35,7 +39,7 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
             </li>
           ))}
         </ul>
-      </button>
+      </Link>
     </li>
   );
 };
