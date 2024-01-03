@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 @layer components {
-  .h-0 {
+  .h0 {
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
     line-height: 36px;
     letter-spacing: -0.6px;
   }
-  .h-1 {
+  .h1 {
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: 30px;
     letter-spacing: -0.5px;
   }
-  .h-2 {
+  .h2 {
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -25,14 +25,14 @@
     letter-spacing: -0.45px;
   }
 
-  .body-1 {
+  .body1 {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
     letter-spacing: -0.4px;
   }
-  .body-2 {
+  .body2 {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -40,7 +40,7 @@
     letter-spacing: -0.35px;
   }
 
-  .caption-1 {
+  .caption1 {
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

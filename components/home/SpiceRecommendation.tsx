@@ -4,7 +4,7 @@ import Link from 'next/link';
 const SpiceRecommendation = () => {
   return (
     <div className="mt-8 ml-4">
-      <h1 className="text-[24px] text-acodeblack font-semibold tracking-[-0.6px]">
+      <h1 className="h0 text-acodeblack">
         오늘의 추천 향료는 <br />
         <Link
           href="/"

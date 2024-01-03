@@ -29,11 +29,7 @@ const PerfumeCategoryBar = () => {
       <ul className="mb-3.5 flex ml-4 relative h-6">
         {CATEGORIES_1.map((category) => (
           <li key={category} className="mr-4">
-            <button
-              className={`text-[14px] font-medium leading-[21px] tracking-[-0.35px]`}
-            >
-              {category}
-            </button>
+            <button className={`body2 font-medium`}>{category}</button>
           </li>
         ))}
         <button

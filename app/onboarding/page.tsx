@@ -17,7 +17,7 @@ const page = () => {
         환영합니다!
       </h1>
 
-      <h3 className="mt-[34px] text-[20px] font-semibold text-acodegray-600 leading-[30px] tracking-[-0.5px]">
+      <h3 className="mt-[34px] h1 text-acodegray-600">
         어코드와 함께
         <br />
         향수에 입문해보아요

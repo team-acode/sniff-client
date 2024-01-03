@@ -22,16 +22,14 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
       />
       <button className="w-full pt-[27px] px-[26px] text-left h-60 bg-gradient-to-b from-black/80 to-[#292323]/20 inline-flex flex-col">
         <div className="flex">
-          <h2 className="text-[24px] font-semibold leading-9 text-acodewhite tracking-[-0.6px] mr-2">
-            {perfume.name}
-          </h2>
-          <span className="pt-1.5 text-acodegray-300 text-[14px] font-medium tracking-[-0.35px]">
+          <h2 className="h0 text-acodewhite mr-2">{perfume.name}</h2>
+          <span className="body2 font-medium pt-1.5 text-acodegray-300">
             {perfume.brand}
           </span>
         </div>
         <ul className="flex mt-2">
           {perfume.tags.map((tag) => (
-            <li className="mr-[9px] text-[14px] font-medium tracking-[-0.35px] text-acodewhite">
+            <li className="body2 mr-[9px] font-medium text-acodewhite">
               <span className="text-acodegray-300 mr-[1px]">#</span>
               {tag}
             </li>
