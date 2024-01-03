@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-const page = () => {
+const UsernameSettingPage = () => {
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -42,4 +42,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default UsernameSettingPage;

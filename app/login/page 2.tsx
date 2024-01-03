@@ -1,7 +1,6 @@
 import BigLinkButton from '@/components/common/BigLinkButton';
 import { AcodeLogoBig, KakaoLogo } from '@/public/images';
 import { headers } from 'next/headers';
-import Link from 'next/link';
 
 const page = () => {
   const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
