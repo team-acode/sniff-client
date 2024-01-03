@@ -2,8 +2,7 @@
 
 import { ArrowDownIcon, ArrowUpIcon } from '@/public/images';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface PerfumeCategoryBarProps {
   searchParams: { [key: string]: string | undefined };
@@ -31,6 +30,11 @@ const PerfumeCategoryBar = ({
 }: PerfumeCategoryBarProps) => {
   const [isCategorySpread, setIsCategorySpread] = useState<boolean>(false);
   const categoryBarRef = useRef<HTMLUListElement>(null);
+  const scrollOptions: ScrollIntoViewOptions = {
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center',
+  };
 
   return (
     <div className="relative">
@@ -49,7 +53,7 @@ const PerfumeCategoryBar = ({
         ref={categoryBarRef}
       >
         {CATEGORIES.map((category) => (
-          <li key={category} className={`mr-4 shrink-0`}>
+          <li key={category} className="mr-4 shrink-0">
             <Link
               href={{
                 pathname: '/',
@@ -65,6 +69,9 @@ const PerfumeCategoryBar = ({
                   : 'text-acodegray-300'
               }`}
               id={category}
+              onClick={(e) => {
+                e.currentTarget.scrollIntoView(scrollOptions);
+              }}
             >
               {category}
             </Link>
@@ -96,17 +103,7 @@ const PerfumeCategoryBar = ({
               } text-[16px] font-medium tracking-[-0.4px]`}
               onClick={() => {
                 const element = document.getElementById(category);
-                console.log(element);
-                setTimeout(
-                  () =>
-                    element?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'nearest',
-                      inline: 'center',
-                    }),
-                  200,
-                );
-
+                setTimeout(() => element?.scrollIntoView(scrollOptions), 200);
                 setIsCategorySpread(false);
               }}
             >
