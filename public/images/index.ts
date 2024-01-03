@@ -11,3 +11,5 @@ export { default as MenuIcon } from './menu-icon.svg';
 export { default as ArrowRightIcon } from './arrow-right-icon.svg';
 export { default as ArrowUpIcon } from './arrow-up-icon.svg';
 export { default as ArrowDownIcon } from './arrow-down-icon.svg';
+
+export { default as PerfumeTempBg } from './popular-perfume-temp-bg.svg';
