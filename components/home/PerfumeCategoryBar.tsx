@@ -1,18 +1,22 @@
 'use client';
 
 import { ArrowDownIcon, ArrowUpIcon } from '@/public/images';
-import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 
-const CATEGORIES_1 = [
+interface PerfumeCategoryBarProps {
+  searchParams: { [key: string]: string | undefined };
+  selectedCategory: string;
+}
+
+const CATEGORIES = [
   '우디',
   '시트러스',
   '아로마틱',
   '플로럴',
   '푸제르',
   '스파이시',
-];
-
-const CATEGORIES_2 = [
   '푸르티',
   '시프레',
   '알데히드',
@@ -21,33 +25,93 @@ const CATEGORIES_2 = [
   '오리엔탈',
 ];
 
-const PerfumeCategoryBar = () => {
+const PerfumeCategoryBar = ({
+  searchParams,
+  selectedCategory,
+}: PerfumeCategoryBarProps) => {
   const [isCategorySpread, setIsCategorySpread] = useState<boolean>(false);
+  const categoryBarRef = useRef<HTMLUListElement>(null);
 
   return (
     <div className="relative">
-      <ul className="mb-3.5 flex ml-4 relative h-6">
-        {CATEGORIES_1.map((category) => (
-          <li key={category} className="mr-4">
-            <button className={`body2 font-medium`}>{category}</button>
-          </li>
-        ))}
-        <button
-          className="absolute right-0 bottom-[2px]"
-          onClick={() => setIsCategorySpread((state) => !state)}
-        >
-          {isCategorySpread ? <ArrowUpIcon /> : <ArrowDownIcon />}
-        </button>
-      </ul>
       {isCategorySpread ? (
-        <div className="absolute top-[38px] px-7 pt-[22px] border-t border-acodegray-100 bg-acodewhite w-full grid grid-cols-3 gap-x-[26px] gap-y-2">
-          {CATEGORIES_1.concat(CATEGORIES_2).map((category) => (
-            <button
-              key={category}
-              className="w-[89px] h-9 text-left text-acodeblack text-[16px] font-medium tracking-[-0.4px]"
+        <span
+          key={selectedCategory}
+          className="body2 font-medium text-acodeblack h-6 ml-4 pt-[2px] shrink-0 absolute w-full bg-white z-10"
+        >
+          {selectedCategory}
+        </span>
+      ) : (
+        ''
+      )}
+      <ul
+        className="relative mb-3.5 flex ml-4 pr-[48px] h-6 overflow-auto"
+        ref={categoryBarRef}
+      >
+        {CATEGORIES.map((category) => (
+          <li key={category} className={`mr-4 shrink-0`}>
+            <Link
+              href={{
+                pathname: '/',
+                query: {
+                  ...searchParams,
+                  category,
+                },
+              }}
+              scroll={false}
+              className={`body2 font-medium ${
+                selectedCategory === category
+                  ? 'text-acodeblack'
+                  : 'text-acodegray-300'
+              }`}
+              id={category}
             >
               {category}
-            </button>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <button
+        className="absolute right-0 bottom-[2px] z-20"
+        onClick={() => setIsCategorySpread((state) => !state)}
+      >
+        {isCategorySpread ? <ArrowUpIcon /> : <ArrowDownIcon />}
+      </button>
+      {isCategorySpread ? (
+        <div className="absolute z-10 top-[38px] px-7 pt-[22px] pb-[55px] border-t border-acodegray-100 bg-acodewhite w-full grid grid-cols-3 gap-x-[26px] gap-y-2">
+          {CATEGORIES.map((category) => (
+            <Link
+              href={{
+                pathname: '/',
+                query: {
+                  ...searchParams,
+                  category,
+                },
+              }}
+              key={category}
+              className={`w-[89px] h-9 text-left ${
+                selectedCategory === category
+                  ? 'text-acodeblack'
+                  : 'text-acodegray-300'
+              } text-[16px] font-medium tracking-[-0.4px]`}
+              onClick={() => {
+                const element = document.getElementById(category);
+                console.log(element);
+                setTimeout(
+                  () =>
+                    element?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'nearest',
+                      inline: 'center',
+                    }),
+                  200,
+                );
+
+                setIsCategorySpread(false);
+              }}
+            >
+              {category}
+            </Link>
           ))}
         </div>
       ) : null}
