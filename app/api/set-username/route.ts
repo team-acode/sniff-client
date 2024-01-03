@@ -12,7 +12,7 @@ export async function PATCH(request: Request) {
     });
 
   const body = await request.json();
-  const username = body.username;
+  const { username } = body;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/mypage/nickname`,
     {

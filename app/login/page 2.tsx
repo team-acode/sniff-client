@@ -11,7 +11,9 @@ const page = () => {
   return (
     <div className="flex flex-col items-center px-4 w-full h-full">
       <AcodeLogoBig className="mt-[260px] mb-[17px]" />
-      <h1 className="mb-auto h1 text-acodeblack">향수에 입문하기</h1>
+      <h1 className="mb-auto text-xl font-semibold text-acodeblack">
+        향수에 입문하기
+      </h1>
       <span className="text-acodegray-800 text-sm font-semibold mb-[19px]">
         SNS 계정으로 로그인하기
       </span>
