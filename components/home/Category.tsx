@@ -38,6 +38,11 @@ const CategoryElement = ({
 };
 
 const Category = ({ handleClickXButton }: CategoryProps) => {
+  useEffect(() => {
+    document.body.setAttribute('style', 'overflow: hidden');
+    return () => document.body.setAttribute('style', 'overflow: auto');
+  }, []);
+
   return (
     <div className="fixed top-0  bottom-0 w-full h-full bg-acodewhite z-50 overflow-auto pb-[124px]">
       <div className="flex relative justify-center mx-[13px] mt-[3px]">
