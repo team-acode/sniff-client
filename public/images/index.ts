@@ -10,6 +10,7 @@ export { default as UserIcon } from './user-icon.svg';
 export { default as SearchIcon } from './search-icon.svg';
 export { default as MenuIcon } from './menu-icon.svg';
 export { default as HomeIcon } from './home-icon.svg';
+export { default as XIcon } from './x-icon.svg';
 
 export { default as ArrowRightIcon } from './arrow-right-icon.svg';
 export { default as ArrowLeftIcon } from './arrow-left-icon.svg';
