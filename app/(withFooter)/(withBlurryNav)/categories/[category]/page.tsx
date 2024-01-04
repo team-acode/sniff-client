@@ -1,3 +1,5 @@
+import PerfumeItem from '@/components/common/PerfumeItem';
+import { PERFUMES } from '@/constants/tempPurfumes';
 import Image from 'next/image';
 
 const page = () => {
@@ -39,12 +41,18 @@ const page = () => {
           리듯 코 끝을 맴돌아 부드러운 인상을 준다.
         </p>
       </div>
-      <div className="">
-        <h3 className=""></h3>
-        <button type="button" className=""></button>
-      </div>
-      <div className="">
-        <div className=""></div>
+      <div className="pt-9 px-4">
+        <div className="mb-5">
+          <h3 className="h2 text-acodegray-500">
+            <span className="text-acodered">우디 </span>계열 제품
+          </h3>
+          {/* <button type="button" className=""></button> */}
+        </div>
+        <div className="grid grid-cols-2 gap-x-[15px] gap-y-[30px] mb-[154px]">
+          {PERFUMES.data.map((perfume) => (
+            <PerfumeItem key={perfume.id} perfume={perfume} />
+          ))}
+        </div>
       </div>
     </div>
   );
