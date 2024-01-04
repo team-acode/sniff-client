@@ -1,7 +1,6 @@
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import './globals.css';
-import Nav from '@/components/common/Nav';
 
 export const metadata: Metadata = {
   title: '어코드',
@@ -27,10 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={myFont.className}>
-      <body>
-        <Nav />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

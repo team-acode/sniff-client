@@ -6,7 +6,7 @@ import {
 } from '@/public/images';
 import React from 'react';
 
-const Nav = () => {
+const HomeNav = () => {
   return (
     <div className="flex mt-[3px] ml-[10px] mr-[13px] mb-[11px] relative">
       <MenuIcon className="mt-[6px] mr-auto" />
@@ -17,4 +17,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default HomeNav;

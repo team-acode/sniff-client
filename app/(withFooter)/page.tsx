@@ -1,6 +1,7 @@
 import Menu from '@/components/home/Menu';
 import PerfumeList from '@/components/home/PerfumeList';
 import SpiceRecommendation from '@/components/home/SpiceRecommendation';
+import HomeNav from '@/components/home/HomeNav';
 import { ArrowRightIcon } from '@/public/images';
 import Link from 'next/link';
 
@@ -12,7 +13,8 @@ export default function Home({ searchParams }: HomePageProps) {
   const category = searchParams.category || '우디';
 
   return (
-    <div className="pt-[43px] pb-[68px]">
+    <div className="pb-[68px]">
+      <HomeNav />
       <SpiceRecommendation />
       <Menu />
       <PerfumeList searchParams={searchParams} />
