@@ -4,18 +4,23 @@ import { redirect } from 'next/navigation';
 
 interface CategoryPageProps {
   params: {
-    brand: string;
+    spice: string;
   };
 }
 
 const page = ({ params }: CategoryPageProps) => {
-  if (!params || !params.brand) redirect('/');
-  const query = decodeURIComponent(params.brand);
+  if (!params || !params.spice) redirect('/');
+  const query = decodeURIComponent(params.spice);
 
   return (
     <DetailPageTemplate sort="category" query={query} perfumes={PERFUMES.data}>
       <div className="mb-5 flex items-center">
-        <h3 className="h2 text-acodeblack mr-auto leading-[18px]">제품</h3>
+        <h3 className="h2 text-acodegray-500 mr-auto">
+          <span className="text-acodered">{`${query} `}</span>베이스 향수
+        </h3>
+        <span className="body1 text-[#9ea0a3]">
+          총 <span className="text-acodeblack">{PERFUMES.count}</span>건
+        </span>
       </div>
     </DetailPageTemplate>
   );
