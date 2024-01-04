@@ -2,7 +2,6 @@ import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import './globals.css';
 import Nav from '@/components/common/Nav';
-import Footer from '@/components/common/Footer';
 
 export const metadata: Metadata = {
   title: '어코드',
@@ -31,7 +30,6 @@ export default function RootLayout({
       <body>
         <Nav />
         {children}
-        <Footer />
       </body>
     </html>
   );

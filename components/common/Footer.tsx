@@ -1,3 +1,5 @@
+'use client';
+
 import { AcodeLogoGray } from '@/public/images';
 import Link from 'next/link';
 
