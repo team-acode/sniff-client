@@ -18,7 +18,7 @@ const BlurryNav = () => {
   };
 
   return (
-    <div className="absolute flex items-center w-full pt-[3px] pl-[10px] pr-[13px] pb-[11px] backdrop-blur-[10px] bg-white/[0.05]">
+    <div className="absolute flex items-center w-full pt-[3px] pl-[10px] pr-[13px] pb-[11px] backdrop-blur-[10px] bg-white/[0.05] z-20">
       <button type="button" className="mr-auto" onClick={() => router.back()}>
         <ArrowLeftIcon className="fill-acodewhite" />
       </button>
