@@ -12,7 +12,7 @@ export default function Home({ searchParams }: HomePageProps) {
   const category = searchParams.category || '우디';
 
   return (
-    <div>
+    <div className="pb-[68px]">
       <SpiceRecommendation />
       <Menu />
       <PerfumeList searchParams={searchParams} />
