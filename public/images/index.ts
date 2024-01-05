@@ -16,3 +16,4 @@ export { default as ArrowRightIcon } from './arrow-right-icon.svg';
 export { default as ArrowLeftIcon } from './arrow-left-icon.svg';
 export { default as ArrowUpIcon } from './arrow-up-icon.svg';
 export { default as ArrowDownIcon } from './arrow-down-icon.svg';
+export { default as GrayArrowDownIcon } from './gray-arrow-down-icon.svg';
