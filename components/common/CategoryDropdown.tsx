@@ -3,18 +3,21 @@
 import BottomModal from '@/components/common/BottomModal';
 import { CATEGORIES_ALL } from '@/constants/categories';
 import { GrayArrowDownIcon } from '@/public/images';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 const CategoryDropdown = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const initialCategories = searchParams
+    .getAll('category')
+    .map((cateogry) => decodeURIComponent(cateogry));
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const initialState = CATEGORIES_ALL.reduce(
-    (acc, value) => ({ ...acc, [value]: false }),
-    {},
-  );
-  const [categoryCount, setCategoryCount] = useState<number>(0);
-  const [selectedCategory, setSelectedCategory] = useState<{
-    [key: string]: boolean;
-  }>(initialState);
+  const [selectedCategory, setSelectedCategory] =
+    useState<string[]>(initialCategories);
+  const isChanged =
+    initialCategories.toString() !== selectedCategory.toString();
 
   return (
     <>
@@ -32,18 +35,20 @@ const CategoryDropdown = () => {
                 type="button"
                 key={category}
                 className={`body1 h-9 transition ${
-                  selectedCategory[category]
+                  selectedCategory.includes(category)
                     ? 'text-acodewhite bg-acodeblack'
                     : 'bg-acodegray-50'
                 }`}
                 onClick={() => {
-                  if (selectedCategory[category])
-                    setCategoryCount((state) => state - 1);
-                  else setCategoryCount((state) => state + 1);
-                  setSelectedCategory((categories) => ({
-                    ...categories,
-                    [category]: !categories[category],
-                  }));
+                  if (selectedCategory.includes(category)) {
+                    setSelectedCategory((categories) =>
+                      categories.filter((elem) => elem !== category),
+                    );
+                  } else
+                    setSelectedCategory((categories) => [
+                      ...categories,
+                      category,
+                    ]);
                 }}
               >
                 {category}
@@ -54,8 +59,7 @@ const CategoryDropdown = () => {
             type="button"
             className="mt-4 body1 text-acodegray-300 ml-auto w-[89px] h-9"
             onClick={() => {
-              setSelectedCategory(initialState);
-              setCategoryCount(0);
+              setSelectedCategory([]);
             }}
           >
             초기화
@@ -63,8 +67,18 @@ const CategoryDropdown = () => {
           <button
             type="button"
             className={`mt-6 h2 text-acodewhite w-full h-14 transition ${
-              categoryCount > 0 ? 'bg-acodeblack' : 'bg-acodegray-300'
+              isChanged ? 'bg-acodeblack' : 'bg-acodegray-300'
             }`}
+            disabled={!isChanged}
+            onClick={() => {
+              const params = new URLSearchParams();
+
+              selectedCategory.forEach((category) => {
+                params.append('category', encodeURIComponent(category));
+              });
+              router.push(`${pathname}?${params.toString()}`);
+              setIsModalOpen(false);
+            }}
           >
             선택 완료
           </button>
