@@ -7,9 +7,14 @@ import { useState } from 'react';
 
 const CategoryDropdown = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const initialState = CATEGORIES_ALL.reduce(
+    (acc, value) => ({ ...acc, [value]: false }),
+    {},
+  );
+  const [categoryCount, setCategoryCount] = useState<number>(0);
   const [selectedCategory, setSelectedCategory] = useState<{
     [key: string]: boolean;
-  }>(CATEGORIES_ALL.reduce((acc, value) => ({ ...acc, [value]: false }), {}));
+  }>(initialState);
 
   return (
     <>
@@ -31,12 +36,15 @@ const CategoryDropdown = () => {
                     ? 'text-acodewhite bg-acodeblack'
                     : 'bg-acodegray-50'
                 }`}
-                onClick={() =>
+                onClick={() => {
+                  if (selectedCategory[category])
+                    setCategoryCount((state) => state - 1);
+                  else setCategoryCount((state) => state + 1);
                   setSelectedCategory((categories) => ({
                     ...categories,
                     [category]: !categories[category],
-                  }))
-                }
+                  }));
+                }}
               >
                 {category}
               </button>
@@ -45,12 +53,18 @@ const CategoryDropdown = () => {
           <button
             type="button"
             className="mt-4 body1 text-acodegray-300 ml-auto w-[89px] h-9"
+            onClick={() => {
+              setSelectedCategory(initialState);
+              setCategoryCount(0);
+            }}
           >
             초기화
           </button>
           <button
             type="button"
-            className="mt-6 h2 text-acodewhite w-full h-14 bg-acodegray-300"
+            className={`mt-6 h2 text-acodewhite w-full h-14 transition ${
+              categoryCount > 0 ? 'bg-acodeblack' : 'bg-acodegray-300'
+            }`}
           >
             선택 완료
           </button>
