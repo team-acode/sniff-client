@@ -7,6 +7,9 @@ import { useState } from 'react';
 
 const CategoryDropdown = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] = useState<{
+    [key: string]: boolean;
+  }>(CATEGORIES_ALL.reduce((acc, value) => ({ ...acc, [value]: false }), {}));
 
   return (
     <>
@@ -23,7 +26,17 @@ const CategoryDropdown = () => {
               <button
                 type="button"
                 key={category}
-                className="body1 h-9 bg-acodegray-50"
+                className={`body1 h-9 transition ${
+                  selectedCategory[category]
+                    ? 'text-acodewhite bg-acodeblack'
+                    : 'bg-acodegray-50'
+                }`}
+                onClick={() =>
+                  setSelectedCategory((categories) => ({
+                    ...categories,
+                    [category]: !categories[category],
+                  }))
+                }
               >
                 {category}
               </button>

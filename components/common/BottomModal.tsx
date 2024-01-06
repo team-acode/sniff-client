@@ -26,7 +26,7 @@ const BottomModal = ({
       className="fixed left-0 right-0 top-0 bottom-0 z-50 flex flex-col bg-[#1c1818]/[0.7]"
       ref={modalOutsideRef}
       onClick={(e) => {
-        if (e.target !== modalRef.current) closeModal();
+        if (e.target === modalOutsideRef.current) closeModal();
       }}
       aria-hidden
     >
