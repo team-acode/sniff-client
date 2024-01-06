@@ -26,7 +26,7 @@ const CategoryElement = ({
         {list.map((elem) => (
           <Link
             key={elem}
-            href={`/${path}/${elem}`}
+            href={`/${path}/${encodeURIComponent(elem)}`}
             className=" h-[52px] bg-acodegray-50 rounded-lg justify-center items-center inline-flex text-acodeblack text-[16px] font-medium leading-[16px]"
           >
             {elem}

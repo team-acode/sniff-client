@@ -1,0 +1,61 @@
+export const PERFUMES = {
+  data: [
+    {
+      id: 1,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 2,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 3,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 4,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 5,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 6,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 7,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+    {
+      id: 8,
+      perfumeName: '라방드 31',
+      brandName: '이솝',
+      category: '',
+      imageUrl: '',
+    },
+  ],
+  count: 8,
+};

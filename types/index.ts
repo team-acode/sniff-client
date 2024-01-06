@@ -5,3 +5,11 @@ export interface TUserInfo {
   refreshToken: string;
   accessTokenExpires: number;
 }
+
+export interface TPerfume {
+  id: number;
+  perfumeName: string;
+  brandName: string;
+  category: string;
+  imageUrl: string;
+}
