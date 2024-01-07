@@ -17,13 +17,13 @@ const SearchPage = () => {
   useEffect(() => {}, [searchParams]);
 
   return (
-    <div className="flex items-center ml-[10px] mr-[16px] mt-[1px]">
+    <div className="flex items-center ml-[10px] mr-[21px] mt-[13px]">
       <button type="button" className="mr-1" onClick={() => router.back()}>
         <ArrowLeftIcon className="fill-acodeblack" />
       </button>
       <form
         action=""
-        className="flex bg-acodegray-50 flex-1 h-[34px] pl-4 pr-[11px] items-center"
+        className="flex bg-acodegray-50 flex-1 h-[34px] px-[11px] items-center"
         onSubmit={handleSubmit}
       >
         <input
