@@ -24,3 +24,8 @@ export { default as BlackEmptyStar } from './black-empty-star.svg';
 
 export { default as NoReview } from './no-review-regist.svg';
 export { default as ArrowRightReviewIcon } from './arrow-right-review-icon.svg';
+
+export { default as ArrowDownIcon2 } from './arrow-down-icon2.svg';
+export { default as ArrowUpIcon2 } from './arrow-up-icon2.svg';
+
+export { default as Point } from './point.svg';
