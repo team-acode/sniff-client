@@ -1,10 +1,5 @@
 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1347_27624)">
-<path d="M8.5 11.166L4.5 7.16602H12.5L8.5 11.166Z" fill="#09121F"/>
+<g id="Group">
+<path id="Vector" d="M8.5 11.166L4.5 7.16602H12.5L8.5 11.166Z" fill="#09121F"/>
 </g>
-<defs>
-<clipPath id="clip0_1347_27624">
-<rect width="16" height="16" fill="white" transform="translate(0.5 0.5)"/>
-</clipPath>
-</defs>
 </svg>

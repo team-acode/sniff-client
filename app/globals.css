@@ -47,6 +47,23 @@
     line-height: 18px;
     letter-spacing: -0.3px;
   }
+
+  .caption2 {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: -0.3px;
+  }
+
+}
+.swiper-pagination-bullet {
+  background-color: #FFF !important; /* White for inactive bullets */
+}
+
+/* Active bullet color */
+.swiper-pagination-bullet-active {
+  background-color: #FF2D60 !important; /* Red for the active bullet */
 }
 
 html {

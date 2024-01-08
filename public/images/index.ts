@@ -29,3 +29,4 @@ export { default as ArrowDownIcon2 } from './arrow-down-icon2.svg';
 export { default as ArrowUpIcon2 } from './arrow-up-icon2.svg';
 
 export { default as Point } from './point.svg';
+export { default as SceneIcon } from './SceneIcon.svg';
