@@ -2,6 +2,7 @@
 
 import BrandResult from '@/components/search/BrandResult';
 import PerfumeResult from '@/components/search/PerfumeResult';
+import { PERFUMES } from '@/constants/tempPurfumes';
 import { ArrowLeftIcon, SearchIcon, XCircleIcon } from '@/public/images';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -50,7 +51,7 @@ const SearchPage = () => {
       </div>
       <BrandResult />
       <hr className="my-5 mx-4 border-2 border-acodegray-50" />
-      <PerfumeResult />
+      <PerfumeResult perfumes={PERFUMES.data} count={PERFUMES.count} />
     </div>
   );
 };
