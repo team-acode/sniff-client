@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import ArrowDownIcon2 from '@/public/images/arrow-down-icon.svg';
-import ArrowUpIcon2 from '@/public/images/arrow-up-icon.svg';
+import ArrowDownIcon2 from '@/public/images/arrow-down-icon2.svg';
+import ArrowUpIcon2 from '@/public/images/arrow-up-icon2.svg';
 
 type DropdownOption = {
   capacity: string;
@@ -31,7 +31,7 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
       <div className="relative inline-block text-left">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-between items-center text-acodegray-400 rounded border-none bg-white px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="w-20 h-4 body2 flex justify-center items-center text-start text-acodeblack border-none bg-white"
         >
           {buttonText}
           {isOpen ? <ArrowUpIcon2 /> : <ArrowDownIcon2 />}
@@ -39,9 +39,9 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="absolute right-0 z-10 w-full origin-top-right rounded-md bg-white focus:outline-none">
+          <div className="w-20 absolute bg-white focus:outline-none">
             <div
-              className="py-1"
+              className=""
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="options-menu"
@@ -51,7 +51,7 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
                 .map((option, index) => (
                   <button
                     key={index}
-                    className="block w-full px-2 py-1 text-left text-sm text-acodegray-400 hover:bg-acodegray-100 font-medium"
+                    className="body2 block w-full px-2 py-1 text-left text-start text-acodegray-400 hover:bg-acodegray-100 font-medium"
                     onClick={() => handleOptionClick(option)}
                   >
                     {option.capacity}ml

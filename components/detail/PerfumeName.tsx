@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownButton from './PerfumeDropdown';
 import { Point } from '@/public/images';
-
+import { SceneIcon } from '@/public/images';
 const PerfumeName = () => {
   const options = [
     { capacity: '100', price: 28000 },
@@ -34,20 +34,29 @@ const PerfumeName = () => {
       <div className="body2 text-acodegray-300 max-w-md mx-auto mb-4">
         {perfumeInfo.brand}
       </div>
-      <div className="flex flex-col mb-1">
-        <div className="flex items-center">
-          <div className="h2 text-acodeblack">{perfumeInfo.fragranceName}</div>
-          <div className="mx-3">
-            <Point />
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col mb-1">
+          <div className="flex items-center">
+            <div className="h2 text-acodeblack">
+              {perfumeInfo.fragranceName}
+            </div>
+            <div className="mx-3">
+              <Point />
+            </div>
+            <div className="h2 text-acodegray-500">
+              {perfumeInfo.concentration}
+            </div>
           </div>
-          <div className="h2 text-acodegray-500">
-            {perfumeInfo.concentration}
+          <div>
+            <DropdownButton options={options} />
           </div>
         </div>
+        <div className="flex flex-row space-x-2.5">
+          <SceneIcon />
+          <SceneIcon />
+        </div>
       </div>
-      <div>
-        <DropdownButton options={options} />
-      </div>
+
       {/* Hashtags */}
       <div className="mt-4">
         {hashtags.map((tag, index) => (
