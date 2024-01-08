@@ -14,6 +14,7 @@ export { default as XIcon } from './x-icon.svg';
 export { default as XCircleIcon } from './x-circle-icon.svg';
 
 export { default as ArrowRightIcon } from './arrow-right-icon.svg';
+export { default as ArrowRightIcon2 } from './arrow-right-icon2.svg';
 export { default as ArrowLeftIcon } from './arrow-left-icon.svg';
 export { default as ArrowUpIcon } from './arrow-up-icon.svg';
 export { default as ArrowDownIcon } from './arrow-down-icon.svg';
