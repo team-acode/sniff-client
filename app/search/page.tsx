@@ -1,6 +1,7 @@
 'use client';
 
 import BrandResult from '@/components/search/BrandResult';
+import NoResult from '@/components/search/NoResult';
 import PerfumeResult from '@/components/search/PerfumeResult';
 import { PERFUMES } from '@/constants/tempPurfumes';
 import { ArrowLeftIcon, SearchIcon, XCircleIcon } from '@/public/images';
@@ -11,6 +12,8 @@ const SearchPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState<string>('');
+  const [brands, setBrands] = useState([]);
+  const [perfumes, setPerfumes] = useState([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,9 +52,15 @@ const SearchPage = () => {
           </button>
         </form>
       </div>
-      <BrandResult />
-      <hr className="my-5 mx-4 border-2 border-acodegray-50" />
-      <PerfumeResult perfumes={PERFUMES.data} count={PERFUMES.count} />
+      {!perfumes && !brands ? (
+        <>
+          <BrandResult />
+          <hr className="my-5 mx-4 border-2 border-acodegray-50" />
+          <PerfumeResult perfumes={PERFUMES.data} count={PERFUMES.count} />
+        </>
+      ) : (
+        <NoResult />
+      )}
     </div>
   );
 };
