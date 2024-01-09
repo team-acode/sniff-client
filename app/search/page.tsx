@@ -88,7 +88,9 @@ const SearchPage = () => {
           {brands.length ? (
             <BrandResult brands={brands} count={brands.length} />
           ) : null}
-          <hr className="my-5 mx-4 border-2 border-acodegray-50" />
+          {brands.length && perfumes.length ? (
+            <hr className="my-5 mx-4 border-2 border-acodegray-50" />
+          ) : null}
           {perfumes.length ? (
             <PerfumeResult perfumes={perfumes} count={perfumes.length} />
           ) : null}

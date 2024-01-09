@@ -10,7 +10,7 @@ interface PerfumeResultProps {
 
 const PerfumeResult = ({ perfumes, count }: PerfumeResultProps) => {
   return (
-    <div className="pt-9 px-4">
+    <div className="px-4">
       <div className="mb-5 h-8 flex items-center">
         <h3 className="text-[16px] font-semibold leading-[24px] tracking-[-0.4px] text-acodeblack mr-auto">
           상품 <span className="text-acodegray-400 font-medium">{count}건</span>
