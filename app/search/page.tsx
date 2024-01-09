@@ -1,5 +1,6 @@
-/* eslint-disable no-nested-ternary */
 'use client';
+
+/* eslint-disable no-nested-ternary */
 
 import BrandResult from '@/components/search/BrandResult';
 import NoResult from '@/components/search/NoResult';
@@ -35,10 +36,19 @@ const SearchPage = () => {
         ),
       );
       setPerfumes(
-        PERFUMES.data.filter(
-          (perfume) =>
-            perfume.brandName.includes(q) || perfume.perfumeName.includes(q),
-        ),
+        PERFUMES.data.filter((perfume) => {
+          if (
+            perfume.brandName.includes(q) ||
+            perfume.perfumeName.includes(q)
+          ) {
+            const categories = searchParams
+              .getAll('category')
+              .map((cateogry) => decodeURIComponent(cateogry));
+            if (categories.length) return categories.includes(perfume.category);
+            return true;
+          }
+          return false;
+        }),
       );
     }
   }, [searchParams]);
