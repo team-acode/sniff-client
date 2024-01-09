@@ -1,26 +1,47 @@
+/* eslint-disable no-nested-ternary */
 'use client';
 
 import BrandResult from '@/components/search/BrandResult';
 import NoResult from '@/components/search/NoResult';
 import PerfumeResult from '@/components/search/PerfumeResult';
+import { BRANDS } from '@/constants/tempBrands';
 import { PERFUMES } from '@/constants/tempPurfumes';
 import { ArrowLeftIcon, SearchIcon, XCircleIcon } from '@/public/images';
+import { TBrand, TPerfume } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
 
 const SearchPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [query, setQuery] = useState<string>('');
-  const [brands, setBrands] = useState([]);
-  const [perfumes, setPerfumes] = useState([]);
-
+  const [query, setQuery] = useState<string>(searchParams.get('q') || '');
+  const [brands, setBrands] = useState<TBrand[]>([]);
+  const [perfumes, setPerfumes] = useState<TPerfume[]>([]);
+  // const [page, setPage] = useState<number>(1);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push(`/search?q=${query}`);
   };
 
-  useEffect(() => {}, [searchParams]);
+  useEffect(() => {
+    const q = searchParams.get('q');
+    setQuery(q || '');
+
+    if (q) {
+      setBrands(
+        BRANDS.data.filter(
+          (brand) =>
+            brand.brandNameEng.includes(q) || brand.brandNameKor.includes(q),
+        ),
+      );
+      setPerfumes(
+        PERFUMES.data.filter(
+          (perfume) =>
+            perfume.brandName.includes(q) || perfume.perfumeName.includes(q),
+        ),
+      );
+    }
+  }, [searchParams]);
 
   return (
     <div className="">
@@ -52,15 +73,19 @@ const SearchPage = () => {
           </button>
         </form>
       </div>
-      {!perfumes && !brands ? (
+      {perfumes.length || brands.length ? (
         <>
-          <BrandResult />
+          {brands.length ? (
+            <BrandResult brands={brands} count={brands.length} />
+          ) : null}
           <hr className="my-5 mx-4 border-2 border-acodegray-50" />
-          <PerfumeResult perfumes={PERFUMES.data} count={PERFUMES.count} />
+          {perfumes.length ? (
+            <PerfumeResult perfumes={perfumes} count={perfumes.length} />
+          ) : null}
         </>
-      ) : (
+      ) : query ? (
         <NoResult />
-      )}
+      ) : null}
     </div>
   );
 };
