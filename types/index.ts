@@ -13,3 +13,10 @@ export interface TPerfume {
   category: string;
   imageUrl: string;
 }
+
+export interface TBrand {
+  id: number;
+  brandNameKor: string;
+  brandNameEng: string;
+  imageUrl: string;
+}

@@ -71,8 +71,8 @@ const CategoryDropdown = () => {
             }`}
             disabled={!isChanged}
             onClick={() => {
-              const params = new URLSearchParams();
-
+              const params = new URLSearchParams(searchParams);
+              params.delete('category');
               selectedCategory.forEach((category) => {
                 params.append('category', encodeURIComponent(category));
               });

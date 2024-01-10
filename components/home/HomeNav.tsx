@@ -24,7 +24,9 @@ const HomeNav = () => {
           <MenuIcon className="" />
         </button>
         <AcodeLogoSmall className="absolute top-[7px] left-1/2 -translate-x-2/4" />
-        <SearchIcon className="mt-[3px] mr-[11px] fill-acodeblack" />
+        <Link href="/search" className="mt-[3px] mr-[11px]">
+          <SearchIcon className="fill-acodeblack" />
+        </Link>
         <Link href="/mypage" className="mt-[3px]">
           <UserIcon className="fill-acodeblack" />
         </Link>

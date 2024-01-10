@@ -2,6 +2,7 @@ export { default as AcodeLogoBig } from './acode-logo-big.svg';
 export { default as AcodeLogoSmall } from './acode-logo-small.svg';
 export { default as AcodeLogoMono } from './acode-logo-mono.svg';
 export { default as AcodeLogoGray } from './acode-logo-gray.svg';
+export { default as AcodeLogoLong } from './acode-logo-long.svg';
 
 export { default as KakaoLogo } from './kakao-logo.svg';
 export { default as Onboarding } from './onboarding.svg';
@@ -11,8 +12,10 @@ export { default as SearchIcon } from './search-icon.svg';
 export { default as MenuIcon } from './menu-icon.svg';
 export { default as HomeIcon } from './home-icon.svg';
 export { default as XIcon } from './x-icon.svg';
+export { default as XCircleIcon } from './x-circle-icon.svg';
 
 export { default as ArrowRightIcon } from './arrow-right-icon.svg';
+export { default as ArrowRightIcon2 } from './arrow-right-icon2.svg';
 export { default as ArrowLeftIcon } from './arrow-left-icon.svg';
 export { default as ArrowUpIcon } from './arrow-up-icon.svg';
 export { default as ArrowDownIcon } from './arrow-down-icon.svg';
