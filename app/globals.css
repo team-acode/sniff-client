@@ -56,14 +56,55 @@
     letter-spacing: -0.3px;
   }
 
-}
-.swiper-pagination-bullet {
-  background-color: #FFF !important; /* White for inactive bullets */
+  .review-1{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: -0.4px;
+  }
+  .review-2{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: -0.45px;
+  }
+
 }
 
-/* Active bullet color */
+.swiper-pagination-bullet {
+  background-color: #FFF !important;
+}
+
 .swiper-pagination-bullet-active {
-  background-color: #FF2D60 !important; /* Red for the active bullet */
+  background-color: #FF2D60 !important;
+}
+.form-radio:checked + label {
+  background-color: #000000;
+  color: #FFF; 
+}
+.form-radio-group {
+  display: inline-flex;
+  margin-right: 10px;
+}
+.form-radio + label {
+  display: inline-block;
+  padding-top: 0.5rem;
+  padding-bottom:0.5rem;
+  padding-left: 0.6rem;
+  padding-right:0.6rem;
+  background-color: #ffffff;
+  color: #A6A49F;
+  border: 1.2px solid #ECEBEA;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.form-radio {
+  opacity: 0;
+  position: absolute;
 }
 
 html {
