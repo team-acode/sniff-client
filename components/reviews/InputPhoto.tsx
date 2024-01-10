@@ -30,7 +30,9 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
 
   return (
     <div>
-      <div className="review-2">사진 첨부</div>
+      <div className="review-2 mb-5">
+        사진 첨부 <span className="text-acodegray-300 ml-3">(선택)</span>
+      </div>
       <div className="flex flex-row items-center space-x-2">
         {photos.map((photo, index) => (
           <div key={index} className="relative">

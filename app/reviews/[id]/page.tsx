@@ -30,14 +30,17 @@ const Page = () => {
   };
   return (
     <div>
+      <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>
         <InputStar onRatingChange={setStarRating} />
         {/* <div>Rating: {starRating}</div> */}
       </div>
+      <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <OnelineComment onChange={setOneLineComment} />
         {/* <div>OneLineComment: {oneLineComment}</div> */}
       </div>
+      <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <KeyWordReview
           selectedSeason={selectedSeason}
@@ -52,14 +55,14 @@ const Page = () => {
         <div>Selected Intensity: {selectedIntensity}</div> */}
         <div>
           <div className="flex">
-            <div className="flex w-1/5 items-center justify-start caption2">
+            <div className="flex w-1/5 items-center justify-start review-3">
               스타일
             </div>
             <button
               onClick={handleModalOpen}
-              className="px-2 py-1 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
+              className=" px-2.5 py-2 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
             >
-              <span className="mr-2">+</span>
+              <span className="mr-2 ml-2 text-acodeblack">+</span>
               어떤 스타일과 어울릴까요?
             </button>
           </div>
@@ -72,10 +75,12 @@ const Page = () => {
           {/* <div>Modal value:{modalValue}</div> */}
         </div>
       </div>
+      <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <TextReview onChange={setTextReview} />
         {/* <div>Text Review: {textReview}</div> */}
       </div>
+      <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <InputPhoto onChange={setPhotos} />
         {/* <div>
@@ -96,7 +101,6 @@ const Page = () => {
         <button className="bg-acodeblack w-full text-white  py-3 px-4 rounded">
           올리기
         </button>
-        {/*api 연동하고 handlesubmit 구현해서 추가*/}
       </div>
     </div>
   );

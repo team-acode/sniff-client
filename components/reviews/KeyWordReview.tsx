@@ -21,12 +21,14 @@ const KeyWordReview = ({
   const intensity = ['약함', '보통', '진함', '아주진함'];
   return (
     <div>
-      <div className="review-2">키워드 리뷰</div>
+      <div className="review-2 mb-5">키워드 리뷰</div>
       {/* Seasons */}
-      <div className="flex overflow-auto mb-5">
-        <div className="inline-block w-1/5">계절감 </div>
+      <div className="flex overflow-x-auto mb-5">
+        <div className="flex w-1/5 items-center justify-start review-3">
+          계절감{' '}
+        </div>
         {seasons.map((season) => (
-          <div key={season} className="flex flex-row mx-2">
+          <div key={season} className="form-radio-group overflow-auto-x">
             <input
               type="radio"
               id={`season-${season}`}
@@ -47,9 +49,11 @@ const KeyWordReview = ({
       </div>
       {/* Persistence */}
       <div className="flex overflow-auto mb-5">
-        <div className="inline-block w-1/5">지속성</div>
+        <div className="flex w-1/5 items-center justify-start review-3">
+          지속성
+        </div>
         {persistence.map((duration) => (
-          <div key={duration} className="form-radio-group mx-2">
+          <div key={duration} className="form-radio-group overflow-auto-x">
             <input
               type="radio"
               id={`persistence-${duration}`}
@@ -70,11 +74,13 @@ const KeyWordReview = ({
       </div>
       {/* Intensity */}
       <div className="flex overflow-auto mb-5">
-        <div className="inline-block w-1/5">향의 세기</div>
+        <div className="flex w-1/5 items-center justify-start review-3">
+          향의 세기
+        </div>
         {intensity.map((intensityLevel) => (
           <div
             key={intensityLevel}
-            className="form-radio-group overflow-auto-x mx-2"
+            className="form-radio-group overflow-auto-x"
           >
             <input
               type="radio"

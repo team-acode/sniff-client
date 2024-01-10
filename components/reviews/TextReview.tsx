@@ -14,7 +14,10 @@ const TextReview = ({ onChange }: TextReviewProps) => {
   };
   return (
     <div>
-      <div className="review-2">텍스트 리뷰</div>
+      <div className="review-2 mb-5">
+        텍스트 리뷰
+        <span className="text-acodegray-300 ml-3">(선택)</span>
+      </div>
       <div className="bg-acodegray-50 rounded justify-center item-center">
         <textarea
           value={text}
