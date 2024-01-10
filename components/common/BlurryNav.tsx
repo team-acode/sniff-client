@@ -14,7 +14,8 @@ const BlurryNav = () => {
   const getTitle = (pn: string) => {
     if (pn.includes('/brands')) return '브랜드';
     if (pn.includes('/categories')) return '계열';
-    return '향료';
+    if (pn.includes('/spices')) return '향료';
+    return '내 정보';
   };
 
   return (

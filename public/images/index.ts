@@ -13,6 +13,7 @@ export { default as MenuIcon } from './menu-icon.svg';
 export { default as HomeIcon } from './home-icon.svg';
 export { default as XIcon } from './x-icon.svg';
 export { default as XCircleIcon } from './x-circle-icon.svg';
+export { default as PencilIcon } from './pencil-icon.svg';
 
 export { default as ArrowRightIcon } from './arrow-right-icon.svg';
 export { default as ArrowRightIcon2 } from './arrow-right-icon2.svg';
