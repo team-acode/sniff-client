@@ -1,4 +1,5 @@
 import BlurryNav from '@/components/common/BlurryNav';
+import LogoutButton from '@/components/mypage/LogoutButton';
 import { ArrowRightIcon2, PencilIcon, BookMarkOnIcon } from '@/public/images';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -34,6 +35,9 @@ const page = () => {
             모두 보기
           </Link>
         </div>
+        {/* <div className="pt-16 pb-[95px] text-center text-acodegray-300 text-[16px] font-medium tracking-[-0.4px]">
+          아직 스크랩한 제품이 없어요.
+        </div> */}
         <div className="flex mt-5">
           <Link
             href="/"
@@ -54,12 +58,7 @@ const page = () => {
           광고 제휴 문의
         </Link>
         <div className="flex flex-col mt-[94px] mb-[41px]">
-          <button
-            type="button"
-            className="caption1 text-left text-acodegray-500"
-          >
-            로그아웃
-          </button>
+          <LogoutButton />
           <button
             type="button"
             className="caption1 text-left text-acodegray-500 mt-3"

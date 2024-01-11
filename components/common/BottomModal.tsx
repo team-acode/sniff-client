@@ -23,7 +23,7 @@ const BottomModal = ({
 
   return (
     <div
-      className="absolute left-0 right-0 top-0 bottom-0 z-50 flex flex-col bg-[#1c1818]/[0.7] justify-end"
+      className="fixed left-0 right-0 top-0 bottom-0 z-50 flex flex-col bg-[#1c1818]/[0.7] justify-end"
       ref={modalOutsideRef}
       onClick={(e) => {
         if (e.target === modalOutsideRef.current) closeModal();
