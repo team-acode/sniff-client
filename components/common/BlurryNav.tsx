@@ -27,7 +27,9 @@ const BlurryNav = () => {
         {getTitle(pathname)}
       </h3>
 
-      <SearchIcon className=" mr-[11px] fill-acodeblack" />
+      <Link href="/search" className="">
+        <SearchIcon className=" mr-[11px] fill-acodeblack" />
+      </Link>
       <Link href={isSpices ? '/mypage' : '/'} className="">
         {isSpices ? (
           <UserIcon className=" fill-acodeblack" />

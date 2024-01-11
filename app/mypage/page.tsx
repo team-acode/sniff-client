@@ -20,13 +20,17 @@ const page = () => {
         >
           <span className="body1 mr-[9px]">김킁킁님이 작성한 리뷰</span>
           <span className="mr-auto">3</span>
-          <ArrowRightIcon2 className="fill-acodewhite w-6 h-6" />
+          <ArrowRightIcon2
+            className="fill-acodewhite w-6 h-6"
+            width={24}
+            height={24}
+          />
         </Link>
       </div>
       <div className="mt-9 mx-4">
         <div className="flex items-center">
           <h3 className="h2 mr-auto">스크랩</h3>
-          <Link href="/" className="body2 text-acodegray-500">
+          <Link href="mypage/wish" className="body2 text-acodegray-500">
             모두 보기
           </Link>
         </div>
