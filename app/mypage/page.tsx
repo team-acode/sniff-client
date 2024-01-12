@@ -12,7 +12,7 @@ const page = () => {
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
           <h1 className="h0 mr-1">안녕하세요, 김킁킁님</h1>
-          <Link href="/" className="">
+          <Link href="/mypage/username?init=false" className="">
             <PencilIcon />
           </Link>
         </div>
