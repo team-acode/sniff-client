@@ -4,7 +4,7 @@ export const USER_REVIEWS = {
       brandName: '이솝',
       perfumeName: '짱짱이솝',
       perfumeId: 1,
-      content: '추운 겨울에 잘 어울리는 향이에요',
+      content: '추운겨울에잘어울리는향이에요일이삼사오',
       rating: 3,
       imageUrl: '',
     },

@@ -52,7 +52,11 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
           </div>
           <div className="mt-2 flex pr-[9px]">
             <div className="mr-auto">
-              <p className="body1 font-semibold">{review.content}</p>
+              <p className="body1 font-semibold text-ellipsis whitespace-nowrap overflow-hidden w-[248px]">
+                {review.content}
+                {review.content}
+                {review.content}
+              </p>
             </div>
             <Image src="/" alt="perfume" width={72} height={72} />
           </div>
