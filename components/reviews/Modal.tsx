@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 interface ModalProps {
-  isOpen: boolean;
-  closeModal: () => void;
   onReturn: (value: any) => void;
 }
 
-function Modal({ isOpen, closeModal, onReturn }: ModalProps) {
+function Modal({ onReturn }: ModalProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
   const MODALOPTIONS = [
     '시크한',
     '성숙한',
@@ -31,7 +32,14 @@ function Modal({ isOpen, closeModal, onReturn }: ModalProps) {
     '가벼운',
     '부드러운',
   ];
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  const handleModalOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
 
   const toggleOption = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -41,61 +49,84 @@ function Modal({ isOpen, closeModal, onReturn }: ModalProps) {
     }
   };
 
+  const removeOption = (option: string) => {
+    setSelectedOptions(selectedOptions.filter((o) => o !== option));
+  };
+
   const completeSelection = () => {
     onReturn(selectedOptions);
-    closeModal();
+    handleModalClose();
   };
-  return isOpen ? (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end">
-      <div className="bg-white shadow-lg mx-auto w-full">
-        {/* <div className="flex justify-center item-center p-4">
-          <div>
-            <div className="h1 text-acodblack text-center">스타일</div>
-            <div className="caption2 text-acodegray-500">
-              *최대 3개까지 고를 수 있습니다.
+
+  return (
+    <div>
+      <div className="flex">
+        <div className="flex w-1/5 items-center justify-start review-3">
+          스타일
+        </div>
+        <div className="flex flex-wrap">
+          {selectedOptions.map((option, index) => (
+            <div key={index} className="flex items-center mr-2">
+              <span className="px-2.5 py-2 body2 text-white bg-black rounded-full border flex items-center justify-center">
+                {option}
+                <button className="ml-2" onClick={() => removeOption(option)}>
+                  X
+                </button>
+              </span>
             </div>
-          </div>
-        </div> */}
-        <div className="flex justify-center item-center p-4">
-          <div>
-            <div className="h1 text-acodblack text-center">스타일</div>
-            {selectedOptions.length > 0 ? (
-              <div className="caption2 text-acodegray-500">
-                선택된 스타일: {selectedOptions.join(', ')}
-              </div>
-            ) : (
-              <div className="caption2 text-acodegray-500">
-                *최대 3개까지 고를 수 있습니다.
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="flex flex-row flex-wrap gap-4 p-4">
-          {MODALOPTIONS.map((option, index) => (
-            <button
-              key={index}
-              className={`${
-                selectedOptions.includes(option)
-                  ? 'bg-acodeblack text-white border-acodeblack'
-                  : 'text-acodegray-400 border-acodeblack'
-              } rounded-full p-2 border-2 border-acodegray-100 `}
-              onClick={() => toggleOption(option)}
-            >
-              {option}
-            </button>
           ))}
-        </div>
-        <div className="flex justify-center p-4">
-          <button
-            className="bg-acodeblack w-full text-white  py-3 px-4 rounded"
-            onClick={completeSelection}
-            disabled={selectedOptions.length === 0}
-          >
-            선택완료
-          </button>
+          {selectedOptions.length < 3 && (
+            <button
+              onClick={handleModalOpen}
+              className="px-2.5 py-2 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
+            >
+              <span className="mr-2 ml-2 text-acodeblack">+</span>
+              {selectedOptions.length === 0 && '어떤 스타일과 어울릴까요?'}
+            </button>
+          )}
         </div>
       </div>
+
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end">
+          <div className="bg-white shadow-lg mx-auto w-full">
+            <div className="flex justify-center item-center p-4">
+              <div>
+                <div className="h1 text-acodblack text-center">스타일</div>
+                <div className="caption2 text-acodegray-500">
+                  *최대 3개까지 고를 수 있습니다.
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row flex-wrap gap-4 p-4">
+              {MODALOPTIONS.map((option, index) => (
+                <button
+                  key={index}
+                  className={`${
+                    selectedOptions.includes(option)
+                      ? 'bg-acodeblack text-white border-acodeblack'
+                      : 'text-acodegray-400 border-acodeblack'
+                  } rounded-full p-2 border-2 border-acodegray-100 `}
+                  onClick={() => toggleOption(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+            <div className="flex justify-center p-4">
+              <button
+                className="bg-acodeblack w-full text-white py-3 px-4 rounded"
+                onClick={completeSelection}
+                disabled={selectedOptions.length === 0}
+              >
+                선택완료
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  ) : null;
+  );
 }
+
 export default Modal;
