@@ -1,7 +1,12 @@
 'use client';
 
 import MyPageModalTemplate from '@/components/mypage/MyPageModalTemplate';
-import { SmallCircleIcon, SmallXIcon } from '@/public/images';
+import {
+  EmptyStarIcon,
+  FullStarIcon,
+  SmallCircleIcon,
+  SmallXIcon,
+} from '@/public/images';
 import { TUserReview } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +15,19 @@ import React, { useState } from 'react';
 interface UserReviewItemProps {
   review: TUserReview;
 }
+
+export const rateStarHandler = (rating: number) => {
+  const stars = [];
+
+  for (let i = 0; i < 5; i += 1) {
+    if (i < rating) {
+      stars.push(<FullStarIcon key={i} />);
+    } else {
+      stars.push(<EmptyStarIcon key={i} />);
+    }
+  }
+  return stars;
+};
 
 const UserReviewItem = ({ review }: UserReviewItemProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -54,10 +72,10 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
             <div className="mr-auto">
               <p className="body1 font-semibold text-ellipsis whitespace-nowrap overflow-hidden w-[248px]">
                 {review.content}
-                {review.content}
-                {review.content}
               </p>
+              <div className="flex mt-3">{rateStarHandler(review.rating)}</div>
             </div>
+
             <Image src="/" alt="perfume" width={72} height={72} />
           </div>
         </Link>
