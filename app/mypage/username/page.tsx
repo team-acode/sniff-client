@@ -1,25 +1,34 @@
 'use client';
 
 import SimpleNav from '@/components/mypage/SimpleNav';
+import { WarningIcon } from '@/public/images';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 const UsernameSettingPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isInit = searchParams.get('init') === 'true';
+  const [isUsernameError, setIsUsernameError] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const username = event.currentTarget.username.value;
 
-    const res = await fetch('/api/set-username', {
-      method: 'PATCH',
-      body: JSON.stringify({ username: event.currentTarget.username.value }),
-      cache: 'no-cache',
-    });
-    if (res.ok) {
-      router.push('/onboarding');
+    if (/^([a-zA-Z가-힣]){1,8}$/.test(username)) {
+      setIsUsernameError(false);
+      const res = await fetch('/api/set-username', {
+        method: 'PATCH',
+        body: JSON.stringify({ username: event.currentTarget.username.value }),
+        cache: 'no-cache',
+      });
+      if (res.ok) {
+        router.push('/onboarding');
+      } else {
+        // 닉네임 설정 오류 대응 추가 예정
+      }
     } else {
-      // 닉네임 설정 오류 대응 추가 예정
+      setIsUsernameError(true);
     }
   };
 
@@ -39,13 +48,24 @@ const UsernameSettingPage = () => {
       >
         <input
           type="text"
-          className="body2 font-medium mx-4 h-10 bg-acodegray-50 p-2.5 box-border text-acodeblack placeholder:text-acodegray-300 rounded-sm"
+          className={`${
+            isUsernameError ? 'border-b-[1.5px] border-acodeerror' : ''
+          } body2 font-medium mx-4 h-10 bg-acodegray-50 p-2.5 box-border text-acodeblack placeholder:text-acodegray-300 rounded-sm transition ease-in-out`}
           placeholder="특수문자 제외 한글 또는 영문 8글자 이내"
           name="username"
+          onInput={() => setIsUsernameError(false)}
         />
+        <div className="mt-[7px] mb-[13px] mx-4 h-6">
+          {isUsernameError ? (
+            <span className="caption1 flex items-center text-acodeerror font-medium animate-vibration">
+              <WarningIcon className="mr-[5px]" />
+              닉네임을 확인해주세요
+            </span>
+          ) : null}
+        </div>
         <button
           type="submit"
-          className="mt-11 mx-4 w-auto h-14 bg-acodeblack text-white text-[16px] font-semibold justify-center items-center inline-flex rounded-[4px]"
+          className="mx-4 w-auto h-14 bg-acodeblack text-white text-[16px] font-semibold justify-center items-center inline-flex rounded-[4px]"
         >
           완료
         </button>
