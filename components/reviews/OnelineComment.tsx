@@ -17,7 +17,7 @@ const OnelineComment = ({ onChange }: OnelineCommentProps) => {
     <div className="text-acodeblack">
       <div className="flex flex-row justify-between">
         <div className="review-2 mb-5">한줄 리뷰</div>
-        <div className="text-right">{comment.length}/25</div>
+        <div className="text-right text-acodegray-400">{comment.length}/25</div>
       </div>
       <div className="flex justify-center items-center">
         <input

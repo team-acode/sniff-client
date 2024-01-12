@@ -23,7 +23,7 @@ const TextReview = ({ onChange }: TextReviewProps) => {
           value={text}
           onChange={handleTextChange}
           maxLength={1000}
-          className="w-full bg-acodegray-50 p-2 mt-2 body2"
+          className="w-full bg-acodegray-50 p-2 mt-2 body2 h-40"
         ></textarea>
         <div className="text-right caption1 mr-2 text-acodegray-700">
           {text.length}/<span className="text-acodegray-300">1000</span>
