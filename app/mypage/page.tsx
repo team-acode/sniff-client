@@ -1,4 +1,5 @@
 import BlurryNav from '@/components/common/BlurryNav';
+import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
 import { ArrowRightIcon2, PencilIcon, BookMarkOnIcon } from '@/public/images';
 import Image from 'next/image';
@@ -59,12 +60,13 @@ const page = () => {
         </Link>
         <div className="flex flex-col mt-[94px] mb-[41px]">
           <LogoutButton />
-          <button
+          <LeaveButton />
+          {/* <button
             type="button"
             className="caption1 text-left text-acodegray-500 mt-3"
           >
             회원탈퇴
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
