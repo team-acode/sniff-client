@@ -17,7 +17,7 @@ const page = () => {
           </Link>
         </div>
         <Link
-          href="/"
+          href="/mypage/reviews"
           className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
         >
           <span className="body1 mr-[9px]">김킁킁님이 작성한 리뷰</span>

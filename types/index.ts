@@ -20,3 +20,12 @@ export interface TBrand {
   brandNameEng: string;
   imageUrl: string;
 }
+
+export interface TUserReview {
+  brandName: string;
+  perfumeName: string;
+  perfumeId: number;
+  content: string;
+  rating: number;
+  imageUrl: string;
+}
