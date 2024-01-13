@@ -10,6 +10,7 @@ const UsernameSettingPage = () => {
   const searchParams = useSearchParams();
   const isInit = searchParams.get('init') === 'true';
   const [isUsernameError, setIsUsernameError] = useState<boolean>(false);
+  const [isDoneAvailable, setIsDoneAvailable] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +30,7 @@ const UsernameSettingPage = () => {
       }
     } else {
       setIsUsernameError(true);
+      setIsDoneAvailable(false);
     }
   };
 
@@ -53,7 +55,10 @@ const UsernameSettingPage = () => {
           } body2 font-medium mx-4 h-10 bg-acodegray-50 p-2.5 box-border text-acodeblack placeholder:text-acodegray-300 rounded-sm transition ease-in-out`}
           placeholder="특수문자 제외 한글 또는 영문 8글자 이내"
           name="username"
-          onInput={() => setIsUsernameError(false)}
+          onInput={() => {
+            setIsUsernameError(false);
+            setIsDoneAvailable(true);
+          }}
         />
         <div className="mt-[7px] mb-[13px] mx-4 h-6">
           {isUsernameError ? (
@@ -65,7 +70,10 @@ const UsernameSettingPage = () => {
         </div>
         <button
           type="submit"
-          className="mx-4 w-auto h-14 bg-acodeblack text-white text-[16px] font-semibold justify-center items-center inline-flex rounded-[4px]"
+          className={`mx-4 w-auto h-14 text-white text-[16px] font-semibold justify-center items-center inline-flex rounded-[4px] transition ${
+            isDoneAvailable ? 'bg-acodeblack' : 'bg-acodegray-300'
+          }`}
+          disabled={!isDoneAvailable}
         >
           완료
         </button>
