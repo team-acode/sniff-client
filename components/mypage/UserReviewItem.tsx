@@ -45,8 +45,8 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
           삭제된 리뷰는 복구되지 않습니다.
         </MyPageModalTemplate>
       ) : null}
-      <li className="h-[101px] w-full">
-        <Link href={`/perfumes/${review.perfumeId}`} className="relative">
+      <li className="h-[101px] w-full relative">
+        <Link href={`/perfumes/${review.perfumeId}`} className="">
           <button
             type="button"
             className="absolute top-0 right-[2px]"
