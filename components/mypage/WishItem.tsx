@@ -1,5 +1,6 @@
 import { BookMarkOnIcon, SmallCircleIcon } from '@/public/images';
 import { TPerfume } from '@/types';
+import { convertNum } from '@/utils/common';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,7 +9,6 @@ interface WishItemProps {
 }
 
 const WishItem = ({ perfume }: WishItemProps) => {
-  <SmallCircleIcon />;
   return (
     <li className="h-24 w-full">
       <Link href={`/perfumes/${perfume.id}`} className="flex w-full h-full">
@@ -33,7 +33,7 @@ const WishItem = ({ perfume }: WishItemProps) => {
             </span>
           </div>
           <div className="flex mt-4 gap-[7px] text-[14px] text-acodegray-500 font-medium tracking-[-0.28px] h-[17px]">
-            <span className="">{perfume.price}원</span>
+            <span className="">{convertNum(perfume.price)}원</span>
             <span className="">{perfume.capacity}</span>
           </div>
         </div>
