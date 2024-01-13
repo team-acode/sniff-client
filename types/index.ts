@@ -12,6 +12,9 @@ export interface TPerfume {
   brandName: string;
   category: string;
   imageUrl: string;
+  option: string;
+  price: number;
+  capacity: string;
 }
 
 export interface TBrand {
