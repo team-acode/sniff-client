@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ModalProps {
   onReturn: (value: any) => void;
@@ -57,11 +57,18 @@ function Modal({ onReturn }: ModalProps) {
     onReturn(selectedOptions);
     handleModalClose();
   };
-
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
   return (
     <div>
       <div className="flex mx-4">
-        <div className="flex w-1/5 items-center justify-start review-3">
+        <div className="flex w-1/4 items-center justify-start review-3">
           스타일
         </div>
         <div className="flex w-full overflow-x-auto">
