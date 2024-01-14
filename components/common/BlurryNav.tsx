@@ -19,7 +19,7 @@ const BlurryNav = () => {
   };
 
   return (
-    <div className="fixed flex items-center w-full pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
+    <div className="fixed flex items-center w-full max-w-[430px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
       <button type="button" className="mr-auto" onClick={() => router.back()}>
         <ArrowLeftIcon className="fill-acodeblack" />
       </button>
@@ -37,6 +37,7 @@ const BlurryNav = () => {
           <HomeIcon className=" fill-acodeblack" />
         )}
       </Link>
+      {/* <div className="relative"></div> */}
     </div>
   );
 };
