@@ -1,8 +1,9 @@
 import BlurryNav from '@/components/common/BlurryNav';
 import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
-import { ArrowRightIcon2, PencilIcon, BookMarkOnIcon } from '@/public/images';
-import Image from 'next/image';
+import WishPreviewItem from '@/components/mypage/WishPreviewItem';
+import { PERFUMES } from '@/constants/tempPurfumes';
+import { ArrowRightIcon2, PencilIcon } from '@/public/images';
 import Link from 'next/link';
 
 const page = () => {
@@ -39,15 +40,11 @@ const page = () => {
         {/* <div className="pt-16 pb-[95px] text-center text-acodegray-300 text-[16px] font-medium tracking-[-0.4px]">
           아직 스크랩한 제품이 없어요.
         </div> */}
-        <div className="flex mt-5">
-          <Link
-            href="/"
-            className="relative h-[158px] w-[138px] border-[1.5px] border-acodegray-50 rounded-[4px] overflow-clip"
-          >
-            <Image src="" className="" alt="perfume" />
-            <BookMarkOnIcon className="absolute top-[10px] right-[10px]" />
-          </Link>
-        </div>
+        <ul className="flex mt-5 overflow-auto gap-[14px]">
+          {PERFUMES.data.slice(0, 3).map((perfume) => (
+            <WishPreviewItem perfume={perfume} />
+          ))}
+        </ul>
       </div>
       <hr className="mt-9 mb-[34px] border-[3px] border-acodegray-50" />
       <div className="flex flex-col mx-4">
