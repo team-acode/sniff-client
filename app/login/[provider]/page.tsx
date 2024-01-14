@@ -25,7 +25,7 @@ const RedirectPage = ({ params, searchParams }: RedirectPageProps) => {
 
       if (res.ok) {
         if (res.statusText === USERNAME_SETTING_REQUIRED)
-          router.push('/mypage/username');
+          router.push('/mypage/username?init=true');
         else router.push('/');
       } else {
         router.push('/login');

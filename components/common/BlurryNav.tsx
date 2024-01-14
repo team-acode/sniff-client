@@ -14,24 +14,27 @@ const BlurryNav = () => {
   const getTitle = (pn: string) => {
     if (pn.includes('/brands')) return '브랜드';
     if (pn.includes('/categories')) return '계열';
-    return '향료';
+    if (pn.includes('/spices')) return '향료';
+    return '내 정보';
   };
 
   return (
-    <div className="absolute flex items-center w-full pt-[3px] pl-[10px] pr-[13px] pb-[11px] backdrop-blur-[10px] bg-white/[0.05] z-20">
+    <div className="fixed flex items-center w-full pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
       <button type="button" className="mr-auto" onClick={() => router.back()}>
-        <ArrowLeftIcon className="fill-acodewhite" />
+        <ArrowLeftIcon className="fill-acodeblack" />
       </button>
-      <h3 className="h1 h-[30px] absolute top-[3px] left-1/2 -translate-x-2/4 text-acodewhite">
+      <h3 className="h1 h-[30px] absolute top-[13px] left-1/2 -translate-x-2/4 text-acodeblack">
         {getTitle(pathname)}
       </h3>
 
-      <SearchIcon className=" mr-[11px] fill-acodewhite" />
+      <Link href="/search" className="">
+        <SearchIcon className=" mr-[11px] fill-acodeblack" />
+      </Link>
       <Link href={isSpices ? '/mypage' : '/'} className="">
         {isSpices ? (
-          <UserIcon className=" fill-acodewhite" />
+          <UserIcon className=" fill-acodeblack" />
         ) : (
-          <HomeIcon className=" fill-acodewhite" />
+          <HomeIcon className=" fill-acodeblack" />
         )}
       </Link>
     </div>

@@ -28,7 +28,7 @@ const DetailPageTemplate = async ({
 
   return (
     <div className="text-acodewhite">
-      <div className="relative h-[376px] px-4">
+      <div className="relative h-[386px] px-4">
         <Image
           src="/images/detail-temp-bg.png" // 임시로 지정해둠 변경해야됨
           fill
@@ -36,7 +36,7 @@ const DetailPageTemplate = async ({
           alt="detail bg"
           quality={100}
         />
-        <div className="pt-[94px] flex">
+        <div className="pt-[104px] flex">
           <div className="mr-auto">
             <h1 className="text-[26px] font-bold leading-[26px] tracking-[-0.26px] mb-2">
               WOODY
