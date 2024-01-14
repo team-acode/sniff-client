@@ -58,12 +58,12 @@ const DetailOthers = () => {
           <span className="body2 w-1/4 ml-2 text-right">{target2}%</span>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex justify-between items-center">
           <span className="body2 text-acodegray-700 w-1/4">스타일</span>
-          <div className="flex w-3/4 text-left space-x-3 overflow-x-auto whitespace-nowrap">
-            <div className="text-acodeblack">상큼상큼한 (50%)</div>
-            <div className="text-acodegray-500">부드러운 (50%)</div>
-            <div className="text-acodegray-300">부드러운 (50%)</div>
+          <div className="w-full mr-2 flex overflow-x-auto whitespace-nowrap space-x-3">
+            <div className="text-acodeblack body1">상큼상큼한 (50%)</div>
+            <div className="text-acodegray-500 body1">부드러운 (50%)</div>
+            <div className="text-acodegray-300 body1">부드러운 (50%)</div>
           </div>
         </div>
       </div>

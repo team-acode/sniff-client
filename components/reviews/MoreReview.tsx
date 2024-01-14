@@ -107,7 +107,7 @@ const MoreReview = () => {
   const emptyStars = 5 - fullStars - halfStar;
   const reviewsToShow = mockApiResponse.reviewList;
   return (
-    <div>
+    <div className="mx-4">
       <div>
         <div className="flex items-center ">
           <div className="text-acodeblack mr-4">
@@ -169,8 +169,10 @@ const MoreReview = () => {
 
                 <div className="flex flex-col space-y-4">
                   <div className="flex flex-row">
-                    <div className="flex justify-between">
-                      <div className="text-acodegray-500">계절감</div>
+                    <div className="flex flex-row">
+                      <div className="text-acodegray-500 flex basis-[80px]">
+                        계절감
+                      </div>
                       <div className="flex-1 text-right body2">
                         {review.seasons}
                       </div>

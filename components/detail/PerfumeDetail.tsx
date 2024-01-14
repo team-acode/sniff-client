@@ -9,15 +9,15 @@ const PerfumeDetail = ({ selectedEasy }: PerfumeDetailProps) => {
     part: 'top' | 'middle' | 'base' | 'single',
   ): string | null => {
     const defaultContents = {
-      top: '귤과 오렌지 사이|신선하고 달콤한 페퍼|상쾌한 파우더|후추·망고',
+      top: '귤과 오렌지 사이|신선하고 달콤한 페퍼',
       middle: '쌀가루|꿀이스며든 붉은 장미',
-      base: '가죽|은은한 살냄새|청사과·배|부드럽고 크리미한 나무|오래된 성당/교회|마른담배|당근',
+      base: '가죽|은은한 살냄새|청사과·배',
       single: 'b|c|b|c|b|c|b|c|b|c|b|c|b|c',
     };
     const alternateContents = {
       top: '베르가못|안젤리카|알데히드|핑크 페퍼',
       middle: '아이리스|터키쉬 로즈',
-      base: '레더|머스크|샌달우드|암브레트|엠버그리스|엠버우드|캐롯',
+      base: '레더|머스크|샌달우드',
       single: '내가 어제|먹은 과자는|초코샌드|오레오',
     };
 
@@ -45,18 +45,26 @@ const PerfumeDetail = ({ selectedEasy }: PerfumeDetailProps) => {
         : { top: '탑', middle: '미들', base: '베이스' };
 
     return (
-      <div className="flex flex-col space-y-5 mx-4">
+      <div className="flex flex-col space-y-5 mx-4 ">
         <div className="flex justify-start items-center space-x-2">
-          <span className="body2 text-acodegray-700">{labels.top}</span>
+          <span className="body2 text-acodegray-700 flex basis-[80px]">
+            {labels.top}
+          </span>
           <div className="body2 text-acodeblack">{getContent('top')}</div>
         </div>
         <div className="flex justify-start items-center space-x-2">
-          <span className="body2 text-acodegray-700">{labels.middle}</span>
+          <span className="body2 text-acodegray-700 flex basis-[80px]">
+            {labels.middle}
+          </span>
           <div className="body2 text-acodeblack">{getContent('middle')}</div>
         </div>
         <div className="flex justify-start items-center space-x-2">
-          <span className="body2 text-acodegray-700">{labels.base}</span>
-          <div className="body2 text-acodeblack">{getContent('base')}</div>
+          <span className="body2 text-acodegray-700 flex basis-[80px]">
+            {labels.base}
+          </span>
+          <div className="body2 text-acodeblack break-words">
+            {getContent('base')}
+          </div>
         </div>
       </div>
     );

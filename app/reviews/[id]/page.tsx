@@ -86,7 +86,7 @@ const page = ({ params }: ReviewPageProps) => {
         {/* <div>Rating: {starRating}</div> */}
       </div>
       {starRatingError && (
-        <div>
+        <div className="my-3">
           <ErrorMessage1 />
         </div>
       )}
@@ -96,7 +96,7 @@ const page = ({ params }: ReviewPageProps) => {
         {/* <div>OneLineComment: {oneLineComment}</div> */}
       </div>
       {oneLineCommentError && (
-        <div>
+        <div className="my-3">
           <ErrorMessage2 />
         </div>
       )}
@@ -120,7 +120,7 @@ const page = ({ params }: ReviewPageProps) => {
         </div>
       </div>
       {keyWordReviewError && (
-        <div>
+        <div className="my-3">
           <ErrorMessage3 />
         </div>
       )}

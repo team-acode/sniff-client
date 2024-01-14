@@ -64,17 +64,19 @@ function Modal({ onReturn }: ModalProps) {
         <div className="flex w-1/5 items-center justify-start review-3">
           스타일
         </div>
-        <div className="flex flex-wrap">
-          {selectedOptions.map((option, index) => (
-            <div key={index} className="flex items-center mr-1">
-              <span className="px-2.5 py-2 body2 text-white bg-black rounded-full border flex items-center justify-center">
-                {option}
-                <button className="ml-1" onClick={() => removeOption(option)}>
-                  X
-                </button>
-              </span>
-            </div>
-          ))}
+        <div className="flex w-full overflow-x-auto">
+          <div className="flex whitespace-nowrap">
+            {selectedOptions.map((option, index) => (
+              <div key={index} className="flex items-center mr-1">
+                <span className="px-2.5 py-2 body2 text-white bg-black rounded-full border flex items-center justify-center">
+                  {option}
+                  <button className="ml-1" onClick={() => removeOption(option)}>
+                    X
+                  </button>
+                </span>
+              </div>
+            ))}
+          </div>
           {selectedOptions.length < 3 && (
             <button
               onClick={handleModalOpen}
@@ -98,7 +100,7 @@ function Modal({ onReturn }: ModalProps) {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-4 p-4">
+            <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 p-4">
               {MODALOPTIONS.map((option, index) => (
                 <button
                   key={index}

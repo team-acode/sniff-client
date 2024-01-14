@@ -7,7 +7,7 @@ interface DetailCategoryBarProps {
 }
 
 const PerfumeDetailList = ({ searchParams }: DetailCategoryBarProps) => {
-  const selectedTab = searchParams.category || 'detail';
+  const selectedTab = searchParams.category || 'Detail';
   const selectedEasy = searchParams.easy || 'on';
   return (
     <div className="">
@@ -16,11 +16,11 @@ const PerfumeDetailList = ({ searchParams }: DetailCategoryBarProps) => {
         selectedTab={selectedTab}
         id={1}
       />
-      {selectedTab === 'detail' && (
+      {selectedTab === 'Detail' && (
         <PerfumeDetail selectedEasy={selectedEasy} />
       )}
 
-      {selectedTab === 'review' && <PerfumeReviewList />}
+      {selectedTab === 'Review' && <PerfumeReviewList />}
     </div>
   );
 };
