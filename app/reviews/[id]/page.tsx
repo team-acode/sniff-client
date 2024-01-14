@@ -7,7 +7,12 @@ import TextReview from '@/components/reviews/TextReview';
 import InputPhoto from '@/components/reviews/InputPhoto';
 import Modal from '@/components/reviews/Modal';
 import Navbar from '@/components/reviews/Navbar';
-const Page = () => {
+import BigLinkButton from '@/components/common/BigLinkButton';
+import { ErrorMessage1, ErrorMessage2, ErrorMessage3 } from '@/public/images';
+interface ReviewPageProps {
+  params: { id: string };
+}
+const page = ({ params }: ReviewPageProps) => {
   const [starRating, setStarRating] = useState(0);
   const [oneLineComment, setOneLineComment] = useState('');
   const [textReview, setTextReview] = useState('');
@@ -17,11 +22,59 @@ const Page = () => {
   const [selectedIntensity, setSelectedIntensity] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalValue, setModalValue] = useState('');
+  const [showValidationMessage, setShowValidationMessage] = useState(false);
+  const [starRatingError, setStarRatingError] = useState(false);
+  const [oneLineCommentError, setOneLineCommentError] = useState(false);
+  const [keyWordReviewError, setKeyWordReviewError] = useState(false);
 
   const handleModalReturn = (value: any) => {
     setIsModalOpen(false);
     setModalValue(value);
   };
+
+  const handleSubmit = () => {
+    let isValid = true;
+
+    setStarRatingError(false);
+    setOneLineCommentError(false);
+    setKeyWordReviewError(false);
+
+    if (starRating === 0) {
+      setStarRatingError(true);
+      isValid = false;
+    }
+
+    if (!oneLineComment.trim()) {
+      setOneLineCommentError(true);
+      isValid = false;
+    }
+
+    if (
+      !selectedSeason.trim() ||
+      !selectedPersistence.trim() ||
+      !selectedIntensity.trim() ||
+      !modalValue
+    ) {
+      setKeyWordReviewError(true);
+      isValid = false;
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    console.log('Submitting:', {
+      starRating,
+      oneLineComment,
+      selectedSeason,
+      selectedPersistence,
+      selectedIntensity,
+      modalValue,
+    });
+
+    // Additional logic after successful submission
+  };
+
   return (
     <div>
       <div>
@@ -32,11 +85,21 @@ const Page = () => {
         <InputStar onRatingChange={setStarRating} />
         {/* <div>Rating: {starRating}</div> */}
       </div>
+      {starRatingError && (
+        <div>
+          <ErrorMessage1 />
+        </div>
+      )}
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <OnelineComment onChange={setOneLineComment} />
         {/* <div>OneLineComment: {oneLineComment}</div> */}
       </div>
+      {oneLineCommentError && (
+        <div>
+          <ErrorMessage2 />
+        </div>
+      )}
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <KeyWordReview
@@ -56,6 +119,11 @@ const Page = () => {
           {/* <div>Modal value:{modalValue}</div> */}
         </div>
       </div>
+      {keyWordReviewError && (
+        <div>
+          <ErrorMessage3 />
+        </div>
+      )}
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <TextReview onChange={setTextReview} />
@@ -79,7 +147,12 @@ const Page = () => {
       </div>
 
       <div className="flex justify-center p-4">
-        <button className="bg-acodeblack w-full text-white  py-3 px-4 rounded">
+        <button
+          className="bg-acodeblack w-full text-white  py-3 px-4 rounded"
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
           올리기
         </button>
       </div>
@@ -87,4 +160,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
