@@ -30,7 +30,7 @@ const PerfumeName = () => {
   ];
 
   return (
-    <div>
+    <div className="mx-4">
       <div className="body2 text-acodegray-300 max-w-md mx-auto mb-4">
         {perfumeInfo.brand}
       </div>

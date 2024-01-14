@@ -16,7 +16,7 @@ const PerfumeDetailElement = ({
   id,
 }: PerfumeDetailElementProps) => {
   return (
-    <div>
+    <div className="mx-4">
       <div className="flex flex-row">
         {categories.map((category) => (
           <div key={category} className="mr-4">

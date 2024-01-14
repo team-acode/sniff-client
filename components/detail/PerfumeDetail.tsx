@@ -45,7 +45,7 @@ const PerfumeDetail = ({ selectedEasy }: PerfumeDetailProps) => {
         : { top: '탑', middle: '미들', base: '베이스' };
 
     return (
-      <div className="flex flex-col space-y-5">
+      <div className="flex flex-col space-y-5 mx-4">
         <div className="flex justify-start items-center space-x-2">
           <span className="body2 text-acodegray-700">{labels.top}</span>
           <div className="body2 text-acodeblack">{getContent('top')}</div>

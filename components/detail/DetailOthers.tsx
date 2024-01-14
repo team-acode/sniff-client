@@ -32,8 +32,8 @@ const DetailOthers = () => {
     return null;
   }
   return (
-    <div className="max-w-md mx-auto">
-      <div className="my-11 border border-acodegray-100 w-11/12 mx-auto" />
+    <div className="max-w-md mx-4">
+      <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div className="h2 text-codeblack mb-7">
         다른 사용자들은 이렇게 느꼈어요
       </div>

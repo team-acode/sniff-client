@@ -13,7 +13,7 @@ const TextReview = ({ onChange }: TextReviewProps) => {
     onChange(newText);
   };
   return (
-    <div>
+    <div className="mx-4">
       <div className="review-2 mb-5">
         텍스트 리뷰
         <span className="text-acodegray-300 ml-3">(선택)</span>

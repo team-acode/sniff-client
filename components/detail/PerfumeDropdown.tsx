@@ -31,7 +31,8 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
       <div className="relative inline-block text-left">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-20 h-4 body2 flex justify-center items-center text-start text-acodeblack border-none bg-white"
+          className={`w-full body2 flex px-2 py-1 mr-1 justify-center items-center text-start text-acodeblack bg-white 
+          ${isOpen ? 'border-b' : 'border-none'}`}
         >
           {buttonText}
           {isOpen ? <ArrowUpIcon2 /> : <ArrowDownIcon2 />}
@@ -39,19 +40,14 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="w-20 absolute bg-white focus:outline-none">
-            <div
-              className=""
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
+          <div className="w-full absolute bg-white focus:outline-none shadow">
+            <div className="" role="menu">
               {options
                 .filter((opt) => opt.capacity !== selectedOption.capacity)
                 .map((option, index) => (
                   <button
                     key={index}
-                    className="body2 block w-full px-2 py-1 text-left text-start text-acodegray-400 hover:bg-acodegray-100 font-medium"
+                    className="body2 block w-full px-2 py-1 text-start text-acodegray-400 hover:bg-acodegray-100"
                     onClick={() => handleOptionClick(option)}
                   >
                     {option.capacity}ml

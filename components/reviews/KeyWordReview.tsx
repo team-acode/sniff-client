@@ -20,7 +20,7 @@ const KeyWordReview = ({
   const persistence = ['1시간', '3-4시간', '반나절', '하루종일'];
   const intensity = ['약함', '보통', '진함', '아주진함'];
   return (
-    <div>
+    <div className="mx-4">
       <div className="review-2 mb-5">키워드 리뷰</div>
       {/* Seasons */}
       <div className="flex overflow-x-auto mb-5">

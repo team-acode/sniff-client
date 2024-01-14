@@ -16,7 +16,7 @@ const SimilarPerfume = () => {
   ];
 
   return (
-    <div>
+    <div className="mx-4">
       <div className="text-acodeblack h2 mb-5">이런향수 어때요?</div>
       <Slider>
         {perfumes.map((perfume, index) => (

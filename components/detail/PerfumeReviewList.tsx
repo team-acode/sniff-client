@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Link from 'next/link';
+
 import {
   RedFullStar,
   RedEmptyStar,
@@ -60,23 +62,14 @@ const mockApiResponse: ApiResponse = {
   ],
 };
 const ReviewContent = () => {
-  const [data, setData] = useState<ApiResponse | null>(null);
-  useEffect(() => {
-    setTimeout(() => setData(mockApiResponse), 1);
-  }, []);
-
+  const data = mockApiResponse;
   if (!data) {
     return (
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center h-full mx-4">
         <NoReview />
       </div>
     );
   }
-  //   return (
-  //     <div className="flex justify-center items-center h-full">
-  //       <NoReview />
-  //     </div>
-  //   );
   const averageRating = data.rateSum / data.reviewCnt;
 
   const fullStars = Math.floor(averageRating);
@@ -84,7 +77,7 @@ const ReviewContent = () => {
   const emptyStars = 5 - fullStars - halfStar;
   const reviewsToShow = data.reviewList.slice(0, 3);
   return (
-    <div>
+    <div className="mx-4">
       <div>
         <div className="flex justify-between items-center mb-9">
           <div className="flex items-center">
@@ -97,10 +90,13 @@ const ReviewContent = () => {
             ))}
             <div className="text-acodegray-400 ml-2">{data.reviewCnt}건</div>
           </div>
-
-          <div className="caption2 text-acodegray-300 text-right">
+          <Link
+            href={`/morereviews/${data.fragranceId}`}
+            className="caption2 text-acodegray-300 text-right"
+          >
+            {' '}
             리뷰 더보기 {'>'}
-          </div>
+          </Link>
         </div>
         <div className="flex flex-row mb-9">
           <div className="w-1/3 flex items-center justify-center">
@@ -110,6 +106,7 @@ const ReviewContent = () => {
               width={110}
               height={110}
               objectFit="cover"
+              className="rounded-md"
             />
           </div>
           <div className="w-1/3 flex items-center justify-center">
@@ -119,6 +116,7 @@ const ReviewContent = () => {
               width={110}
               height={110}
               objectFit="cover"
+              className="rounded-md"
             />
           </div>
           <div className="w-1/3 flex items-center justify-center">
@@ -128,6 +126,7 @@ const ReviewContent = () => {
               width={110}
               height={110}
               objectFit="cover"
+              className="rounded-md"
             />
           </div>
         </div>
@@ -157,11 +156,12 @@ const ReviewContent = () => {
                   width={71}
                   height={71}
                   objectFit="cover"
+                  className="rounded-md"
                 />
               </div>
             </div>
-            {index !== data.reviewList.length - 1 && (
-              <div className="border-t border-acodegray-100 w-11/12 my-4 mx-auto" />
+            {index !== reviewsToShow.length - 1 && (
+              <div className="border-t border-acodegray-100 w-full my-4 mx-auto" />
             )}
           </div>
         ))}

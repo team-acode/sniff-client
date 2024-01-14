@@ -29,7 +29,7 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
   };
 
   return (
-    <div>
+    <div className="mx-4">
       <div className="review-2 mb-5">
         사진 첨부 <span className="text-acodegray-300 ml-3">(선택)</span>
       </div>
