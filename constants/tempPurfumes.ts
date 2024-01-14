@@ -9,6 +9,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: false,
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 5,
@@ -49,6 +53,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 6,
@@ -59,6 +64,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 7,
@@ -69,6 +75,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
     {
       id: 8,
@@ -79,6 +86,7 @@ export const PERFUMES = {
       option: '오 드 퍼퓸',
       price: 240000,
       capacity: '100ml',
+      scraped: true,
     },
   ],
   count: 8,

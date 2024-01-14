@@ -15,6 +15,7 @@ export interface TPerfume {
   option: string;
   price: number;
   capacity: string;
+  scraped: boolean;
 }
 
 export interface TBrand {

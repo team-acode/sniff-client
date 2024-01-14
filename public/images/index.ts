@@ -16,6 +16,7 @@ export { default as XCircleIcon } from './x-circle-icon.svg';
 export { default as SmallXIcon } from './small-x-icon.svg';
 export { default as PencilIcon } from './pencil-icon.svg';
 export { default as BookMarkOnIcon } from './bookmark-on-icon.svg';
+export { default as BookMarkOffIcon } from './bookmark-off-icon.svg';
 export { default as WarningIcon } from './warning-icon.svg';
 export { default as SmallCircleIcon } from './small-circle-icon.svg';
 export { default as FullStarIcon } from './full-star-icon.svg';

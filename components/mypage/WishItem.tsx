@@ -1,4 +1,11 @@
-import { BookMarkOnIcon, SmallCircleIcon } from '@/public/images';
+'use client';
+
+import { useWish } from '@/hooks/useWish';
+import {
+  BookMarkOnIcon,
+  BookMarkOffIcon,
+  SmallCircleIcon,
+} from '@/public/images';
 import { TPerfume } from '@/types';
 import { convertNum } from '@/utils/common';
 import Image from 'next/image';
@@ -9,6 +16,8 @@ interface WishItemProps {
 }
 
 const WishItem = ({ perfume }: WishItemProps) => {
+  const { isWishOn, handleClickWish } = useWish(perfume.id, perfume.scraped);
+
   return (
     <li className="h-24 w-full">
       <Link href={`/perfumes/${perfume.id}`} className="flex w-full h-full">
@@ -37,8 +46,12 @@ const WishItem = ({ perfume }: WishItemProps) => {
             <span className="">{perfume.capacity}</span>
           </div>
         </div>
-        <button type="button" className="mt-[10.5px] h-fit">
-          <BookMarkOnIcon />
+        <button
+          type="button"
+          className="mt-[10.5px] h-fit"
+          onClick={handleClickWish}
+        >
+          {isWishOn ? <BookMarkOnIcon /> : <BookMarkOffIcon />}
         </button>
       </Link>
     </li>
