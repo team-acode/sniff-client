@@ -160,43 +160,26 @@ const MoreReview = () => {
                     ))}
                   </div>
 
-                  <div className="text-acodegray-400 caption2 ">
+                  <div className="text-acodegray-400 caption2 ml-3">
                     {review.nickname}
                   </div>
                 </div>
                 <div className="text-acodeblack mb-2.5">{review.comment}</div>
                 <div className="mb-5">{review.review}</div>
-
-                <div className="flex flex-col space-y-4">
-                  <div className="flex flex-row">
-                    <div className="flex flex-row">
-                      <div className="text-acodegray-500 flex basis-[80px]">
-                        계절감
-                      </div>
-                      <div className="flex-1 text-right body2">
-                        {review.seasons}
-                      </div>
+                <div className="space-y-4">
+                  <div className="flex flex-row body2">
+                    <div className="flex w-1/4 text-acodegray-500 ">계절감</div>
+                    <div className="flex w-1/4">{review.seasons}</div>
+                    <div className="flex w-1/4 text-acodegray-500">
+                      향의 세기
                     </div>
-                    <div className="flex justify-between">
-                      <div className="text-acodegray-500">향의 세기</div>
-                      <div className="flex-1 text-right body2">
-                        {review.intencity}
-                      </div>
-                    </div>
+                    <div className="flex w-1/4">{review.intencity}</div>
                   </div>
                   <div className="flex flex-row">
-                    <div className="flex justify-between">
-                      <div className="text-acodegray-500">지속성</div>
-                      <div className="flex-1 text-right body2">
-                        {review.persistence}
-                      </div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="text-acodegray-500">스타일</div>
-                      <div className="flex-1 text-right body2">
-                        {review.style}
-                      </div>
-                    </div>
+                    <div className="flex w-1/4 text-acodegray-500">지속성</div>
+                    <div className="flex w-1/4">{review.persistence}</div>
+                    <div className="flex w-1/4 text-acodegray-500">스타일</div>
+                    <div className="flex w-1/4">{review.style}</div>
                   </div>
                 </div>
               </div>
