@@ -12,8 +12,8 @@ interface DetailPageProps {
   params: { id: string };
   searchParams: { [key: string]: string | undefined };
 }
-const page = ({ params, searchParams }: DetailPageProps) => {
-  const category = searchParams.category || 'detail';
+
+const page = async ({ params, searchParams }: DetailPageProps) => {
   return (
     <section className="py-1">
       <div>
@@ -28,7 +28,7 @@ const page = ({ params, searchParams }: DetailPageProps) => {
       </div>
       <div className="my-11 border-t-8 border-pattern border-acodegray-50"></div>
       <div>
-        <PerfumeDetailList searchParams={searchParams} />
+        <PerfumeDetailList searchParams={searchParams} searchId={params} />
       </div>
       <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>

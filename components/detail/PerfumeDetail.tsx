@@ -2,38 +2,75 @@ import React from 'react';
 import DetailOthers from './DetailOthers';
 interface PerfumeDetailProps {
   selectedEasy: 'on' | 'off';
+  id: string;
+}
+interface Ingredient {
+  ingredientId: number;
+  ingredientName: string;
+  acode: string;
 }
 
-const PerfumeDetail = ({ selectedEasy }: PerfumeDetailProps) => {
-  const getContent = (
-    part: 'top' | 'middle' | 'base' | 'single',
-  ): string | null => {
-    const defaultContents = {
-      top: '귤과 오렌지 사이|신선하고 달콤한 페퍼',
-      middle: '쌀가루|꿀이스며든 붉은 장미',
-      base: '가죽|은은한 살냄새|청사과·배',
-      single: 'b|c|b|c|b|c|b|c|b|c|b|c|b|c',
-    };
-    const alternateContents = {
-      top: '베르가못|안젤리카|알데히드|핑크 페퍼',
-      middle: '아이리스|터키쉬 로즈',
-      base: '레더|머스크|샌달우드',
-      single: '내가 어제|먹은 과자는|초코샌드|오레오',
-    };
+interface Fragrance {
+  fragranceId: number;
+  topNote: Ingredient[];
+  middleNote: Ingredient[];
+  baseNote: Ingredient[];
+  single: boolean;
+}
+export async function getDetail(params: { id: string }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/note`,
+    );
 
-    const contents =
-      selectedEasy === 'on' ? defaultContents : alternateContents;
-    return contents[part] || null;
+    if (!response.ok) {
+      console.error('API fetch failed:', response.status);
+      throw new Error(`API fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch perfume data:', error);
+  }
+}
+const PerfumeDetail = async ({ selectedEasy, id }: PerfumeDetailProps) => {
+  const data = await getDetail({ id });
+
+  const getContent = (part: 'top' | 'middle' | 'base'): JSX.Element => {
+    const ingredients =
+      part === 'top'
+        ? data.topNote
+        : part === 'middle'
+        ? data.middelNote
+        : data.baseNote;
+
+    return (
+      <div className="flex flex-wrap">
+        {ingredients.map((ingredient: Ingredient, index: number) => (
+          <>
+            <span className="body2 text-acodeblack">
+              {selectedEasy === 'on'
+                ? ingredient.acode
+                : ingredient.ingredientName}
+            </span>
+            {index < ingredients.length - 1 && (
+              <span className="body2 text-acodegray-200 mr-1 ml-1">|</span>
+            )}
+          </>
+        ))}
+      </div>
+    );
   };
 
   const renderFragranceNotes = () => {
-    if (getContent('middle') === null) {
+    if (data.single) {
       const label = selectedEasy === 'on' ? '향' : '싱글';
       return (
         <div className="flex flex-col space-y-5">
           <div className="flex justify-start items-center space-x-2">
             <span className="body2 text-acodegray-700">{label}</span>
-            <div className="body2 text-acodeblack">{getContent('single')}</div>
+            <div className="body2 text-acodeblack">{getContent('top')}</div>
           </div>
         </div>
       );
@@ -45,24 +82,28 @@ const PerfumeDetail = ({ selectedEasy }: PerfumeDetailProps) => {
         : { top: '탑', middle: '미들', base: '베이스' };
 
     return (
-      <div className="flex flex-col space-y-5 mx-4 ">
-        <div className="flex justify-start items-center space-x-2">
+      <div className="flex flex-col space-y-5 mx-4">
+        <div className="flex justify-start items-start space-x-2">
           <span className="body2 text-acodegray-700 flex basis-[80px]">
             {labels.top}
           </span>
-          <div className="body2 text-acodeblack">{getContent('top')}</div>
+          <div className="body2 text-acodeblack text-start flex-1">
+            {getContent('top')}
+          </div>
         </div>
-        <div className="flex justify-start items-center space-x-2">
+        <div className="flex justify-start items-start space-x-2">
           <span className="body2 text-acodegray-700 flex basis-[80px]">
             {labels.middle}
           </span>
-          <div className="body2 text-acodeblack">{getContent('middle')}</div>
+          <div className="body2 text-acodeblack flex-1">
+            {getContent('middle')}
+          </div>
         </div>
-        <div className="flex justify-start items-center space-x-2">
+        <div className="flex justify-start items-start space-x-2">
           <span className="body2 text-acodegray-700 flex basis-[80px]">
             {labels.base}
           </span>
-          <div className="body2 text-acodeblack break-words">
+          <div className="body2 text-acodeblack break-words flex-1">
             {getContent('base')}
           </div>
         </div>
