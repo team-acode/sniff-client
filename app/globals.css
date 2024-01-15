@@ -77,6 +77,13 @@
     line-height: 25.2px;
     letter-spacing: -0.35px;
   }
+  .similar-1{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: -0.35px;
+  }
 }
 
 .swiper-pagination-bullet {

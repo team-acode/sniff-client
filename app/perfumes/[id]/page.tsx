@@ -32,7 +32,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
       </div>
       <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>
-        <SimilarPerfume />
+        <SimilarPerfume id={params.id} />
       </div>
       <div className="my-11"></div>
       <div>
