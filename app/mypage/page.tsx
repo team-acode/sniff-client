@@ -2,17 +2,26 @@ import BlurryNav from '@/components/common/BlurryNav';
 import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
 import WishPreviewItem from '@/components/mypage/WishPreviewItem';
-import { PERFUMES } from '@/constants/tempPurfumes';
 import { ArrowRightIcon2, PencilIcon } from '@/public/images';
 import Link from 'next/link';
 
-const page = () => {
+const page = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mypage`, {
+    headers: {
+      AUTHORIZATION:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMjgxMzQ2NjQxIiwicm9sZSI6IlVTRVJfUk9MRSIsImlzcyI6IkFjb2RlIiwiaWF0IjoxNzA1Mzk3OTM4LCJleHAiOjE3MDU0MDE1Mzh9.OCrJbxOMtu-W6mRbPvbvi-i9iaDCdkdJreGFnfXnmQY',
+    },
+    cache: 'no-cache',
+  });
+  if (!res.ok) return null;
+  const userInfo = await res.json();
+
   return (
     <div className="">
       <BlurryNav />
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
-          <h1 className="h0 mr-1">안녕하세요, 김킁킁님</h1>
+          <h1 className="h0 mr-1">안녕하세요, {userInfo.nickname}님</h1>
           <Link href="/mypage/username?init=false" className="">
             <PencilIcon />
           </Link>
@@ -21,8 +30,10 @@ const page = () => {
           href="/mypage/reviews"
           className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
         >
-          <span className="body1 mr-[9px]">김킁킁님이 작성한 리뷰</span>
-          <span className="mr-auto">3</span>
+          <span className="body1 mr-[9px]">
+            {userInfo.nickname}님이 작성한 리뷰
+          </span>
+          <span className="mr-auto">{userInfo.reviewCnt}</span>
           <ArrowRightIcon2
             className="fill-acodewhite w-6 h-6"
             width={24}
@@ -37,14 +48,19 @@ const page = () => {
             모두 보기
           </Link>
         </div>
-        {/* <div className="pt-16 pb-[95px] text-center text-acodegray-300 text-[16px] font-medium tracking-[-0.4px]">
-          아직 스크랩한 제품이 없어요.
-        </div> */}
-        <ul className="flex mt-5 overflow-auto gap-[14px]">
-          {PERFUMES.data.slice(0, 3).map((perfume) => (
-            <WishPreviewItem perfume={perfume} />
-          ))}
-        </ul>
+        {userInfo.scraps.length ? (
+          <ul className="flex mt-5 overflow-auto gap-[14px]">
+            {userInfo.scraps.map(
+              (perfume: { fragranceId: number; thumbnail: string }) => (
+                <WishPreviewItem perfume={perfume} />
+              ),
+            )}
+          </ul>
+        ) : (
+          <div className="pt-16 pb-[95px] text-center text-acodegray-300 text-[16px] font-medium tracking-[-0.4px]">
+            아직 스크랩한 제품이 없어요.
+          </div>
+        )}
       </div>
       <hr className="mt-9 mb-[34px] border-[3px] border-acodegray-50" />
       <div className="flex flex-col mx-4">
@@ -58,12 +74,6 @@ const page = () => {
         <div className="flex flex-col mt-[94px] mb-[41px]">
           <LogoutButton />
           <LeaveButton />
-          {/* <button
-            type="button"
-            className="caption1 text-left text-acodegray-500 mt-3"
-          >
-            회원탈퇴
-          </button> */}
         </div>
       </div>
     </div>

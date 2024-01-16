@@ -1,9 +1,11 @@
 'use client';
 
 import MyPageModalTemplate from '@/components/mypage/MyPageModalTemplate';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const LogoutButton = () => {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -11,7 +13,20 @@ const LogoutButton = () => {
       {isModalOpen ? (
         <MyPageModalTemplate
           closeModal={() => setIsModalOpen(false)}
-          handleClickOk={() => {}}
+          handleClickOk={async () => {
+            const res = await fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/logout`,
+              {
+                method: 'POST',
+                headers: {
+                  AUTHORIZATION:
+                    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMjgxMzQ2NjQxIiwicm9sZSI6IlVTRVJfUk9MRSIsImlzcyI6IkFjb2RlIiwiaWF0IjoxNzA1Mzk3OTM4LCJleHAiOjE3MDU0MDE1Mzh9.OCrJbxOMtu-W6mRbPvbvi-i9iaDCdkdJreGFnfXnmQY',
+                },
+                cache: 'no-cache',
+              },
+            );
+            if (res.ok) router.push('/');
+          }}
           title="로그아웃"
           height="h-[176px]"
           titleBodyMargin="mt-1"

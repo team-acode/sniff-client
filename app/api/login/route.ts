@@ -17,6 +17,13 @@ export const POST = async (request: Request) => {
     maxAge: EXP_LIMIT,
     path: '/',
   });
+  cookies().set('exp', String(new Date().getTime() + EXP_LIMIT), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: EXP_LIMIT,
+    path: '/',
+  });
   return new Response(AUTHORIZED, {
     status: 200,
   });
