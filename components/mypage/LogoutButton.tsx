@@ -14,17 +14,10 @@ const LogoutButton = () => {
         <MyPageModalTemplate
           closeModal={() => setIsModalOpen(false)}
           handleClickOk={async () => {
-            const res = await fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_URL}/logout`,
-              {
-                method: 'POST',
-                headers: {
-                  AUTHORIZATION:
-                    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMjgxMzQ2NjQxIiwicm9sZSI6IlVTRVJfUk9MRSIsImlzcyI6IkFjb2RlIiwiaWF0IjoxNzA1Mzk3OTM4LCJleHAiOjE3MDU0MDE1Mzh9.OCrJbxOMtu-W6mRbPvbvi-i9iaDCdkdJreGFnfXnmQY',
-                },
-                cache: 'no-cache',
-              },
-            );
+            const res = await fetch('/api/logout', {
+              method: 'POST',
+              cache: 'no-cache',
+            });
             if (res.ok) router.push('/');
           }}
           title="로그아웃"

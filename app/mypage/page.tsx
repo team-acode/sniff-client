@@ -3,25 +3,28 @@ import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
 import WishPreviewItem from '@/components/mypage/WishPreviewItem';
 import { ArrowRightIcon2, PencilIcon } from '@/public/images';
+import { getSession } from '@/utils/auth';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const page = async () => {
+  const userInfo = getSession();
+  if (!userInfo) redirect('/login');
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mypage`, {
     headers: {
-      AUTHORIZATION:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMjgxMzQ2NjQxIiwicm9sZSI6IlVTRVJfUk9MRSIsImlzcyI6IkFjb2RlIiwiaWF0IjoxNzA1Mzk3OTM4LCJleHAiOjE3MDU0MDE1Mzh9.OCrJbxOMtu-W6mRbPvbvi-i9iaDCdkdJreGFnfXnmQY',
+      AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },
     cache: 'no-cache',
   });
   if (!res.ok) return null;
-  const userInfo = await res.json();
+  const user = await res.json();
 
   return (
     <div className="">
       <BlurryNav />
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
-          <h1 className="h0 mr-1">안녕하세요, {userInfo.nickname}님</h1>
+          <h1 className="h0 mr-1">안녕하세요, {user.nickname}님</h1>
           <Link href="/mypage/username?init=false" className="">
             <PencilIcon />
           </Link>
@@ -31,9 +34,9 @@ const page = async () => {
           className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
         >
           <span className="body1 mr-[9px]">
-            {userInfo.nickname}님이 작성한 리뷰
+            {user.nickname}님이 작성한 리뷰
           </span>
-          <span className="mr-auto">{userInfo.reviewCnt}</span>
+          <span className="mr-auto">{user.reviewCnt}</span>
           <ArrowRightIcon2
             className="fill-acodewhite w-6 h-6"
             width={24}
@@ -48,9 +51,9 @@ const page = async () => {
             모두 보기
           </Link>
         </div>
-        {userInfo.scraps.length ? (
+        {user.scraps.length ? (
           <ul className="flex mt-5 overflow-auto gap-[14px]">
-            {userInfo.scraps.map(
+            {user.scraps.map(
               (perfume: { fragranceId: number; thumbnail: string }) => (
                 <WishPreviewItem perfume={perfume} />
               ),

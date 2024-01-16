@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 
 interface RedirectPageProps {
   params: { provider: string };
-  searchParams: { jwtAccessToken: string; init: boolean };
+  searchParams: { jwtAccessToken: string; init: string };
 }
 
 const RedirectPage = ({ params, searchParams }: RedirectPageProps) => {
   const router = useRouter();
   const { provider } = params;
   const jwt = searchParams.jwtAccessToken;
-  const isInit = searchParams.init;
+  const isInit = searchParams.init === 'true';
 
   if (!provider && !jwt) router.push('/login');
 

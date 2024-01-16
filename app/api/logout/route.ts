@@ -1,14 +1,13 @@
 import { FAILED, SUCCESS } from '@/constants/statusCodes';
-import { NextRequest } from 'next/server';
+import { getSession } from '@/utils/auth';
+import { cookies } from 'next/headers';
 
-export const POST = async (request: NextRequest) => {
-  const { cookies } = request;
-  const jwt = cookies.get('jwt');
-  const exp = Number(cookies.get('exp'));
+export const POST = async () => {
+  const userInfo = getSession();
 
-  if (!jwt || !exp || exp < new Date().getTime()) {
-    cookies.delete('jwt');
-    cookies.delete('exp');
+  if (!userInfo) {
+    cookies().delete('jwt');
+    cookies().delete('exp');
     return new Response(FAILED, {
       status: 400,
     });
@@ -17,7 +16,7 @@ export const POST = async (request: NextRequest) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/logout`, {
     method: 'POST',
     headers: {
-      AUTHORIZATION: `Bearer ${jwt}`,
+      AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },
     cache: 'no-cache',
   });

@@ -1,5 +1,5 @@
 import { TUserInfo } from '@/types';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const useSession = () => {
@@ -7,7 +7,7 @@ export const useSession = () => {
     undefined,
   );
   const pathName = usePathname();
-
+  const router = useRouter();
   useEffect(() => {
     (async () => {
       try {
@@ -16,9 +16,11 @@ export const useSession = () => {
           const stored = await res.json();
           setUserInfo(stored);
         } else throw new Error();
-      } catch {}
+      } catch {
+        router.push('/login');
+      }
     })();
-  }, [pathName]);
+  }, [pathName, router]);
 
   return userInfo;
 };

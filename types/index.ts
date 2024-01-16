@@ -1,9 +1,6 @@
 export interface TUserInfo {
-  id: number;
-  username: string | null;
-  accessToken: string;
-  refreshToken: string;
-  accessTokenExpires: number;
+  jwt: string;
+  exp: number;
 }
 
 export interface TPerfume {
