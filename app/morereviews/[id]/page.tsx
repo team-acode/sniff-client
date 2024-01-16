@@ -18,7 +18,7 @@ const page = ({ params }: ReviewPageProps) => {
     <div>
       <ReviewNavbar />
       <div>
-        <MoreReview />
+        <MoreReview id={params.id} />
       </div>
     </div>
   );

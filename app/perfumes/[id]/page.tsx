@@ -36,7 +36,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
       </div>
       <div className="my-11"></div>
       <div>
-        <HereTobuy />
+        <HereTobuy id={params.id} />
       </div>
       <div className="flex justify-center item-center">
         <AddReview />

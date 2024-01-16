@@ -24,7 +24,7 @@ const PerfumeDetailList = ({
       {selectedTab === 'Detail' && (
         <PerfumeDetail selectedEasy={selectedEasy} id={searchId.id} />
       )}
-      {selectedTab === 'Review' && <PerfumeReviewList />}
+      {selectedTab === 'Review' && <PerfumeReviewList id={searchId.id} />}
     </div>
   );
 };

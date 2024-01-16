@@ -1,10 +1,6 @@
 import Image from 'next/image';
 import Slider from './Slider';
 import testPerfume1 from '@/public/images/test-perfume.jpg';
-import testPerfume2 from '@/public/images/test-perfume.jpg';
-import testPerfume3 from '@/public/images/test-perfume.jpg';
-import testPerfume4 from '@/public/images/test-perfume.jpg';
-import testPerfume5 from '@/public/images/test-perfume.jpg';
 
 interface SimilarProps {
   id: string;

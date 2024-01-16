@@ -8,38 +8,61 @@ import {
 } from '@/public/images';
 import testImg from '@/public/images/test.jpg';
 import Image from 'next/image';
+
+interface PerfumeReviewProps {
+  id: string;
+}
+
 interface Review {
   comment: string;
   rate: number;
   nickname: string;
   seasons: string;
   intencity: string;
-  persistence: string;
+  longevity: string;
   style: string[];
-  review: string;
+  textReview: string;
 }
 
 interface ApiResponse {
   fragranceId: number;
   reviewCnt: number;
   rateSum: number;
-  reviewList: Review[];
+  reviewInfoList: Review[];
+}
+
+export async function getReviewList(params: { id: string }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/review`,
+    );
+
+    if (!response.ok) {
+      console.error('API fetch failed:', response.status);
+      throw new Error(`API fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch perfume data:', error);
+  }
 }
 
 const mockApiResponse: ApiResponse = {
-  fragranceId: 123,
+  fragranceId: 1,
   reviewCnt: 4,
   rateSum: 20,
-  reviewList: [
+  reviewInfoList: [
     {
       comment: '이 향 덕에 소개팅 성공함',
       rate: 2,
       nickname: 'User1',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
-      style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      longevity: '3-4시간',
+      style: ['무게는ㅇㅇ', '페미닌ㅇㅇ', '우아한ㅇㅇ'],
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
     {
@@ -48,9 +71,9 @@ const mockApiResponse: ApiResponse = {
       nickname: 'User2',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
+      longevity: '3-4시간',
       style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
     {
@@ -59,9 +82,9 @@ const mockApiResponse: ApiResponse = {
       nickname: 'User1',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
+      longevity: '3-4시간',
       style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
     {
@@ -70,9 +93,9 @@ const mockApiResponse: ApiResponse = {
       nickname: 'User2',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
+      longevity: '3-4시간',
       style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
     {
@@ -81,9 +104,9 @@ const mockApiResponse: ApiResponse = {
       nickname: 'User1',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
+      longevity: '3-4시간',
       style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
     {
@@ -92,27 +115,28 @@ const mockApiResponse: ApiResponse = {
       nickname: 'User2',
       seasons: '봄',
       intencity: '약함',
-      persistence: '3-4시간',
+      longevity: '3-4시간',
       style: ['무게감있는', '페미닌한', '우아한'],
-      review:
+      textReview:
         '비 갠 뒤에 비애 대신 a happy end비스듬히 씩 비웃듯 칠색 무늬의 무지개철없이 철 지나 철들지 못해 (still)철부지에 철 그른지 오래',
     },
   ],
 };
-const MoreReview = () => {
-  const averageRating = mockApiResponse.rateSum / mockApiResponse.reviewCnt;
+
+const MoreReview = async ({ id }: PerfumeReviewProps) => {
+  // const data = await getReviewList({ id });
+  const data = mockApiResponse;
+  const averageRating = data.rateSum / data.reviewCnt;
 
   const fullStars = Math.floor(averageRating);
   const halfStar = averageRating % 1 >= 0.5 ? 1 : 0; //반올림
   const emptyStars = 5 - fullStars - halfStar;
-  const reviewsToShow = mockApiResponse.reviewList;
+  const reviewsToShow = data.reviewInfoList;
   return (
     <div className="mx-4">
       <div>
         <div className="flex items-center ">
-          <div className="text-acodeblack mr-4">
-            리뷰 {mockApiResponse.reviewCnt}개
-          </div>
+          <div className="text-acodeblack mr-4">리뷰 {data.reviewCnt}개</div>
           <div className="flex items-center">
             {Array.from({ length: fullStars }, (_, i) => (
               <RedFullStar key={i} />
@@ -165,21 +189,32 @@ const MoreReview = () => {
                   </div>
                 </div>
                 <div className="text-acodeblack mb-2.5">{review.comment}</div>
-                <div className="mb-5">{review.review}</div>
+                <div className="mb-5">{review.textReview}</div>
                 <div className="space-y-4">
                   <div className="flex flex-row body2">
-                    <div className="flex w-1/4 text-acodegray-500 ">계절감</div>
-                    <div className="flex w-1/4">{review.seasons}</div>
-                    <div className="flex w-1/4 text-acodegray-500">
+                    <div className="flex w-12 text-acodegray-500 ">계절감</div>
+                    <div className="flex w-16">{review.seasons}</div>
+                    <div className="flex w-16 text-acodegray-500">
                       향의 세기
                     </div>
-                    <div className="flex w-1/4">{review.intencity}</div>
+                    <div className="flex w-16">{review.intencity}</div>
                   </div>
                   <div className="flex flex-row">
-                    <div className="flex w-1/4 text-acodegray-500">지속성</div>
-                    <div className="flex w-1/4">{review.persistence}</div>
-                    <div className="flex w-1/4 text-acodegray-500">스타일</div>
-                    <div className="flex w-1/4">{review.style}</div>
+                    <div className="flex w-12 text-acodegray-500">지속성</div>
+                    <div className="flex w-16">{review.longevity}</div>
+                    <div className="flex w-16 text-acodegray-500">스타일</div>
+                    <div className="flex flex-wrap w-32">
+                      {review.style.map((style, index) => (
+                        <span key={index}>
+                          {style}
+                          {index < review.style.length - 1 ? (
+                            <span className="text-acodegray-200">|</span>
+                          ) : (
+                            ''
+                          )}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

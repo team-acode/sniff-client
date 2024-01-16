@@ -16,19 +16,21 @@ interface Review {
   rate: number;
   nickname: string;
 }
-
+interface PerfumeReviewProps {
+  id: string;
+}
 interface ApiResponse {
   fragranceId: number;
   reviewCnt: number;
   rateSum: number;
-  reviewList: Review[];
+  reviewPreviewList: Review[];
 }
 
 const mockApiResponse: ApiResponse = {
-  fragranceId: 123,
+  fragranceId: 1,
   reviewCnt: 4,
   rateSum: 20,
-  reviewList: [
+  reviewPreviewList: [
     {
       comment: '이 향 덕에 소개팅 성공함',
       rate: 2,
@@ -61,9 +63,29 @@ const mockApiResponse: ApiResponse = {
     },
   ],
 };
-const ReviewContent = () => {
+export async function getPreReviewList(params: { id: string }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/review/preview`,
+    );
+
+    if (!response.ok) {
+      console.error('API fetch failed:', response.status);
+      throw new Error(`API fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch perfume data:', error);
+  }
+}
+
+const ReviewContent = async ({ id }: PerfumeReviewProps) => {
   const data = mockApiResponse;
-  if (!data) {
+  // const data = await getPreReviewList({ id });
+  // console.log(id);
+  if (data.reviewCnt === 0) {
     return (
       <div className="flex justify-center items-center h-full mx-4">
         <NoReview />
@@ -75,7 +97,7 @@ const ReviewContent = () => {
   const fullStars = Math.floor(averageRating);
   const halfStar = averageRating % 1 >= 0.5 ? 1 : 0; //반올림
   const emptyStars = 5 - fullStars - halfStar;
-  const reviewsToShow = data.reviewList.slice(0, 3);
+  const reviewsToShow = data.reviewPreviewList.slice(0, 3);
   return (
     <div className="mx-4">
       <div>

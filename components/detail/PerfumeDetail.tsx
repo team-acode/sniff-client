@@ -36,7 +36,6 @@ export async function getDetail(params: { id: string }) {
 }
 const PerfumeDetail = async ({ selectedEasy, id }: PerfumeDetailProps) => {
   const data = await getDetail({ id });
-
   const getContent = (part: 'top' | 'middle' | 'base'): JSX.Element => {
     const ingredients =
       part === 'top'

@@ -32,9 +32,8 @@ const page = ({ params }: ReviewPageProps) => {
     setModalValue(value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async ({ params }: ReviewPageProps) => {
     let isValid = true;
-
     setStarRatingError(false);
     setOneLineCommentError(false);
     setKeyWordReviewError(false);
@@ -70,9 +69,35 @@ const page = ({ params }: ReviewPageProps) => {
       selectedPersistence,
       selectedIntensity,
       modalValue,
+      textReview,
     });
+    const payload = {
+      rate: starRating,
+      comment: oneLineComment,
+      season: selectedSeason,
+      longevity: selectedPersistence,
+      intensity: selectedIntensity,
+      style: modalValue, //type확인해봐야함
+      textReview: textReview,
+      // thumbnail: imageBase64Strings[0] || '',
+      // image1: imageBase64Strings[1] || '',
+      // image2: imageBase64Strings[2] || '',
+    };
+    try {
+      const res = await fetch(`/api/reviewpage/${params.id}`, {
+        method: 'POST',
 
-    // Additional logic after successful submission
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        location.replace('/partvote/result');
+      }
+    } catch (error) {
+      console.error('투표 실패:', error);
+    }
   };
 
   return (
@@ -83,7 +108,6 @@ const page = ({ params }: ReviewPageProps) => {
       <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>
         <InputStar onRatingChange={setStarRating} />
-        {/* <div>Rating: {starRating}</div> */}
       </div>
       {starRatingError && (
         <div className="my-3">
@@ -93,7 +117,6 @@ const page = ({ params }: ReviewPageProps) => {
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <OnelineComment onChange={setOneLineComment} />
-        {/* <div>OneLineComment: {oneLineComment}</div> */}
       </div>
       {oneLineCommentError && (
         <div className="my-3">
@@ -110,13 +133,9 @@ const page = ({ params }: ReviewPageProps) => {
           onPersistenceSelect={setSelectedPersistence}
           onIntensitySelect={setSelectedIntensity}
         />
-        {/* <div>Selected Season: {selectedSeason}</div>
-        <div>Selected Persistence: {selectedPersistence}</div>
-        <div>Selected Intensity: {selectedIntensity}</div> */}
+
         <div>
           <Modal onReturn={handleModalReturn} />
-
-          {/* <div>Modal value:{modalValue}</div> */}
         </div>
       </div>
       {keyWordReviewError && (
@@ -127,31 +146,16 @@ const page = ({ params }: ReviewPageProps) => {
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <TextReview onChange={setTextReview} />
-        {/* <div>Text Review: {textReview}</div> */}
       </div>
       <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
       <div>
         <InputPhoto onChange={setPhotos} />
-        {/* <div>
-          {photos.length > 0 && (
-            <div>
-              <h4>Selected Photos:</h4>
-              <ul>
-                {photos.map((photo, index) => (
-                  <li key={index}>{photo.size}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div> */}
       </div>
 
       <div className="flex justify-center p-4">
         <button
           className="bg-acodeblack w-full text-white  py-3 px-4 rounded"
-          onClick={() => {
-            handleSubmit();
-          }}
+          onClick={() => handleSubmit({ params })}
         >
           올리기
         </button>
