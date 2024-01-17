@@ -55,9 +55,10 @@ const UsernameSettingPage = () => {
           } body2 font-medium mx-4 h-10 bg-acodegray-50 p-2.5 box-border text-acodeblack placeholder:text-acodegray-300 rounded-sm transition ease-in-out`}
           placeholder="특수문자 제외 한글 또는 영문 8글자 이내"
           name="username"
-          onInput={() => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setIsUsernameError(false);
-            setIsDoneAvailable(true);
+            if (e.target.value === '') setIsDoneAvailable(false);
+            else setIsDoneAvailable(true);
           }}
         />
         <div className="mt-[7px] mb-[13px] mx-4 h-6">

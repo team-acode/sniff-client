@@ -14,7 +14,9 @@ const page = async () => {
     headers: {
       AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },
-    cache: 'no-cache',
+    next: {
+      revalidate: 0,
+    },
   });
   if (!res.ok) return null;
   const user = await res.json();
