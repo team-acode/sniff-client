@@ -24,7 +24,7 @@ export default function Home({ searchParams }: HomePageProps) {
           계열의 향수
         </h3>
         <Link
-          href="/"
+          href={`/categories/${encodeURIComponent(category)}`}
           className="px-3 mt-3.5 w-[125px] h-9 bg-acodeblack rounded-[4px] text-acodewhite flex items-center"
         >
           <span className="body1 mr-1 font-semibold shrink-0">

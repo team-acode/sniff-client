@@ -10,7 +10,6 @@ export const CATEGORIES = [
   '알데히드',
   '레더',
   '그린',
-  '오리엔탈',
 ];
 
 export const CATEGORIES_ALL = [
