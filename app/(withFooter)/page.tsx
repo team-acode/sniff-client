@@ -25,7 +25,7 @@ export default function Home({ searchParams }: HomePageProps) {
         </h3>
         <Link
           href="/"
-          className="px-3 mt-3.5 w-[125px] h-9 bg-acodeblack rounded-lg text-acodewhite flex items-center"
+          className="px-3 mt-3.5 w-[125px] h-9 bg-acodeblack rounded-[4px] text-acodewhite flex items-center"
         >
           <span className="body1 mr-1 font-semibold shrink-0">
             더 보러 가기

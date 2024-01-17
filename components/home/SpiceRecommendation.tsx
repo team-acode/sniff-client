@@ -9,7 +9,7 @@ const SpiceRecommendation = async () => {
   const spiceInfo = await res.json();
 
   return (
-    <div className="mt-[43px] ml-4">
+    <div className="mt-[76px] ml-4">
       <h1 className="h0 text-acodeblack">
         오늘의 추천 향료는 <br />
         <Link
