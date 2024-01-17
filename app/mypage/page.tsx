@@ -7,14 +7,19 @@ import { getSession } from '@/utils/auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const page = async () => {
+interface MyPageProps {
+  searchParams: { [key: string]: string | undefined };
+}
+const page = async ({ searchParams }: MyPageProps) => {
   const userInfo = getSession();
   if (!userInfo) redirect('/login');
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mypage`, {
     headers: {
       AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },
   });
+
   if (!res.ok) return null;
   const user = await res.json();
 
@@ -23,7 +28,9 @@ const page = async () => {
       <BlurryNav />
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
-          <h1 className="h0 mr-1">안녕하세요, {user.nickname}님</h1>
+          <h1 className="h0 mr-1">
+            안녕하세요, {searchParams.nickname || user.nickname}님
+          </h1>
           <Link href="/mypage/username?init=false" className="">
             <PencilIcon />
           </Link>
@@ -33,7 +40,7 @@ const page = async () => {
           className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
         >
           <span className="body1 mr-[9px]">
-            {user.nickname}님이 작성한 리뷰
+            {searchParams.nickname || user.nickname}님이 작성한 리뷰
           </span>
           <span className="mr-auto">{user.reviewCnt}</span>
           <ArrowRightIcon2

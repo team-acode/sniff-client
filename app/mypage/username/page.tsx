@@ -25,7 +25,7 @@ const UsernameSettingPage = () => {
       });
       if (res.ok) {
         if (isInit) router.push('/onboarding');
-        else router.push('/mypage');
+        else router.push(`/mypage?nickname=${username}`);
       } else {
         // 닉네임 설정 오류 대응 추가 예정
       }
