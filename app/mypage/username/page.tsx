@@ -24,7 +24,8 @@ const UsernameSettingPage = () => {
         cache: 'no-cache',
       });
       if (res.ok) {
-        router.push('/onboarding');
+        if (isInit) router.push('/onboarding');
+        else router.back();
       } else {
         // 닉네임 설정 오류 대응 추가 예정
       }
@@ -65,7 +66,7 @@ const UsernameSettingPage = () => {
           {isUsernameError ? (
             <span className="caption1 flex items-center text-acodeerror font-medium animate-vibration">
               <WarningIcon className="mr-[5px]" />
-              닉네임을 확인해주세요
+              공백 및 특수문자 제외 8글자 이내만 가능합니다
             </span>
           ) : null}
         </div>
