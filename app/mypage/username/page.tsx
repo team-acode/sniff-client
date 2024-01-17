@@ -20,12 +20,12 @@ const UsernameSettingPage = () => {
       setIsUsernameError(false);
       const res = await fetch('/api/set-username', {
         method: 'PATCH',
-        body: JSON.stringify({ username: event.currentTarget.username.value }),
+        body: JSON.stringify({ username }),
         cache: 'no-cache',
       });
       if (res.ok) {
         if (isInit) router.push('/onboarding');
-        else router.back();
+        else router.push('/mypage');
       } else {
         // 닉네임 설정 오류 대응 추가 예정
       }
