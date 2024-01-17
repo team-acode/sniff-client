@@ -1,16 +1,21 @@
-import { TUserInfo } from '@/types';
 import { cookies } from 'next/headers';
 
 export const getSession = () => {
   const cookieStore = cookies();
-  const stored = cookieStore.get('user_info');
-  if (!stored) {
+  const jwt = cookieStore.get('jwt')?.value;
+  const exp = Number(cookieStore.get('exp')?.value);
+  if (!jwt || !exp) {
     return null;
   }
-  const userInfo: TUserInfo = JSON.parse(stored.value);
-  if (userInfo.accessTokenExpires < new Date().getTime()) {
-    // cookieStore.delete('user_info');
+
+  if (exp < new Date().getTime()) {
     return null;
   }
-  return userInfo;
+  return { jwt, exp };
+};
+
+export const getNickname = () => {
+  const cookieStore = cookies();
+  const nickname = cookieStore.get('nickname')?.value;
+  return nickname;
 };

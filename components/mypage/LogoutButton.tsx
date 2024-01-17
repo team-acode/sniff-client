@@ -1,9 +1,11 @@
 'use client';
 
 import MyPageModalTemplate from '@/components/mypage/MyPageModalTemplate';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const LogoutButton = () => {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -11,7 +13,13 @@ const LogoutButton = () => {
       {isModalOpen ? (
         <MyPageModalTemplate
           closeModal={() => setIsModalOpen(false)}
-          handleClickOk={() => {}}
+          handleClickOk={async () => {
+            const res = await fetch('/api/logout', {
+              method: 'POST',
+              cache: 'no-cache',
+            });
+            if (res.ok) router.push('/');
+          }}
           title="로그아웃"
           height="h-[176px]"
           titleBodyMargin="mt-1"
