@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const cookieStore = cookies();
-  const jwt = cookieStore.get('jwt');
-  const exp = Number(cookieStore.get('exp'));
+  const jwt = cookieStore.get('jwt')?.value;
+  const exp = Number(cookieStore.get('exp')?.value);
 
   if (!jwt || !exp) {
     return NextResponse.json(null);

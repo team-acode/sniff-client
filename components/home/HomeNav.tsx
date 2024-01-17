@@ -1,6 +1,7 @@
 'use client';
 
 import Category from '@/components/home/Category';
+import { useSession } from '@/hooks/useSession';
 import {
   AcodeLogoSmall,
   MenuIcon,
@@ -12,6 +13,7 @@ import React, { useState } from 'react';
 
 const HomeNav = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
+  const userInfo = useSession();
 
   return (
     <>
@@ -27,7 +29,7 @@ const HomeNav = () => {
         <Link href="/search" className="mt-[3px] mr-[11px]">
           <SearchIcon className="fill-acodeblack" />
         </Link>
-        <Link href="/mypage" className="mt-[3px]">
+        <Link href={userInfo ? `/mypage` : '/login'} className="mt-[3px]">
           <UserIcon className="fill-acodeblack" />
         </Link>
       </div>
