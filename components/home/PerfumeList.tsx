@@ -12,6 +12,9 @@ const PerfumeList = async ({ searchParams }: PerfumeListProps) => {
     `${process.env.NEXT_PUBLIC_SERVER_URL}/home?family=${encodeURIComponent(
       category,
     )}`,
+    {
+      cache: 'no-cache',
+    },
   );
   if (!res.ok) return null;
   const perfumes = await res.json();

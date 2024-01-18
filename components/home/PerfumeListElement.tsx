@@ -31,14 +31,14 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
             {perfume.brandName}
           </span>
         </div>
-        {/* <ul className="flex mt-2">
+        <ul className="flex mt-2">
           {perfume.style.map((tag) => (
             <li className="body2 mr-[9px] font-medium text-acodewhite">
               <span className="text-acodegray-300 mr-[1px]">#</span>
               {tag}
             </li>
           ))}
-        </ul> */}
+        </ul>
       </Link>
     </li>
   );
