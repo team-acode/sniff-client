@@ -66,7 +66,7 @@ const mockApiResponse: ApiResponse = {
 export async function getPreReviewList(params: { id: string }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/review/preview`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review/preview`,
     );
 
     if (!response.ok) {

@@ -19,7 +19,7 @@ interface Perfume {
 export async function getSimilar(params: { id: string }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/similar`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/similar`,
     );
 
     if (!response.ok) {

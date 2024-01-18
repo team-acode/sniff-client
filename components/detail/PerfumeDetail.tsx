@@ -20,7 +20,7 @@ interface Fragrance {
 export async function getDetail(params: { id: string }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/note`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/note`,
     );
 
     if (!response.ok) {

@@ -8,7 +8,7 @@ interface BuyProps {
 export async function getPurchase(params: { id: string }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}fragrance/${params.id}/purchase`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/purchase`,
     );
 
     if (!response.ok) {
@@ -33,7 +33,7 @@ const HereTobuy = async ({ id }: BuyProps) => {
   const data = mockupData;
   return (
     <div className="mx-4">
-      <div className="h2">여기서 구매할 수 있어요</div>
+      <div className="h2 mb-5">여기서 구매할 수 있어요</div>
       <Link href={data.link1}>
         <div className="flex flex-row">
           <Image

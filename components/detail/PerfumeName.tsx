@@ -9,6 +9,7 @@ interface PerfumeNameProps {
   concentration: string;
   familyList: Array<{ familyId: number; familyIcon: any; familyName: string }>;
   styleList: [];
+  capacity: [];
 }
 
 const PerfumeName = ({
@@ -17,6 +18,7 @@ const PerfumeName = ({
   concentration,
   familyList,
   styleList,
+  capacity,
 }: PerfumeNameProps) => {
   const options = [
     { capacity: '100', price: 28000 },
