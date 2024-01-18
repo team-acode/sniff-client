@@ -1,37 +1,38 @@
 'use client';
 
-import { USERNAME_SETTING_REQUIRED } from '@/constants/statusCodes';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 interface RedirectPageProps {
   params: { provider: string };
-  searchParams: { code: string };
+  searchParams: { jwtAccessToken: string; init: string };
 }
 
 const RedirectPage = ({ params, searchParams }: RedirectPageProps) => {
   const router = useRouter();
-  if (!searchParams || !searchParams.code || !params.provider)
-    router.push('/login');
+  const { provider } = params;
+  const jwt = searchParams.jwtAccessToken;
+  const isInit = searchParams.init === 'true';
+
+  if (!provider && !jwt) router.push('/login');
+
   useEffect(() => {
     (async () => {
       const res = await fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
-          code: searchParams.code,
-          provider: params.provider,
+          jwt,
+          provider,
         }),
       });
-
       if (res.ok) {
-        if (res.statusText === USERNAME_SETTING_REQUIRED)
-          router.push('/mypage/username');
+        if (isInit) router.push('/mypage/username?init=true');
         else router.push('/');
       } else {
         router.push('/login');
       }
     })();
-  }, [params.provider, router, searchParams.code]);
+  }, [isInit, jwt, provider, router]);
 };
 
 export default RedirectPage;

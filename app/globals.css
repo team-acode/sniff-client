@@ -134,6 +134,7 @@ body {
   max-width: 430px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  position: relative;
 }
 
 ::-webkit-scrollbar {

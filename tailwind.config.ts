@@ -26,6 +26,15 @@ const config: Config = {
         acodepoint: '#e31243',
         acodeerror: '#ff114a',
       },
+      keyframes: {
+        vibration: {
+          from: { transform: 'rotate(1deg)' },
+          to: { transform: 'rotate(-1deg)' },
+        },
+      },
+      animation: {
+        vibration: 'vibration 0.1s ease-in-out',
+      },
     },
   },
   plugins: [],
