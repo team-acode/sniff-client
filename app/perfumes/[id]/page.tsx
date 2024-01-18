@@ -7,24 +7,61 @@ import AddReview from '@/components/detail/AddReviewButton';
 import Link from 'next/link';
 import Navbar from '@/components/detail/NavBar';
 import PerfumeDetailList from '@/components/detail/PerfumeDetailList';
+import testPerfume from '@/public/images/test-perfume2.jpg';
 
 interface DetailPageProps {
   params: { id: string };
   searchParams: { [key: string]: string | undefined };
 }
+export async function getName(id: string) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${id}`,
+    );
 
+    if (!response.ok) {
+      console.error('API fetch failed:', response.status);
+      throw new Error(`API fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch perfume data:', error);
+  }
+}
 const page = async ({ params, searchParams }: DetailPageProps) => {
+  const data = await getName(params.id);
+  // console.log(data);
+  const {
+    thumbnail,
+    korBrand,
+    fragranceName,
+    concentration,
+    familyList,
+    style,
+    capacity,
+  } = data;
+  const styleList = style.split(',').map((s: string) => s.trim());
+
   return (
     <section className="py-1">
       <div>
         <Navbar />
       </div>
-      <div className="container">
+      <div className="">
         <ImageSlider />
       </div>
       <div className="my-4"></div>
       <div>
-        <PerfumeName />
+        <PerfumeName
+          korBrand={korBrand}
+          fragranceName={fragranceName}
+          concentration={concentration}
+          familyList={familyList}
+          styleList={styleList}
+          capacity={capacity}
+        />
       </div>
       <div className="my-11 border-t-8 border-pattern border-acodegray-50"></div>
       <div>
@@ -39,7 +76,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
         <HereTobuy id={params.id} />
       </div>
       <div className="flex justify-center item-center">
-        <AddReview />
+        <AddReview id={params.id} />
       </div>
     </section>
   );
