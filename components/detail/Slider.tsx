@@ -13,7 +13,7 @@ const Slider = ({ children }: SliderProps) => {
   return (
     <Swiper
       modules={[Navigation, Pagination]}
-      spaceBetween={30}
+      spaceBetween={14}
       slidesPerView={2.5}
       className="mySwiper"
     >

@@ -5,7 +5,7 @@ import { EasyOffIcon, EasyOnIcon } from '@/public/images';
 
 interface AcodeExplainProps {
   searchParams: { [key: string]: string | undefined };
-  id: number;
+  id: string;
 }
 
 const AcodeExplain = ({ searchParams, id }: AcodeExplainProps) => {

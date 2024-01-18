@@ -52,16 +52,16 @@ const SimilarPerfume = async ({ id }: SimilarProps) => {
             <Image
               src={perfume.image}
               alt={`Test Perfume ${index + 1}`}
-              width={140}
-              height={140}
+              width={138}
+              height={138}
               objectFit="cover"
             />
-            <div className="flex flex-row">
-              <div className="similar-1 text-center text-acodegray-500">
+            <div className="flex flex-row similar-1 items-baseline space-x-1 overflow-hidden w-full">
+              <div className="text-acodegray-500 truncate">
                 {perfume.korbrand}
               </div>
-              <div className="similar-1 text-acodegray-200">|</div>
-              <div className="similar-1 text-center text-acodeblack">
+              <div className="text-acodegray-200">|</div>
+              <div className="text-acodeblack truncate flex-grow">
                 {perfume.fragranceName}
               </div>
             </div>

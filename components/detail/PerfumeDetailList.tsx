@@ -12,16 +12,17 @@ const PerfumeDetailList = ({
   searchId,
 }: DetailCategoryBarProps) => {
   const selectedTab = searchParams.category || 'Detail';
-  const selectedEasy = searchParams.easy || 'on';
+  const selectedEasy = searchParams.easy;
+  const isValidSelectedEasy = selectedEasy === 'on' || selectedEasy === 'off';
 
   return (
     <div className="">
       <PerfumeDetailElement
         searchParams={searchParams}
         selectedTab={selectedTab}
-        id={1}
+        id={searchId.id}
       />
-      {selectedTab === 'Detail' && (
+      {selectedTab === 'Detail' && isValidSelectedEasy && (
         <PerfumeDetail selectedEasy={selectedEasy} id={searchId.id} />
       )}
       {selectedTab === 'Review' && <PerfumeReviewList id={searchId.id} />}

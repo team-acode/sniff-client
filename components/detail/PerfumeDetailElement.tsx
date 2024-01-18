@@ -5,7 +5,7 @@ import AcodeExplain from './AcodeExplainButton';
 interface PerfumeDetailElementProps {
   searchParams: { [key: string]: string | undefined };
   selectedTab: string;
-  id: number;
+  id: string;
 }
 
 const categories = ['Detail', 'Review'];
@@ -15,6 +15,7 @@ const PerfumeDetailElement = ({
   selectedTab,
   id,
 }: PerfumeDetailElementProps) => {
+  console.log(id);
   return (
     <div className="mx-4 mb-6">
       <div className="flex flex-row justify-between">
