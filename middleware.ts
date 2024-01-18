@@ -6,10 +6,11 @@ export function middleware(request: NextRequest) {
   const userInfo = getSession();
   const { pathname } = request.nextUrl;
 
-  if ((pathname === '/login' || pathname === '/onboarding') && userInfo)
+  if (pathname === '/login' && userInfo)
     return NextResponse.redirect(new URL('/', request.url));
   if (
-    (pathname.includes('/mypage') ||
+    (pathname === '/onboarding' ||
+      pathname.includes('/mypage') ||
       pathname.includes('/find-taste') ||
       pathname.includes('/reviews')) &&
     !userInfo

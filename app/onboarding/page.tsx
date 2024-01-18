@@ -1,12 +1,9 @@
 import BigLinkButton from '@/components/common/BigLinkButton';
 import { Onboarding } from '@/public/images';
-import { getNickname, getSession } from '@/utils/auth';
+import { getNickname } from '@/utils/auth';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 const page = () => {
-  const userInfo = getSession();
-  if (!userInfo) redirect('/login');
   return (
     <div className="relative h-full pt-[135px] px-5">
       <Onboarding className="absolute right-0 top-0 -z-10" />

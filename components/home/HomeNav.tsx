@@ -15,15 +15,15 @@ const HomeNav = () => {
 
   return (
     <>
-      <div className="flex mt-[3px] ml-[10px] mr-[13px] mb-[11px] relative">
+      <div className="fixed top-0 flex items-center w-full max-w-[430px] h-[54px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-30">
         <button
           type="button"
-          className="mt-[6px] mr-auto"
+          className="mr-auto"
           onClick={() => setIsCategoryOpen(true)}
         >
           <MenuIcon className="" />
         </button>
-        <AcodeLogoSmall className="absolute top-[7px] left-1/2 -translate-x-2/4" />
+        <AcodeLogoSmall className="absolute top-[20.5px] left-1/2 -translate-x-2/4" />
         <Link href="/search" className="mt-[3px] mr-[11px]">
           <SearchIcon className="fill-acodeblack" />
         </Link>

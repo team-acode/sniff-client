@@ -2,7 +2,7 @@ import { FAILED, SUCCESS } from '@/constants/statusCodes';
 import { getSession } from '@/utils/auth';
 import { cookies } from 'next/headers';
 
-export const POST = async () => {
+export const DELETE = async () => {
   const userInfo = getSession();
 
   if (!userInfo) {
@@ -15,8 +15,8 @@ export const POST = async () => {
     });
   }
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/logout`, {
-    method: 'POST',
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/withdrawal`, {
+    method: 'DELETE',
     headers: {
       AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },

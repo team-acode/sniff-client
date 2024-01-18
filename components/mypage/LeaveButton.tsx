@@ -1,17 +1,25 @@
 'use client';
 
 import MyPageModalTemplate from '@/components/mypage/MyPageModalTemplate';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const LeaveButton = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   return (
     <>
       {isModalOpen ? (
         <MyPageModalTemplate
           closeModal={() => setIsModalOpen(false)}
-          handleClickOk={() => {}}
+          handleClickOk={async () => {
+            const res = await fetch('/api/leave', {
+              method: 'DELETE',
+              cache: 'no-cache',
+            });
+            if (res.ok) router.push('/');
+          }}
           title="정말 탈퇴하시겠어요?"
           height="h-[210px]"
           titleBodyMargin="mt-[6px]"
