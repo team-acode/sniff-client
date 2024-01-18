@@ -5,53 +5,19 @@ interface PerfumeListProps {
   searchParams: { [key: string]: string | undefined };
 }
 
-const PERFUMES = [
-  {
-    id: 1,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-  {
-    id: 2,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-  {
-    id: 3,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-  {
-    id: 4,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-  {
-    id: 5,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-  {
-    id: 6,
-    name: '테싯',
-    brand: '이솝',
-    tags: ['고급스러운', '깨끗한', '중성적인'],
-    backgroundUrl: '',
-  },
-];
-
-const PerfumeList = ({ searchParams }: PerfumeListProps) => {
+const PerfumeList = async ({ searchParams }: PerfumeListProps) => {
   const category = searchParams.category || '우디';
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/home?family=${encodeURIComponent(
+      category,
+    )}`,
+    {
+      cache: 'no-cache',
+    },
+  );
+  if (!res.ok) return null;
+  const perfumes = await res.json();
 
   return (
     <div className="mt-[43px]">
@@ -63,9 +29,17 @@ const PerfumeList = ({ searchParams }: PerfumeListProps) => {
         selectedCategory={category}
       />
       <ul className="">
-        {PERFUMES.map((perfume) => (
-          <PerfumeListElement key={perfume.id} perfume={perfume} />
-        ))}
+        {perfumes.map(
+          (perfume: {
+            fragranceId: number;
+            fragranceName: string;
+            brandName: string;
+            style: string[];
+            poster: string;
+          }) => (
+            <PerfumeListElement key={perfume.fragranceId} perfume={perfume} />
+          ),
+        )}
       </ul>
     </div>
   );

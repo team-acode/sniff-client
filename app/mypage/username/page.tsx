@@ -9,6 +9,7 @@ const UsernameSettingPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isInit = searchParams.get('init') === 'true';
+
   const [isUsernameError, setIsUsernameError] = useState<boolean>(false);
   const [isDoneAvailable, setIsDoneAvailable] = useState<boolean>(false);
 

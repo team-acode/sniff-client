@@ -27,7 +27,7 @@ const PerfumeCategoryBar = ({
       {isCategorySpread ? (
         <span
           key={selectedCategory}
-          className="body2 font-medium text-acodeblack h-6 ml-4 pt-[2px] shrink-0 absolute w-full bg-white z-10"
+          className="body2 font-medium text-acodeblack h-6 pl-4 pt-[2px] shrink-0 absolute w-full bg-white z-10"
         >
           {selectedCategory}
         </span>
