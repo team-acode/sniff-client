@@ -22,12 +22,15 @@ export const POST = async () => {
     },
     cache: 'no-cache',
   });
-  if (res.ok) cookies().delete('jwt');
-  cookies().delete('exp');
-  cookies().delete('nickname');
-  return new Response(SUCCESS, {
-    status: 200,
-  });
+
+  if (res.ok) {
+    cookies().delete('jwt');
+    cookies().delete('exp');
+    cookies().delete('nickname');
+    return new Response(SUCCESS, {
+      status: 200,
+    });
+  }
 
   return new Response(FAILED, {
     status: 400,
