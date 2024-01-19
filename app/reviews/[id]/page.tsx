@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSession } from '@/hooks/useSession';
 import InputStar from '@/components/reviews/InputStar';
 import OnelineComment from '@/components/reviews/OnelineComment';
@@ -61,20 +61,6 @@ type ModalMappingType = {
   포근한: 'COZY';
 };
 
-////
-async function getHeader(id: string) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${id}`,
-    );
-    if (!response.ok) {
-      throw new Error(`API call failed: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to fetch header data:', error);
-  }
-}
 export async function getPresignedUrl(name: string) {
   try {
     const response = await fetch(
@@ -92,7 +78,23 @@ export async function getPresignedUrl(name: string) {
     console.error('Failed to fetch perfume data:', error);
   }
 }
+async function getHeader(name: string) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${name}`,
+    );
 
+    if (!response.ok) {
+      console.error('API fetch failed:', response.status);
+      throw new Error(`API fetch failed: ${response.status}`);
+    }
+
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch perfume data:', error);
+  }
+}
 const page = ({ params }: ReviewPageProps) => {
   const [starRating, setStarRating] = useState(0);
   const [oneLineComment, setOneLineComment] = useState('');
@@ -107,6 +109,33 @@ const page = ({ params }: ReviewPageProps) => {
   const [oneLineCommentError, setOneLineCommentError] = useState(false);
   const [keyWordReviewError, setKeyWordReviewError] = useState(false);
 
+  const [headerData, setHeaderData] = useState({
+    thumbnail: '',
+    korBrand: '',
+    fragranceName: '',
+    concentration: '',
+  });
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const data = await getHeader(params.id);
+        if (data) {
+          const parsedData = JSON.parse(data);
+          setHeaderData({
+            thumbnail: parsedData.thumbnail || '',
+            korBrand: parsedData.korBrand || '',
+            fragranceName: parsedData.fragranceName || '',
+            concentration: parsedData.concentration || '',
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch header data:', error);
+      }
+    };
+
+    fetchHeaderData();
+  }, [params.id]);
+
   const handleModalReturn = (value: any) => {
     setIsModalOpen(false);
     setModalValue(value);
@@ -114,10 +143,6 @@ const page = ({ params }: ReviewPageProps) => {
   const session = useSession();
   const token = session?.jwt;
 
-  const handleHeader = async ({ params }: ReviewPageProps) => {
-    const data = await getHeader(params.id);
-    console.log(data);
-  };
   const handleSubmit = async ({ params }: ReviewPageProps) => {
     let isValid = true;
     setStarRatingError(false);
@@ -178,7 +203,6 @@ const page = ({ params }: ReviewPageProps) => {
         console.error(`Error uploading image ${photoName}:`, error);
       }
     }
-    ////////////만들어보자
     const seasonMapping: SeasonMappingType = {
       봄: 'SPRING',
       여름: 'SUMMER',
@@ -288,7 +312,12 @@ const page = ({ params }: ReviewPageProps) => {
         <Navbar />
       </div>
       <div>
-        <ReviewHeader id={params.id} />
+        <ReviewHeader
+          thumbnail={headerData.thumbnail}
+          korBrand={headerData.korBrand}
+          fragranceName={headerData.fragranceName}
+          concentration={headerData.concentration}
+        />
       </div>
       <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>
