@@ -15,7 +15,6 @@ const PerfumeDetailElement = ({
   selectedTab,
   id,
 }: PerfumeDetailElementProps) => {
-  console.log(id);
   return (
     <div className="mx-4 mb-6">
       <div className="flex flex-row justify-between">

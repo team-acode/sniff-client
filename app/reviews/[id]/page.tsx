@@ -9,12 +9,13 @@ import InputPhoto from '@/components/reviews/InputPhoto';
 import Modal from '@/components/reviews/Modal';
 import Navbar from '@/components/reviews/Navbar';
 import BigLinkButton from '@/components/common/BigLinkButton';
-
+import ReviewHeader from '@/components/reviews/ReviewHeader';
 import { ErrorMessage1, ErrorMessage2, ErrorMessage3 } from '@/public/images';
+
 interface ReviewPageProps {
   params: { id: string };
 }
-/////만들어보자//
+
 type SeasonMappingType = {
   봄: 'SPRING';
   여름: 'SUMMER';
@@ -61,7 +62,19 @@ type ModalMappingType = {
 };
 
 ////
-
+async function getHeader(id: string) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${id}`,
+    );
+    if (!response.ok) {
+      throw new Error(`API call failed: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch header data:', error);
+  }
+}
 export async function getPresignedUrl(name: string) {
   try {
     const response = await fetch(
@@ -101,6 +114,10 @@ const page = ({ params }: ReviewPageProps) => {
   const session = useSession();
   const token = session?.jwt;
 
+  const handleHeader = async ({ params }: ReviewPageProps) => {
+    const data = await getHeader(params.id);
+    console.log(data);
+  };
   const handleSubmit = async ({ params }: ReviewPageProps) => {
     let isValid = true;
     setStarRatingError(false);
@@ -130,18 +147,6 @@ const page = ({ params }: ReviewPageProps) => {
     if (!isValid) {
       return;
     }
-    const styleValue = Array.isArray(modalValue)
-      ? modalValue.join(', ')
-      : modalValue;
-    console.log('Submitting:', {
-      starRating,
-      oneLineComment,
-      selectedSeason,
-      selectedPersistence,
-      selectedIntensity,
-      modalValue,
-      textReview,
-    });
 
     const uploadedPhotoUrls = [];
     //사진 전송
@@ -218,6 +223,7 @@ const page = ({ params }: ReviewPageProps) => {
       포근한: 'COZY',
     };
 
+    //value 영어로 재설정
     const translatedSeason =
       seasonMapping[selectedSeason as keyof SeasonMappingType] ||
       selectedSeason;
@@ -251,18 +257,6 @@ const page = ({ params }: ReviewPageProps) => {
     };
     /////////////
 
-    // const payload = {
-    //   rate: starRating,
-    //   comment: oneLineComment,
-    //   season: selectedSeason,
-    //   longevity: selectedPersistence,
-    //   intensity: selectedIntensity,
-    //   style: styleValue,
-    //   textReview: textReview ? textReview : '',
-    //   thumbnail: uploadedPhotoUrls[0] ? uploadedPhotoUrls[0] : '',
-    //   image1: uploadedPhotoUrls[1] ? uploadedPhotoUrls[1] : '',
-    //   image2: uploadedPhotoUrls[2] ? uploadedPhotoUrls[2] : '',
-    // };
     //payload 전송
     try {
       const headers = new Headers();
@@ -282,7 +276,7 @@ const page = ({ params }: ReviewPageProps) => {
       const responseData = await res.json();
       console.log('Response from server:', responseData);
 
-      // location.replace(`/perfumes/${params.id}`);
+      location.replace(`/perfumes/${params.id}`);
     } catch (error) {
       console.error('Error sending data:', error);
     }
@@ -292,6 +286,9 @@ const page = ({ params }: ReviewPageProps) => {
     <div>
       <div>
         <Navbar />
+      </div>
+      <div>
+        <ReviewHeader id={params.id} />
       </div>
       <div className="my-11 border-t-8 border-acodegray-50 border-pattern"></div>
       <div>

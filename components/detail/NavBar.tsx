@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   PreviousIcon,
   BookMarkOnIcon,
@@ -17,7 +18,9 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center py-2 bg-white">
-      <PreviousIcon className="cursor-pointer text-black" />
+      <Link href={'/'}>
+        <PreviousIcon className="cursor-pointer text-black" />
+      </Link>
       <div className="flex space-x-4">
         {isBookmarked ? (
           <BookMarkOnIcon
@@ -30,7 +33,9 @@ const Navbar = () => {
             onClick={toggleBookmark}
           />
         )}
-        <HomeIcon className="cursor-pointer text-black" />
+        <Link href={'/'}>
+          <HomeIcon className="cursor-pointer text-black" />
+        </Link>
       </div>
     </nav>
   );
