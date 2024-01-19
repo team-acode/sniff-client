@@ -8,12 +8,12 @@ interface CategoryPageProps {
   };
 }
 
-const page = ({ params }: CategoryPageProps) => {
+const page = async ({ params }: CategoryPageProps) => {
   if (!params || !params.category) redirect('/');
   const query = decodeURIComponent(params.category);
 
   return (
-    <DetailPageTemplate sort="category" query={query} perfumes={PERFUMES.data}>
+    <DetailPageTemplate sort="family" query={query} perfumes={PERFUMES.data}>
       <div className="mb-5 flex items-center">
         <h3 className="h2 text-acodegray-500 mr-auto">
           <span className="text-acodered">{`${query} `}</span>계열 제품

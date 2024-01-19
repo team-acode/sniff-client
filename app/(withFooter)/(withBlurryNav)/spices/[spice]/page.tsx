@@ -13,7 +13,11 @@ const page = ({ params }: CategoryPageProps) => {
   const query = decodeURIComponent(params.spice);
 
   return (
-    <DetailPageTemplate sort="category" query={query} perfumes={PERFUMES.data}>
+    <DetailPageTemplate
+      sort="ingredient"
+      query={query}
+      perfumes={PERFUMES.data}
+    >
       <div className="mb-5 flex items-center">
         <h3 className="h2 text-acodegray-500 mr-auto">
           <span className="text-acodered">{`${query} `}</span>베이스 향수

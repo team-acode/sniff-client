@@ -14,7 +14,7 @@ const page = ({ params }: CategoryPageProps) => {
   const query = decodeURIComponent(params.brand);
 
   return (
-    <DetailPageTemplate sort="category" query={query} perfumes={PERFUMES.data}>
+    <DetailPageTemplate sort="brand" query={query} perfumes={PERFUMES.data}>
       <div className="mb-5 h-8 flex items-center">
         <h3 className="h2 text-acodeblack mr-auto leading-[18px]">제품</h3>
         <CategoryDropdown />
