@@ -1,7 +1,7 @@
 'use client';
 
 import BottomModal from '@/components/common/BottomModal';
-import { CATEGORIES_ALL } from '@/constants/categories';
+import { CATEGORIES } from '@/constants/categories';
 import { GrayArrowDownIcon } from '@/public/images';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -30,11 +30,11 @@ const CategoryDropdown = () => {
             계열 선택
           </h3>
           <div className="grid grid-cols-3 mt-8 gap-x-[27px] gap-y-[10px]">
-            {CATEGORIES_ALL.map((category) => (
+            {CATEGORIES.map((category) => (
               <button
                 type="button"
                 key={category}
-                className={`body1 h-9 transition ${
+                className={`body1 h-9 rounded-[2px] transition ${
                   selectedCategory.includes(category)
                     ? 'text-acodewhite bg-acodeblack'
                     : 'bg-acodegray-50'
