@@ -9,64 +9,22 @@ import {
   BlackFullStar,
   NoReview,
 } from '@/public/images';
-import testImg from '@/public/images/test.jpg';
 import Image from 'next/image';
 interface Review {
   comment: string;
   rate: number;
   nickname: string;
+  thumbnail: string;
 }
 interface PerfumeReviewProps {
   id: string;
 }
-interface ApiResponse {
-  fragranceId: number;
-  reviewCnt: number;
-  rateSum: number;
-  reviewPreviewList: Review[];
-}
 
-const mockApiResponse: ApiResponse = {
-  fragranceId: 1,
-  reviewCnt: 4,
-  rateSum: 20,
-  reviewPreviewList: [
-    {
-      comment: '이 향 덕에 소개팅 성공함',
-      rate: 2,
-      nickname: 'User1',
-    },
-    {
-      comment: '성공함 소개팅',
-      rate: 5,
-      nickname: 'User2',
-    },
-    {
-      comment: '이 향 덕에 소개팅 성공함',
-      rate: 2,
-      nickname: 'User1',
-    },
-    {
-      comment: '성공함 소개팅',
-      rate: 5,
-      nickname: 'User2',
-    },
-    {
-      comment: '이 향 덕에 소개팅 성공함',
-      rate: 2,
-      nickname: 'User1',
-    },
-    {
-      comment: '성공함 소개팅',
-      rate: 5,
-      nickname: 'User2',
-    },
-  ],
-};
 export async function getPreReviewList(params: { id: string }) {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review/preview`,
+      { cache: `no-cache` },
     );
 
     if (!response.ok) {
@@ -82,9 +40,12 @@ export async function getPreReviewList(params: { id: string }) {
 }
 
 const ReviewContent = async ({ id }: PerfumeReviewProps) => {
-  const data = mockApiResponse;
-  // const data = await getPreReviewList({ id });
-  // console.log(id);
+  const data = await getPreReviewList({ id });
+
+  const photos: string[] = data.reviewPreviewList
+    .filter((review: Review) => review.thumbnail.length > 0)
+    .map((review: Review) => review.thumbnail)
+    .slice(0, 3);
   if (data.reviewCnt === 0) {
     return (
       <div className="flex justify-center items-center h-full mx-4">
@@ -120,39 +81,22 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
             리뷰 더보기 {'>'}
           </Link>
         </div>
+
         <div className="flex flex-row mb-9">
-          <div className="w-1/3 flex items-center justify-center">
-            <Image
-              src={testImg}
-              alt={`testimg`}
-              width={110}
-              height={110}
-              objectFit="cover"
-              className="rounded-md"
-            />
-          </div>
-          <div className="w-1/3 flex items-center justify-center">
-            <Image
-              src={testImg}
-              alt={`testimg`}
-              width={110}
-              height={110}
-              objectFit="cover"
-              className="rounded-md"
-            />
-          </div>
-          <div className="w-1/3 flex items-center justify-center">
-            <Image
-              src={testImg}
-              alt={`testimg`}
-              width={110}
-              height={110}
-              objectFit="cover"
-              className="rounded-md"
-            />
-          </div>
+          {photos.map((photo, index: number) => (
+            <div key={index} className="w-1/3 flex items-center justify-center">
+              <div className="relative w-[110px] h-[110px] overflow-hidden rounded-md">
+                <Image
+                  src={photo}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="rounded-md"
+                  fill
+                />
+              </div>
+            </div>
+          ))}
         </div>
-        {reviewsToShow.map((review, index) => (
+        {reviewsToShow.map((review: Review, index: number) => (
           <div key={index} className="body2 flex flex-col mb-5">
             <div className="justify-between flex flex-row">
               <div className="flex flex-col">
@@ -171,16 +115,18 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
                   {review.nickname}
                 </div>
               </div>
-              <div className="item-center">
-                <Image
-                  src={testImg}
-                  alt={`testimg`}
-                  width={71}
-                  height={71}
-                  objectFit="cover"
-                  className="rounded-md"
-                />
-              </div>
+              {review.thumbnail.length > 0 && (
+                <div className="item-center">
+                  <div className="relative w-[71px] h-[71px] overflow-hidden rounded-md">
+                    <Image
+                      src={review.thumbnail}
+                      alt={`review thumbnail`}
+                      className="rounded-md"
+                      fill
+                    />
+                  </div>
+                </div>
+              )}
             </div>
             {index !== reviewsToShow.length - 1 && (
               <div className="border-t border-acodegray-100 w-full my-4 mx-auto" />
