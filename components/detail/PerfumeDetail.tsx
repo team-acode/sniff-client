@@ -10,13 +10,6 @@ interface Ingredient {
   acode: string;
 }
 
-interface Fragrance {
-  fragranceId: number;
-  topNote: Ingredient[];
-  middleNote: Ingredient[];
-  baseNote: Ingredient[];
-  single: boolean;
-}
 export async function getDetail(params: { id: string }) {
   try {
     const response = await fetch(

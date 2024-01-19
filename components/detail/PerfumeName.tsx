@@ -25,26 +25,7 @@ const PerfumeName = ({
     { capacity: '200', price: 40000 },
     { capacity: '300', price: 80000 },
   ];
-  const perfumeInfo = {
-    korBrand: '산타마리아',
-    fragranceName: '포푸리',
-    concentration: '오드 퍼퓸',
-  };
 
-  const hashtags = [
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-    '시크한',
-  ];
   return (
     <div className="mx-4">
       <div className="body2 text-acodegray-300 max-w-md mx-auto mb-4">

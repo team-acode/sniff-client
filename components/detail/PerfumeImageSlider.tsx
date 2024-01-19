@@ -6,8 +6,13 @@ import testPerfume from '@/public/images/test-perfume2.jpg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+interface ImageSliderProps {
+  image: string[];
+}
 
-const ImageSlider = () => {
+const ImageSlider = ({ image }: ImageSliderProps) => {
+  const photos = image ? image : [testPerfume, testPerfume, testPerfume];
+
   return (
     <Swiper
       pagination={{ type: 'bullets' }}
@@ -15,30 +20,16 @@ const ImageSlider = () => {
       onSwiper={(swiper) => console.log(swiper)}
       className="h-96 w-full"
     >
-      <SwiperSlide>
-        <Image
-          src={testPerfume}
-          alt="Perfume"
-          layout="fill"
-          objectFit="cover"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-          src={testPerfume}
-          alt="Perfume"
-          layout="fill"
-          objectFit="cover"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-          src={testPerfume}
-          alt="Perfume"
-          layout="fill"
-          objectFit="cover"
-        />
-      </SwiperSlide>
+      {photos.map((photo, index) => (
+        <SwiperSlide key={index}>
+          <Image
+            src={photo}
+            alt={`Perfume ${index}`}
+            layout="fill"
+            objectFit="cover"
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
