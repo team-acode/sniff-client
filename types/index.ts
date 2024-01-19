@@ -5,8 +5,8 @@ export interface TUserInfo {
 
 export interface TPerfume {
   // 정리 필요
-  fragranceId: number;
-  fragranceName: string;
+  fragranceId?: number;
+  fragranceName?: string;
   thumbnail?: string;
   brandName?: string;
   style?: string[];
