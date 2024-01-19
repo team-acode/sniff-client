@@ -74,7 +74,7 @@ const DetailPageTemplate = async ({
         {children}
         <div className="grid grid-cols-2 gap-x-[15px] gap-y-[30px] mb-[154px]">
           {perfumes.map((perfume) => (
-            <PerfumeItem key={perfume.id} perfume={perfume} />
+            <PerfumeItem key={perfume.fragranceId} perfume={perfume} />
           ))}
         </div>
       </div>

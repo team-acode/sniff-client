@@ -75,7 +75,7 @@ const CategoryDropdown = () => {
               const params = new URLSearchParams(searchParams);
               params.delete('category');
               selectedCategory.forEach((category) => {
-                params.append('category', encodeURIComponent(category));
+                params.append('category', category);
               });
               router.push(`${pathname}?${params.toString()}`);
               setIsModalOpen(false);
