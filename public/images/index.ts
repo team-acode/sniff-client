@@ -10,13 +10,13 @@ export { default as Onboarding } from './onboarding.svg';
 export { default as UserIcon } from './user-icon.svg';
 export { default as SearchIcon } from './search-icon.svg';
 export { default as MenuIcon } from './menu-icon.svg';
-export { default as HomeIcon } from './home-icon.svg';
-export { default as XIcon } from './x-icon.svg';
+export { default as HomeIcon2 } from './home-icon.svg';
+export { default as XIcon2 } from './x-icon.svg';
 export { default as XCircleIcon } from './x-circle-icon.svg';
 export { default as SmallXIcon } from './small-x-icon.svg';
 export { default as PencilIcon } from './pencil-icon.svg';
-export { default as BookMarkOnIcon } from './bookmark-on-icon.svg';
-export { default as BookMarkOffIcon } from './bookmark-off-icon.svg';
+export { default as BookMarkOnIcon2 } from './bookmark-on-icon.svg';
+export { default as BookMarkOffIcon2 } from './bookmark-off-icon.svg';
 export { default as WarningIcon } from './warning-icon.svg';
 export { default as SmallCircleIcon } from './small-circle-icon.svg';
 export { default as FullStarIcon } from './full-star-icon.svg';
@@ -47,16 +47,16 @@ export { default as ArrowUpIcon2 } from './arrow-up-icon2.svg';
 export { default as Point } from './point.svg';
 export { default as SceneIcon } from './SceneIcon.svg';
 
-export { default as XIcon } from './Xicon.svg';
 export { default as EditIcon } from './editicon.svg';
 
-export { default as HomeIcon } from './Homeicon.svg';
-export { default as BookMarkOffIcon } from './bookmarkoff.svg';
-export { default as BookMarkOnIcon } from './bookmarkon.svg';
 export { default as PreviousIcon } from './previous.svg';
-
 
 export { default as ErrorMessage1 } from './errormessage1.svg';
 export { default as ErrorMessage2 } from './errormessage2.svg';
 export { default as ErrorMessage3 } from './errormessage3.svg';
 export { default as GrayArrowDownIcon } from './gray-arrow-down-icon.svg';
+
+export { default as XIcon } from './Xicon.svg';
+export { default as HomeIcon } from './Homeicon.svg';
+export { default as BookMarkOffIcon } from './bookmarkoff.svg';
+export { default as BookMarkOnIcon } from './bookmarkon.svg';
