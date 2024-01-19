@@ -27,7 +27,7 @@ const CategoryElement = ({
           <Link
             key={elem}
             href={`/${path}/${encodeURIComponent(elem)}`}
-            className=" h-[52px] bg-acodegray-50 rounded-lg justify-center items-center inline-flex text-acodeblack text-[16px] font-medium leading-[16px]"
+            className=" h-[52px] bg-acodegray-50 rounded-sm justify-center items-center inline-flex text-acodeblack text-[16px] font-medium leading-[16px]"
           >
             {elem}
           </Link>

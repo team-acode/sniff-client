@@ -56,7 +56,7 @@ const CategoryDropdown = () => {
             ))}
             <button
               type="button"
-              className="body1 text-acodegray-300 h-9 rounded-[2px]"
+              className="body1 text-acodegray-300 h-9 rounded-sm"
               onClick={() => {
                 setSelectedCategory([]);
               }}
