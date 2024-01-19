@@ -7,14 +7,23 @@ interface CategoryPageProps {
   params: {
     brand: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const page = async ({ params }: CategoryPageProps) => {
+const page = async ({ params, searchParams }: CategoryPageProps) => {
   if (!params || !params.brand) redirect('/');
   const query = params.brand;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/display?brand=${query}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/display?brand=${query}${
+      searchParams.category
+        ? `&family=${
+            typeof searchParams.category === 'string'
+              ? searchParams.category
+              : searchParams.category.join('%20')
+          }`
+        : ''
+    }`,
   );
 
   if (!res.ok) return null;
