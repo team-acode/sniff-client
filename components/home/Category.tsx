@@ -44,7 +44,7 @@ const Category = ({ handleClickXButton }: CategoryProps) => {
   }, []);
 
   return (
-    <div className="absolute top-0  bottom-0 w-full h-full bg-acodewhite z-50 overflow-auto pb-[124px]">
+    <div className="fixed top-0  bottom-0 w-full h-full bg-acodewhite z-50 overflow-auto pb-[124px]">
       <div className="flex relative justify-center mx-[13px] mt-[13px]">
         <h2 className="h1">카테고리</h2>
         <button
