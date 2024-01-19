@@ -10,13 +10,16 @@ interface CategoryPageProps {
 
 const page = async ({ params }: CategoryPageProps) => {
   if (!params || !params.category) redirect('/');
-  const query = decodeURIComponent(params.category);
+  const query = params.category;
 
   return (
     <DetailPageTemplate sort="family" query={query} perfumes={PERFUMES.data}>
       <div className="mb-5 flex items-center">
         <h3 className="h2 text-acodegray-500 mr-auto">
-          <span className="text-acodered">{`${query} `}</span>계열 제품
+          <span className="text-acodered">{`${decodeURIComponent(
+            query,
+          )} `}</span>
+          계열 제품
         </h3>
         <span className="body1 text-[#9ea0a3]">
           총 <span className="text-acodeblack">{PERFUMES.count}</span>건

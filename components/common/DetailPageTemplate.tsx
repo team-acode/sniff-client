@@ -16,9 +16,7 @@ const DetailPageTemplate = async ({
   children,
 }: DetailPageTemplateProps) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/display/${sort}/${encodeURIComponent(
-      query,
-    )}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/display/${sort}/${query}`,
   );
 
   if (!res.ok) return null;

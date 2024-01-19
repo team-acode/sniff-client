@@ -11,7 +11,7 @@ interface CategoryPageProps {
 
 const page = ({ params }: CategoryPageProps) => {
   if (!params || !params.brand) redirect('/');
-  const query = decodeURIComponent(params.brand);
+  const query = params.brand;
 
   return (
     <DetailPageTemplate sort="brand" query={query} perfumes={PERFUMES.data}>
