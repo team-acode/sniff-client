@@ -135,7 +135,9 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
             review.image1,
             review.image2,
           ].filter((url) => url);
-
+          const displayNickname =
+            review.nickname.slice(0, 2) +
+            '*'.repeat(review.nickname.length - 2);
           return (
             <div key={index} className="body2 flex flex-col mb-5">
               <div className="flex flex-row mb-5">
@@ -165,7 +167,7 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
                     </div>
 
                     <div className="text-acodegray-400 caption2 ml-3">
-                      {review.nickname}
+                      {displayNickname}
                     </div>
                   </div>
                   <div className="text-acodeblack mb-2.5">{review.comment}</div>
