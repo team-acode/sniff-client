@@ -23,7 +23,7 @@ const CategoryDropdown = () => {
     <>
       {isModalOpen ? (
         <BottomModal
-          modalStyle="h-[442px] text-acodeblack py-[18px] px-[27px] flex flex-col"
+          modalStyle="h-[362px] text-acodeblack py-[18px] px-[27px] flex flex-col"
           closeModal={() => setIsModalOpen(false)}
         >
           <h3 className="w-full text-center text-[#191f28] text-[20px] font-semibold leading-[28px]">
@@ -54,19 +54,20 @@ const CategoryDropdown = () => {
                 {category}
               </button>
             ))}
+            <button
+              type="button"
+              className="body1 text-acodegray-300 h-9 rounded-[2px]"
+              onClick={() => {
+                setSelectedCategory([]);
+              }}
+            >
+              초기화
+            </button>
           </div>
+
           <button
             type="button"
-            className="mt-4 body1 text-acodegray-300 ml-auto w-[89px] h-9"
-            onClick={() => {
-              setSelectedCategory([]);
-            }}
-          >
-            초기화
-          </button>
-          <button
-            type="button"
-            className={`mt-6 h2 text-acodewhite w-full h-14 transition ${
+            className={`mt-[28px] h2 text-acodewhite w-full h-14 transition ${
               isChanged ? 'bg-acodeblack' : 'bg-acodegray-300'
             }`}
             disabled={!isChanged}
