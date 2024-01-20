@@ -4,15 +4,21 @@ export interface TUserInfo {
 }
 
 export interface TPerfume {
-  id: number;
-  perfumeName: string;
-  brandName: string;
-  category: string;
-  imageUrl: string;
-  option: string;
-  price: number;
-  capacity: string;
-  scraped: boolean;
+  // 정리 필요
+  fragranceId?: number;
+  fragranceName?: string;
+  thumbnail?: string;
+  brandName?: string;
+  style?: string[];
+  poster?: string;
+  id?: number;
+  perfumeName?: string;
+  category?: string;
+  imageUrl?: string;
+  option?: string;
+  price?: number;
+  capacity?: string;
+  scraped?: boolean;
 }
 
 export interface TBrand {

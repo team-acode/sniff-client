@@ -1,7 +1,7 @@
 'use client';
 
 import BottomModal from '@/components/common/BottomModal';
-import { CATEGORIES_ALL } from '@/constants/categories';
+import { CATEGORIES } from '@/constants/categories';
 import { GrayArrowDownIcon } from '@/public/images';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -23,18 +23,18 @@ const CategoryDropdown = () => {
     <>
       {isModalOpen ? (
         <BottomModal
-          modalStyle="h-[442px] text-acodeblack py-[18px] px-[27px] flex flex-col"
+          modalStyle="h-[362px] text-acodeblack py-[18px] px-[27px] flex flex-col"
           closeModal={() => setIsModalOpen(false)}
         >
           <h3 className="w-full text-center text-[#191f28] text-[20px] font-semibold leading-[28px]">
             계열 선택
           </h3>
           <div className="grid grid-cols-3 mt-8 gap-x-[27px] gap-y-[10px]">
-            {CATEGORIES_ALL.map((category) => (
+            {CATEGORIES.map((category) => (
               <button
                 type="button"
                 key={category}
-                className={`body1 h-9 transition ${
+                className={`body1 h-9 rounded-[2px] transition ${
                   selectedCategory.includes(category)
                     ? 'text-acodewhite bg-acodeblack'
                     : 'bg-acodegray-50'
@@ -54,19 +54,20 @@ const CategoryDropdown = () => {
                 {category}
               </button>
             ))}
+            <button
+              type="button"
+              className="body1 text-acodegray-300 h-9 rounded-sm"
+              onClick={() => {
+                setSelectedCategory([]);
+              }}
+            >
+              초기화
+            </button>
           </div>
+
           <button
             type="button"
-            className="mt-4 body1 text-acodegray-300 ml-auto w-[89px] h-9"
-            onClick={() => {
-              setSelectedCategory([]);
-            }}
-          >
-            초기화
-          </button>
-          <button
-            type="button"
-            className={`mt-6 h2 text-acodewhite w-full h-14 transition ${
+            className={`mt-[28px] h2 text-acodewhite w-full h-14 transition ${
               isChanged ? 'bg-acodeblack' : 'bg-acodegray-300'
             }`}
             disabled={!isChanged}
@@ -74,7 +75,7 @@ const CategoryDropdown = () => {
               const params = new URLSearchParams(searchParams);
               params.delete('category');
               selectedCategory.forEach((category) => {
-                params.append('category', encodeURIComponent(category));
+                params.append('category', category);
               });
               router.push(`${pathname}?${params.toString()}`);
               setIsModalOpen(false);

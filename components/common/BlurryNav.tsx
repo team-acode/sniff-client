@@ -9,7 +9,7 @@ const BlurryNav = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const isSpices = pathname === 'spices';
+  const isSpices = pathname.includes('/spices');
 
   const getTitle = (pn: string) => {
     if (pn.includes('/brands')) return '브랜드';
