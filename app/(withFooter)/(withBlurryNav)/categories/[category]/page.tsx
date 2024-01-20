@@ -1,3 +1,4 @@
+import { getPerfumes } from '@/app/actions';
 import DetailPageTemplate from '@/components/common/DetailPageTemplate';
 import { TPerfume } from '@/types';
 import { redirect } from 'next/navigation';
@@ -12,23 +13,15 @@ const page = async ({ params }: CategoryPageProps) => {
   if (!params || !params.category) redirect('/');
   const query = params.category;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/display?family=${query}`,
-  );
+  const { data, totalElements } = await getPerfumes(`family=${query}`);
 
-  if (!res.ok) return null;
-
-  const info: {
-    data: TPerfume[];
-    totalPages: number;
-    totalElements: number;
-  } = await res.json();
+  if (!data) return null;
 
   return (
     <DetailPageTemplate
       sort="family"
       query={query}
-      perfumes={info.data as TPerfume[]}
+      perfumes={data as TPerfume[]}
     >
       <div className="mb-5 flex items-center">
         <h3 className="h2 text-acodegray-500 mr-auto">
@@ -38,7 +31,7 @@ const page = async ({ params }: CategoryPageProps) => {
           계열 제품
         </h3>
         <span className="body1 text-[#9ea0a3]">
-          총 <span className="text-acodeblack">{info.totalElements}</span>건
+          총 <span className="text-acodeblack">{totalElements}</span>건
         </span>
       </div>
     </DetailPageTemplate>

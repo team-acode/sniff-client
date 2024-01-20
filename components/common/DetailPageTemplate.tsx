@@ -1,4 +1,4 @@
-import PerfumeItem from '@/components/common/PerfumeItem';
+import InfinitePerfumeList from '@/components/common/InfinitePerfumeList';
 import { TPerfume } from '@/types';
 import Image from 'next/image';
 
@@ -72,11 +72,7 @@ const DetailPageTemplate = async ({
       </div>
       <div className="pt-9 px-4">
         {children}
-        <div className="grid grid-cols-2 gap-x-[15px] gap-y-[30px] mb-[154px]">
-          {perfumes.map((perfume) => (
-            <PerfumeItem key={perfume.fragranceId} perfume={perfume} />
-          ))}
-        </div>
+        <InfinitePerfumeList initialPerfumes={perfumes} />
       </div>
     </div>
   );
