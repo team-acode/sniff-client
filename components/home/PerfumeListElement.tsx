@@ -1,21 +1,16 @@
+import { TPerfume } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface PerfumeListElementProps {
-  perfume: {
-    fragranceId: number;
-    fragranceName: string;
-    brandName: string;
-    style: string[];
-    poster: string;
-  };
+  perfume: TPerfume;
 }
 
 const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
   return (
     <li className="w-full relative mb-[5px]">
       <Image
-        src={perfume.poster} // 임시로 지정해둠 변경해야됨
+        src={perfume.poster!}
         fill
         style={{ objectFit: 'cover', zIndex: -1 }}
         alt="perfume pg"
@@ -32,7 +27,7 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
           </span>
         </div>
         <ul className="flex mt-2">
-          {perfume.style.map((tag) => (
+          {perfume.style!.map((tag) => (
             <li className="body2 mr-[9px] font-medium text-acodewhite">
               <span className="text-acodegray-300 mr-[1px]">#</span>
               {tag}

@@ -16,13 +16,13 @@ interface WishItemProps {
 }
 
 const WishItem = ({ perfume }: WishItemProps) => {
-  const { isWishOn, handleClickWish } = useWish(perfume.id, perfume.scraped);
+  const { isWishOn, handleClickWish } = useWish(perfume.id!, perfume.scraped!);
 
   return (
     <li className="h-24 w-full">
       <Link href={`/perfumes/${perfume.id}`} className="flex w-full h-full">
         <Image
-          src={perfume.imageUrl}
+          src={perfume.imageUrl!}
           className="rounded-[4px] mr-[15px]"
           alt="perfume"
           width={96}
@@ -42,7 +42,7 @@ const WishItem = ({ perfume }: WishItemProps) => {
             </span>
           </div>
           <div className="flex mt-4 gap-[7px] text-[14px] text-acodegray-500 font-medium tracking-[-0.28px] h-[17px]">
-            <span className="">{convertNum(perfume.price)}원</span>
+            <span className="">{convertNum(perfume.price!)}원</span>
             <span className="">{perfume.capacity}</span>
           </div>
         </div>

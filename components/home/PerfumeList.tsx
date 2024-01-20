@@ -1,5 +1,6 @@
 import PerfumeCategoryBar from '@/components/home/PerfumeCategoryBar';
 import PerfumeListElement from '@/components/home/PerfumeListElement';
+import { TPerfume } from '@/types';
 
 interface PerfumeListProps {
   searchParams: { [key: string]: string | undefined };
@@ -29,17 +30,9 @@ const PerfumeList = async ({ searchParams }: PerfumeListProps) => {
         selectedCategory={category}
       />
       <ul className="">
-        {perfumes.map(
-          (perfume: {
-            fragranceId: number;
-            fragranceName: string;
-            brandName: string;
-            style: string[];
-            poster: string;
-          }) => (
-            <PerfumeListElement key={perfume.fragranceId} perfume={perfume} />
-          ),
-        )}
+        {perfumes.map((perfume: TPerfume) => (
+          <PerfumeListElement key={perfume.fragranceId} perfume={perfume} />
+        ))}
       </ul>
     </div>
   );

@@ -8,13 +8,13 @@ interface PerfumeItemProps {
 
 const PerfumeItem = ({ perfume }: PerfumeItemProps) => {
   return (
-    <Link href={`/perfumes/${perfume.id}`} className="h-[187px]">
+    <Link href={`/perfumes/${perfume.fragranceId}`} className="h-[187px]">
       <div className="relative h-[140px]">
         <Image
-          src={perfume.imageUrl || '/images/perfume-temp-bg.png'}
+          src={perfume.thumbnail || '/images/perfume-temp-bg.png'}
           alt="perfume"
           style={{ objectFit: 'cover' }}
-          className="!h-[140px] rounded-lg"
+          className="!h-[140px] rounded-[4px]"
           fill
         />
       </div>
@@ -23,7 +23,7 @@ const PerfumeItem = ({ perfume }: PerfumeItemProps) => {
         {perfume.brandName}
       </span>
       <h3 className="mt-1 text-[14px] font-medium leading-[14px] tracking-[-0.35px] text-acodeblack text-ellipsis whitespace-nowrap overflow-hidden">
-        {perfume.perfumeName}
+        {perfume.fragranceName}
       </h3>
     </Link>
   );

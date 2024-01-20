@@ -27,7 +27,7 @@ const CategoryElement = ({
           <Link
             key={elem}
             href={`/${path}/${encodeURIComponent(elem)}`}
-            className=" h-[52px] bg-acodegray-50 rounded-lg justify-center items-center inline-flex text-acodeblack text-[16px] font-medium leading-[16px]"
+            className=" h-[52px] bg-acodegray-50 rounded-sm justify-center items-center inline-flex text-acodeblack text-[16px] font-medium leading-[16px]"
           >
             {elem}
           </Link>
@@ -44,8 +44,8 @@ const Category = ({ handleClickXButton }: CategoryProps) => {
   }, []);
 
   return (
-    <div className="absolute top-0  bottom-0 w-full h-full bg-acodewhite z-50 overflow-auto pb-[124px]">
-      <div className="flex relative justify-center mx-[13px] mt-[3px]">
+    <div className="fixed top-0  bottom-0 w-full max-w-[430px] h-full bg-acodewhite z-50 overflow-auto pb-[124px]">
+      <div className="flex relative justify-center mx-[13px] mt-[13px]">
         <h2 className="h1">카테고리</h2>
         <button
           type="button"
