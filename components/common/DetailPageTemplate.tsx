@@ -5,14 +5,18 @@ import Image from 'next/image';
 interface DetailPageTemplateProps {
   sort: string;
   query: string;
+  searchParams: string;
   perfumes: TPerfume[];
+  totalPages: number;
   children: React.ReactNode;
 }
 
 const DetailPageTemplate = async ({
   sort,
   query,
+  searchParams,
   perfumes,
+  totalPages,
   children,
 }: DetailPageTemplateProps) => {
   const res = await fetch(
@@ -72,7 +76,11 @@ const DetailPageTemplate = async ({
       </div>
       <div className="pt-9 px-4">
         {children}
-        <InfinitePerfumeList initialPerfumes={perfumes} />
+        <InfinitePerfumeList
+          initialPerfumes={perfumes}
+          searchParams={searchParams}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );

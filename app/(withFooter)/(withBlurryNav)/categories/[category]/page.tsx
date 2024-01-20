@@ -12,8 +12,10 @@ interface CategoryPageProps {
 const page = async ({ params }: CategoryPageProps) => {
   if (!params || !params.category) redirect('/');
   const query = params.category;
+  const searchParamString = `family=${query}`;
 
-  const { data, totalElements } = await getPerfumes(`family=${query}`);
+  const { data, totalElements, totalPages } =
+    await getPerfumes(searchParamString);
 
   if (!data) return null;
 
@@ -22,6 +24,8 @@ const page = async ({ params }: CategoryPageProps) => {
       sort="family"
       query={query}
       perfumes={data as TPerfume[]}
+      searchParams={searchParamString}
+      totalPages={totalPages}
     >
       <div className="mb-5 flex items-center">
         <h3 className="h2 text-acodegray-500 mr-auto">

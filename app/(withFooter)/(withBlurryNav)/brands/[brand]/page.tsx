@@ -1,6 +1,6 @@
+import { getPerfumes } from '@/app/actions';
 import CategoryDropdown from '@/components/common/CategoryDropdown';
 import DetailPageTemplate from '@/components/common/DetailPageTemplate';
-import { TPerfume } from '@/types';
 import { redirect } from 'next/navigation';
 
 interface CategoryPageProps {
@@ -13,29 +13,27 @@ interface CategoryPageProps {
 const page = async ({ params, searchParams }: CategoryPageProps) => {
   if (!params || !params.brand) redirect('/');
   const query = params.brand;
+  const searchParamString = `brand=${query}${
+    searchParams.category
+      ? `&family=${
+          typeof searchParams.category === 'string'
+            ? searchParams.category
+            : searchParams.category.join('%20')
+        }`
+      : ''
+  }`;
+  const { data, totalPages } = await getPerfumes(searchParamString);
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/display?brand=${query}${
-      searchParams.category
-        ? `&family=${
-            typeof searchParams.category === 'string'
-              ? searchParams.category
-              : searchParams.category.join('%20')
-          }`
-        : ''
-    }`,
-  );
-
-  if (!res.ok) return null;
-
-  const info: {
-    data: TPerfume[];
-    totalPages: number;
-    totalElements: number;
-  } = await res.json();
+  if (!data) return null;
 
   return (
-    <DetailPageTemplate sort="brand" query={query} perfumes={info.data}>
+    <DetailPageTemplate
+      sort="brand"
+      query={query}
+      perfumes={data}
+      searchParams={searchParamString}
+      totalPages={totalPages}
+    >
       <div className="mb-5 h-8 flex items-center">
         <h3 className="h2 text-acodeblack mr-auto leading-[18px]">제품</h3>
         <CategoryDropdown />
