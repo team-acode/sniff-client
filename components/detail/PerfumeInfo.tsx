@@ -1,5 +1,6 @@
 import React from 'react';
-import { SmallCircleIcon, SceneIcon } from '@/public/images';
+import { SmallCircleIcon } from '@/public/images';
+import Image from 'next/image';
 import DropdownButton from './PerfumeDropdown';
 
 interface PerfumeInfoProps {
@@ -19,40 +20,44 @@ const PerfumeInfo = ({
   styleList,
   capacityList,
 }: PerfumeInfoProps) => {
-  const options = [
-    { capacity: '100', price: 28000 },
-    { capacity: '200', price: 40000 },
-    { capacity: '300', price: 80000 },
-  ];
-
   return (
     <div className="mt-4">
       <div className="body2 mx-4 text-acodegray-300 max-w-md mb-4">
         {korBrand}
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between h-16">
         <div className="flex flex-col mb-1">
           <div className="flex items-center gap-[10px] ml-4">
             <div className="h1 text-acodeblack">{fragranceName}</div>
             <SmallCircleIcon className="fill-acodegray-500" />
             <div className="h2 text-acodegray-500">{concentration}</div>
           </div>
-          {options.length ? <DropdownButton options={options} /> : null}
+          {capacityList.length ? (
+            <DropdownButton options={capacityList} />
+          ) : null}
         </div>
         <div className="flex flex-row space-x-2.5 mr-4">
-          <SceneIcon />
-          <SceneIcon />
+          {familyList.map((family) => (
+            <Image
+              key={`${family.familyIcon}${family.familyName}`}
+              src={family.familyIcon || '/'}
+              alt="family badge"
+              width={44}
+              height={56}
+              className="w-11 h-14"
+            />
+          ))}
         </div>
       </div>
-      <div className="mt-4 mx-4">
-        {styleList.map((tag, index) => (
-          <React.Fragment key={index}>
-            <span className="body2 mr-2">
-              <span className="text-acodegray-500">#</span>
-              {tag}
-            </span>
-            {(index + 1) % 5 === 0 && <br />}
-          </React.Fragment>
+      <div className="mt-[35px] mx-4 flex flex-wrap">
+        {styleList.map((tag) => (
+          <span
+            key={tag}
+            className="body2 font-medium mr-2 shrink-0 text-acodeblack"
+          >
+            <span className="text-acodegray-400">#</span>
+            {tag}
+          </span>
         ))}
       </div>
     </div>
