@@ -15,19 +15,22 @@ const BrandResult = ({ brands, count }: BrandResultProps) => {
         브랜드 <span className="font-medium text-gray-400">{count}건</span>
       </div>
       {brands.map((brand) => (
-        <div className="flex mr-[14px] mt-[14px] items-center">
+        <div
+          key={brand.brandId}
+          className="flex mr-[14px] mt-[14px] items-center"
+        >
           <Image
-            src={brand.imageUrl}
+            src={brand.roundImg || '/'}
             alt="brand"
             height={38}
             width={38}
             className="mr-[10px] rounded-s-full"
           />
           <p className="eng text-[16px] font-semibold leading-[16px] tracking-[-0.16px] mr-auto">
-            {brand.brandNameEng}
+            {brand.korName}
           </p>
           <Link
-            href={`/brands/${encodeURIComponent(brand.brandNameKor)}`}
+            href={`/brands/${encodeURIComponent(brand.korName)}`}
             className="flex text-[12px] font-medium text-acodegray-400 leading-[18px] tracking-[-0.3px] items-center"
           >
             더 알아보기
