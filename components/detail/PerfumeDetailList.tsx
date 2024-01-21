@@ -2,6 +2,7 @@ import React from 'react';
 import PerfumeDetail from './PerfumeDetail';
 import PerfumeReviewList from './PerfumeReviewList';
 import PerfumeDetailElement from './PerfumeDetailElement';
+
 interface DetailCategoryBarProps {
   searchParams: { [key: string]: string | undefined };
   searchId: { id: string };

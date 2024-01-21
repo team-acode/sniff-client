@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
-const BlurryNav = () => {
+const DetailCommonNav = () => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -27,8 +27,8 @@ const BlurryNav = () => {
         {getTitle(pathname)}
       </h3>
 
-      <Link href="/search" className="">
-        <SearchIcon className=" mr-[11px] fill-acodeblack" />
+      <Link href="/search" className="D">
+        <SearchIcon className="fill-acodeblack" />
       </Link>
       <Link href={isSpices ? '/mypage' : '/'} className="">
         {isSpices ? (
@@ -42,4 +42,4 @@ const BlurryNav = () => {
   );
 };
 
-export default BlurryNav;
+export default DetailCommonNav;

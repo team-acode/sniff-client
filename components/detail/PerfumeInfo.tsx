@@ -3,7 +3,7 @@ import DropdownButton from './PerfumeDropdown';
 import { Point } from '@/public/images';
 import { SceneIcon } from '@/public/images';
 
-interface PerfumeNameProps {
+interface PerfumeInfoProps {
   korBrand: string;
   fragranceName: string;
   concentration: string;
@@ -12,14 +12,14 @@ interface PerfumeNameProps {
   capacity: [];
 }
 
-const PerfumeName = ({
+const PerfumeInfo = ({
   korBrand,
   fragranceName,
   concentration,
   familyList,
   styleList,
   capacity,
-}: PerfumeNameProps) => {
+}: PerfumeInfoProps) => {
   const options = [
     { capacity: '100', price: 28000 },
     { capacity: '200', price: 40000 },
@@ -27,7 +27,7 @@ const PerfumeName = ({
   ];
 
   return (
-    <div className="mx-4">
+    <div className="mx-4 mt-4">
       <div className="body2 text-acodegray-300 max-w-md mx-auto mb-4">
         {korBrand}
       </div>
@@ -66,4 +66,4 @@ const PerfumeName = ({
   );
 };
 
-export default PerfumeName;
+export default PerfumeInfo;

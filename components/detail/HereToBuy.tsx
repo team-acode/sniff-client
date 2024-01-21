@@ -32,7 +32,7 @@ const HereTobuy = async ({ id }: BuyProps) => {
   // const data = await getPurchase({ id });
   const data = mockupData;
   return (
-    <div className="mx-4">
+    <div className="mx-4 mb-[186px]">
       <div className="h2 mb-5">여기서 구매할 수 있어요</div>
       <Link href={data.link1}>
         <div className="flex flex-row">

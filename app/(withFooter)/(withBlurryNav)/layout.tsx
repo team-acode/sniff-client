@@ -1,9 +1,9 @@
-import BlurryNav from '@/components/common/BlurryNav';
+import DetailCommonNav from '@/components/common/DetailCommonNav';
 
 const WithFooterLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <BlurryNav />
+      <DetailCommonNav />
       {children}
     </>
   );
