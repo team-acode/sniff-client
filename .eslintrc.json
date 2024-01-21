@@ -3,21 +3,18 @@
     "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
-    "prettier",
-    "plugin:storybook/recommended"
+    "prettier"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "ignorePatterns": ["next.config.js"],
   "rules": {
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "import/prefer-default-export": "off",
+    "arrow-body-style": "off",
     "react/react-in-jsx-scope": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
-        "peerDependencies": true
-      }
-    ]
+    "import/no-extraneous-dependencies": "off"
   }
 }

@@ -8,10 +8,32 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        acodeblack: '#1C1818',
+        acodewhite: '#ffffff',
+        acodered: '#ff003d',
+        acodegray: {
+          50: '#f7f7f7',
+          100: '#ecebea',
+          200: '#d9d8d7',
+          300: '#c0bebb',
+          400: '#a6a49f',
+          500: '#989592',
+          600: '#85827f',
+          700: '#676461',
+          800: '#413f3d',
+        },
+        acodepoint: '#e31243',
+        acodeerror: '#ff114a',
+      },
+      keyframes: {
+        vibration: {
+          from: { transform: 'rotate(1deg)' },
+          to: { transform: 'rotate(-1deg)' },
+        },
+      },
+      animation: {
+        vibration: 'vibration 0.1s ease-in-out',
       },
     },
   },
