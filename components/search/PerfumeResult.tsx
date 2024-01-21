@@ -23,7 +23,6 @@ const PerfumeResult = ({
   const [perfumes, setPerfumes] = useState<TPerfume[]>(initialPerfumes);
   const [page, setPage] = useState<number>(1);
   const { ref, inView } = useInView();
-
   useEffect(() => {
     setPerfumes(initialPerfumes);
   }, [initialPerfumes]);
@@ -32,7 +31,10 @@ const PerfumeResult = ({
     if (inView && page < totalPages) {
       (async () => {
         const nextPage = page + 1;
-        const { data } = await getPerfumes(`/search/${searchParams}`, nextPage);
+        const { data } = await getPerfumes(
+          `/search/fragrance?${searchParams}`,
+          nextPage,
+        );
         if (data) {
           setPage(nextPage);
           setPerfumes([...perfumes, ...data]);

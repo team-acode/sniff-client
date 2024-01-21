@@ -2,7 +2,7 @@
 
 /* eslint-disable no-nested-ternary */
 
-import { getPerfumes } from '@/app/actions';
+import { getBrands, getPerfumes } from '@/app/actions';
 import BrandResult from '@/components/search/BrandResult';
 import NoResult from '@/components/search/NoResult';
 import PerfumeResult from '@/components/search/PerfumeResult';
@@ -34,20 +34,9 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     totalPages,
   } = await getPerfumes(`/search/fragrance?${searchParamString}`);
 
-  const res = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_SERVER_URL
-    }/search/brand?search=${encodeURIComponent(searchParams.q)}`,
+  const { data: brands, totalElements: brandsTotalElements } = await getBrands(
+    `/search/brand?search=${encodeURIComponent(searchParams.q)}`,
   );
-
-  let brands = [];
-  let brandsTotalElements = 0;
-
-  if (res.ok) {
-    const temp = await res.json();
-    brands = temp.data;
-    brandsTotalElements = temp.totalElements;
-  }
 
   return (
     <div className="">
@@ -64,7 +53,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
             <PerfumeResult
               initialPerfumes={perfumes!}
               totalElements={perfumeTotalElements}
-              searchParams=""
+              searchParams={searchParamString}
               totalPages={totalPages}
             />
           ) : null}
