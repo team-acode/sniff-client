@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ArrowDownIcon2 from '@/public/images/arrow-down-icon2.svg';
 import ArrowUpIcon2 from '@/public/images/arrow-up-icon2.svg';
 
@@ -24,6 +24,17 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
     setSelectedOption(option);
   };
 
+  const dropMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleOutsideClose = (e: { target: any }) => {
+      if (isOpen && !dropMenuRef?.current?.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('click', handleOutsideClose);
+
+    return () => document.removeEventListener('click', handleOutsideClose);
+  }, [isOpen]);
+
   return (
     <div className="relative flex items-center mt-[3px] ml-[13px]">
       {/* Dropdown Button */}
@@ -43,7 +54,10 @@ const DropdownButton = ({ options }: DropdownButtonProps) => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="w-full pt-[5px] pb-[2px] bg-white gap-y-[1px] border-t-[1px] border-acodegray-100">
+          <div
+            className="w-full pt-[5px] pb-[2px] bg-white gap-y-[1px] border-t-[1px] border-acodegray-100"
+            ref={dropMenuRef}
+          >
             {options
               .filter((opt) => opt.capacity !== selectedOption.capacity)
               .map((option) => (
