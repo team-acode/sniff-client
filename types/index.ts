@@ -9,6 +9,7 @@ export interface TPerfume {
   fragranceName?: string;
   thumbnail?: string;
   brandName?: string;
+  korBrand?: string;
   style?: string[];
   poster?: string;
   id?: number;
@@ -22,10 +23,9 @@ export interface TPerfume {
 }
 
 export interface TBrand {
-  id: number;
-  brandNameKor: string;
-  brandNameEng: string;
-  imageUrl: string;
+  brandId: number;
+  korName: string;
+  roundImg: string | null;
 }
 
 export interface TUserReview {

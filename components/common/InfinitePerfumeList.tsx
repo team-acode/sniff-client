@@ -28,7 +28,10 @@ const InfinitePerfumeList = ({
     if (inView && page < totalPages) {
       (async () => {
         const nextPage = page + 1;
-        const { data } = await getPerfumes(searchParams, nextPage);
+        const { data } = await getPerfumes(
+          `/display?${searchParams}`,
+          nextPage,
+        );
         if (data) {
           setPage(nextPage);
           setPerfumes([...perfumes, ...data]);
