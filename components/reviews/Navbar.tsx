@@ -1,4 +1,5 @@
 import { XIcon } from '@/public/images';
+import Link from 'next/link';
 const Navbar = () => {
   return (
     <div className="relative flex items-center w-full px-2.5 ">
@@ -7,7 +8,9 @@ const Navbar = () => {
       </h1>
       <div className="flex-grow" />
       <div className="flex justify-end">
-        <XIcon className="cursor-pointer" />
+        <Link href="/">
+          <XIcon className="cursor-pointer" />
+        </Link>
       </div>
     </div>
   );

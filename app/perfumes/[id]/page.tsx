@@ -41,16 +41,19 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
     familyList,
     style,
     capacity,
+    image1,
+    image2,
   } = data;
   const styleList = style.split(',').map((s: string) => s.trim());
 
+  const photos = [thumbnail, image1, image2];
   return (
     <section className="py-1">
       <div>
         <Navbar />
       </div>
       <div className="">
-        <ImageSlider />
+        <ImageSlider image={photos} />
       </div>
       <div className="my-4"></div>
       <div>
