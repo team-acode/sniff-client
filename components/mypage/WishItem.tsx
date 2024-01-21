@@ -36,7 +36,7 @@ const WishItem = ({ perfume }: WishItemProps) => {
             <span className="text-[16px] text-acodeblack font-semibold tracking-[-0.32px]">
               {perfume.perfumeName}
             </span>
-            <SmallCircleIcon />
+            <SmallCircleIcon classNmae="fill-acodegray-500" />
             <span className="text-[14px] text-acodegray-500 font-medium tracking-[-0.28px]">
               {perfume.option}
             </span>

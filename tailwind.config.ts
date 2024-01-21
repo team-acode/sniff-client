@@ -22,6 +22,7 @@ const config: Config = {
           600: '#85827f',
           700: '#676461',
           800: '#413f3d',
+          900: '#292323',
         },
         acodepoint: '#e31243',
         acodeerror: '#ff114a',

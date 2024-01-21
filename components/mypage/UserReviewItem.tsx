@@ -65,7 +65,7 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
             >
               {review.brandName}
             </button>
-            <SmallCircleIcon />
+            <SmallCircleIcon className=" fill-acodegray-700" />
             <span className="">{review.perfumeName}</span>
           </div>
           <div className="mt-2 flex pr-[9px]">

@@ -1,7 +1,6 @@
 import React from 'react';
+import { SmallCircleIcon, SceneIcon } from '@/public/images';
 import DropdownButton from './PerfumeDropdown';
-import { Point } from '@/public/images';
-import { SceneIcon } from '@/public/images';
 
 interface PerfumeInfoProps {
   korBrand: string;
@@ -9,7 +8,7 @@ interface PerfumeInfoProps {
   concentration: string;
   familyList: Array<{ familyId: number; familyIcon: any; familyName: string }>;
   styleList: [];
-  capacity: [];
+  capacityList: { capacity: string; price: number }[];
 }
 
 const PerfumeInfo = ({
@@ -18,7 +17,7 @@ const PerfumeInfo = ({
   concentration,
   familyList,
   styleList,
-  capacity,
+  capacityList,
 }: PerfumeInfoProps) => {
   const options = [
     { capacity: '100', price: 28000 },
@@ -27,31 +26,25 @@ const PerfumeInfo = ({
   ];
 
   return (
-    <div className="mx-4 mt-4">
-      <div className="body2 text-acodegray-300 max-w-md mx-auto mb-4">
+    <div className="mt-4">
+      <div className="body2 mx-4 text-acodegray-300 max-w-md mb-4">
         {korBrand}
       </div>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col mb-1">
-          <div className="flex items-center">
-            <div className="h2 text-acodeblack">{fragranceName}</div>
-            <div className="mx-3">
-              <Point />
-            </div>
+          <div className="flex items-center gap-[10px] ml-4">
+            <div className="h1 text-acodeblack">{fragranceName}</div>
+            <SmallCircleIcon className="fill-acodegray-500" />
             <div className="h2 text-acodegray-500">{concentration}</div>
           </div>
-          <div>
-            <DropdownButton options={options} />
-          </div>
+          {options.length ? <DropdownButton options={options} /> : null}
         </div>
-        <div className="flex flex-row space-x-2.5">
+        <div className="flex flex-row space-x-2.5 mr-4">
           <SceneIcon />
           <SceneIcon />
         </div>
       </div>
-
-      {/* Hashtags */}
-      <div className="mt-4">
+      <div className="mt-4 mx-4">
         {styleList.map((tag, index) => (
           <React.Fragment key={index}>
             <span className="body2 mr-2">

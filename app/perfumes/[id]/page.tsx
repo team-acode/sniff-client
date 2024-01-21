@@ -27,7 +27,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
     concentration,
     familyList,
     style,
-    capacity,
+    capacityList,
     image1,
     image2,
   } = await res.json();
@@ -46,7 +46,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
         concentration={concentration}
         familyList={familyList}
         styleList={styleList}
-        capacity={capacity}
+        capacityList={capacityList}
       />
       <hr className="my-11 border-t-[6px] border-[#FBFBFB]" />
       <PerfumeDetailList searchParams={searchParams} searchId={params} />
