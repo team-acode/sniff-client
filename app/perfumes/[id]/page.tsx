@@ -35,11 +35,11 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
   // 나중에 리스트로 바꿔달라고 요청하기
   const styleList = style.split(',').map((s: string) => s.trim());
 
-  const photos = [thumbnail, image1, image2];
+  const images = [thumbnail, image1, image2];
   return (
     <section className="">
       <Navbar />
-      <ImageSlider image={photos} />
+      <ImageSlider images={images} />
       <PerfumeInfo
         korBrand={korBrand}
         fragranceName={fragranceName}
