@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Slider from './Slider';
 import testPerfume1 from '@/public/images/test-perfume.jpg';
-
+import Link from 'next/link';
 interface SimilarProps {
   id: string;
 }
@@ -15,6 +15,7 @@ interface Perfume {
   image: string;
   korbrand: string;
   fragranceName: string;
+  id: string;
 }
 export async function getSimilar(params: { id: string }) {
   try {
@@ -41,6 +42,7 @@ const SimilarPerfume = async ({ id }: SimilarProps) => {
       image: fragrance.thumbnail || testPerfume1,
       korbrand: fragrance.korBrand,
       fragranceName: fragrance.fragranceName,
+      id: fragrance.fragranceId,
     }),
   );
   return (
@@ -48,23 +50,25 @@ const SimilarPerfume = async ({ id }: SimilarProps) => {
       <div className="text-acodeblack h2 mb-5">이런향수 어때요?</div>
       <Slider>
         {perfumes.map((perfume: Perfume, index: number) => (
-          <div key={index} className="flex flex-col items-start space-y-2">
-            <Image
-              src={perfume.image}
-              alt={`Test Perfume ${index + 1}`}
-              width={138}
-              height={138}
-              objectFit="cover"
-            />
-            <div className="w-full bg-white p-2 text-left">
-              <div className="text-acodegray-500 caption2 mb-1">
-                {perfume.korbrand}
-              </div>
-              <div className="text-acodeblack similar-1">
-                {perfume.fragranceName}
+          <Link href={`/perfumes/${perfume.id}`}>
+            <div key={index} className="flex flex-col items-start space-y-2">
+              <Image
+                src={perfume.image}
+                alt={`Test Perfume ${index + 1}`}
+                width={138}
+                height={138}
+                objectFit="cover"
+              />
+              <div className="w-full bg-white p-2 text-left">
+                <div className="text-acodegray-500 caption2 mb-1">
+                  {perfume.korbrand}
+                </div>
+                <div className="text-acodeblack similar-1">
+                  {perfume.fragranceName}
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>

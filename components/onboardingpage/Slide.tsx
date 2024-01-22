@@ -21,7 +21,7 @@ const Slider = ({ slides }: SliderProps) => {
             return `<span class="${className} onboard-custom-bullet"></span>`;
           },
         }}
-        className="h-96 w-full onboard-slider"
+        className="h-screen w-full onboard-slider"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>{slide}</SwiperSlide>
