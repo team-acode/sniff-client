@@ -3,15 +3,18 @@ import React from 'react';
 import AcodeExplain from './AcodeExplainButton';
 
 interface PerfumeDetailElementProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: {
+    category: 'detail' | 'review' | undefined;
+    easy: 'on' | 'off' | undefined;
+  };
   selectedTab: string;
   id: string;
 }
 
 const categories = ['detail', 'review'];
-const initialSearchParams = { category: 'detail' };
+// const initialSearchParams = { category: 'detail' };
 const PerfumeDetailElement = ({
-  searchParams = initialSearchParams,
+  searchParams,
   selectedTab,
   id,
 }: PerfumeDetailElementProps) => {

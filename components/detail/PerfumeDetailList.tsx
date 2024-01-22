@@ -25,10 +25,11 @@ const PerfumeDetailList = ({
         selectedTab={selectedTab}
         id={searchId.id}
       />
-      {selectedTab === 'detail' && (
+      {selectedTab === 'detail' ? (
         <PerfumeDetail isEasy={isEasy} id={searchId.id} />
+      ) : (
+        <PerfumeReviewList id={searchId.id} />
       )}
-      {selectedTab === 'review' && <PerfumeReviewList id={searchId.id} />}
     </div>
   );
 };

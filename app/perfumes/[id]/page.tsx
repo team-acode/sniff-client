@@ -10,7 +10,10 @@ import { redirect } from 'next/navigation';
 
 interface DetailPageProps {
   params: { id: string };
-  searchParams: { [key: string]: string | undefined };
+  searchParams: {
+    category: 'detail' | 'review' | undefined;
+    easy: 'on' | 'off' | undefined;
+  };
 }
 
 const page = async ({ params, searchParams }: DetailPageProps) => {
