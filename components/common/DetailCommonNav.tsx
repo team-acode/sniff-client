@@ -27,7 +27,7 @@ const DetailCommonNav = () => {
         {getTitle(pathname)}
       </h3>
 
-      <Link href="/search" className="D">
+      <Link href="/search" className="mr-[11px]">
         <SearchIcon className="fill-acodeblack" />
       </Link>
       <Link href={isSpices ? '/mypage' : '/'} className="">

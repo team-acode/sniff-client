@@ -5,8 +5,8 @@ interface EachNoteProps {
 
 const EachNote = ({ label, ingredients }: EachNoteProps) => {
   return (
-    <div className="flex justify-start items-start space-x-2">
-      <span className="body2 font-medium text-acodegray-700 flex basis-[80px]">
+    <div className="flex justify-start items-start">
+      <span className="body2 font-medium text-acodegray-700 flex basis-[70px]">
         {label}
       </span>
       <div className="flex-1 shrink-0 flex items-center flex-wrap">

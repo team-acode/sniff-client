@@ -63,6 +63,7 @@ const PerfumeDetail = async ({ isEasy, id }: PerfumeDetailProps) => {
           </>
         )}
       </div>
+      <hr className="my-11 border-t-[1.5px] mx-4 border-acodegray-50" />
       <DetailOthers />
     </div>
   );

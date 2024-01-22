@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Slider from './Slider';
-import testPerfume1 from '@/public/images/test-perfume.jpg';
+import Link from 'next/link';
+// import Slider from './Slider';
 
 interface SimilarProps {
   id: string;
@@ -11,52 +11,68 @@ interface Fragrance {
   fragranceName: string;
   korBrand: string;
 }
-interface Perfume {
-  image: string;
-  korbrand: string;
-  fragranceName: string;
-}
-export async function getSimilar(params: { id: string }) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/similar`,
-    );
 
-    if (!response.ok) {
-      console.error('API fetch failed:', response.status);
-      throw new Error(`API fetch failed: ${response.status}`);
-    }
+async function getSimilar(id: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${id}/similar`,
+  );
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Failed to fetch perfume data:', error);
+  if (!response.ok) {
+    return null;
   }
+
+  const data = await response.json();
+  return data;
 }
 
 const SimilarPerfume = async ({ id }: SimilarProps) => {
-  const data = await getSimilar({ id });
-  const perfumes: Perfume[] = data.similarFragranceList.map(
-    (fragrance: Fragrance) => ({
-      image: fragrance.thumbnail || testPerfume1,
-      korbrand: fragrance.korBrand,
-      fragranceName: fragrance.fragranceName,
-    }),
-  );
+  const data = await getSimilar(id);
+
+  if (!data) return null;
+
+  const perfumes: Fragrance[] = data.similarFragranceList;
+
   return (
-    <div className="mx-4">
-      <div className="text-acodeblack h2 mb-5">이런향수 어때요?</div>
-      <Slider>
+    <div className="">
+      <div className="text-acodeblack h2 mb-5 mx-4">이런향수 어때요?</div>
+      <div className="flex px-4 overflow-auto gap-x-[14px]">
+        {perfumes.map((perfume: Fragrance, index: number) => (
+          <Link
+            href={`/perfumes/${perfume.fragranceId}`}
+            key={perfume.fragranceName}
+            className="w-[138px] shrink-0"
+          >
+            <Image
+              src={perfume.thumbnail}
+              alt={`Test Perfume ${index + 1}`}
+              width={138}
+              height={138}
+              objectFit="cover"
+              className="w-[138px] h-[138px] rounded-[4px]"
+            />
+            <div className="w-[134px] h-[35px] flex flex-col justify-center bg-white pl-[2px] mt-[10px]">
+              <div className="text-acodegray-500 caption2 mb-1">
+                {perfume.korBrand}
+              </div>
+              <div className="text-acodeblack similar-1">
+                {perfume.fragranceName}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+      {/* <Slider>
         {perfumes.map((perfume: Perfume, index: number) => (
-          <div key={index} className="flex flex-col items-start space-y-2">
+          <div key={perfume.fragranceName} className="w-[138px]">
             <Image
               src={perfume.image}
               alt={`Test Perfume ${index + 1}`}
               width={138}
               height={138}
               objectFit="cover"
+              className="w-[138px] h-[138px] rounded-[4px]"
             />
-            <div className="w-full bg-white p-2 text-left">
+            <div className="w-[134px] h-[35px] flex flex-col justify-center bg-white pl-[2px] mt-[10px]">
               <div className="text-acodegray-500 caption2 mb-1">
                 {perfume.korbrand}
               </div>
@@ -66,7 +82,7 @@ const SimilarPerfume = async ({ id }: SimilarProps) => {
             </div>
           </div>
         ))}
-      </Slider>
+      </Slider> */}
     </div>
   );
 };

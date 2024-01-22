@@ -55,7 +55,7 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
       <PerfumeDetailList searchParams={searchParams} searchId={params} />
       <hr className="my-11 border-t-[6px] border-[#FBFBFB]" />
       <SimilarPerfume id={params.id} />
-      <hr className="my-11 mx-4 mborder-t-[1.5px] border-[#FBFBFB]" />
+      <hr className="my-11 mx-4 mborder-t-[1.5px] border-[#f7f7f7]" />
       <HereTobuy id={params.id} />
       <div className="flex justify-center item-center">
         <AddReview id={params.id} />
