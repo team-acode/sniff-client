@@ -22,7 +22,7 @@ const AcodeExplain = ({ searchParams, id }: AcodeExplainProps) => {
 
   const updatedSearchParams = {
     ...searchParams,
-    category: 'Detail',
+    category: 'detail',
     easy: selectedTab === 'on' ? 'off' : 'on',
   };
 
