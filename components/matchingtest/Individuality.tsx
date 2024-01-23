@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useSwiper } from 'swiper/react';
+import { PreviousIcon } from '@/public/images';
 interface PersistenceProps {
   updateSelection: (selection: string[]) => void;
 }
@@ -10,9 +11,19 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    const newSelectedOptions = event.target.checked
-      ? [...selectedOptions, value]
-      : selectedOptions.filter((option) => option !== value);
+    let newSelectedOptions = selectedOptions;
+
+    if (event.target.checked) {
+      if (newSelectedOptions.length < 2) {
+        newSelectedOptions = [...newSelectedOptions, value];
+      } else {
+        return;
+      }
+    } else {
+      newSelectedOptions = newSelectedOptions.filter(
+        (option) => option !== value,
+      );
+    }
 
     setSelectedOptions(newSelectedOptions);
     updateSelection(newSelectedOptions);
@@ -20,113 +31,139 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
 
   const options = [
     {
-      id: 'smoky',
+      id: '스모키한',
       label: '스모키한',
     },
     {
-      id: 'refreshing',
+      id: '상큼한',
       label: '상큼한',
     },
     {
-      id: 'sweet',
+      id: '달콤한',
       label: '달콤한',
     },
     {
-      id: 'fruity',
+      id: '과일향 나는',
       label: '과일향 나는',
     },
     {
-      id: 'brisk',
+      id: '상쾌한',
       label: '상쾌한',
     },
     {
-      id: 'cooling',
+      id: '청량한',
       label: '청량한',
     },
     {
-      id: 'moist',
+      id: '촉촉한',
       label: '촉촉한',
     },
     {
-      id: 'cool',
+      id: '시원한',
       label: '시원한',
     },
     {
-      id: 'bitter',
+      id: '쌉싸름한',
       label: '쌉싸름한',
     },
     {
-      id: 'cozy',
+      id: '포근한',
       label: '포근한',
     },
     {
-      id: 'spicy',
+      id: '스파이시한',
       label: '스파이시한',
     },
     {
-      id: 'soft',
+      id: '부드러운',
       label: '부드러운',
     },
     {
-      id: 'floral',
+      id: '플로럴한',
       label: '플로럴한',
     },
     {
-      id: 'fresh',
+      id: '싱그러운',
       label: '싱그러운',
     },
     {
-      id: 'aromatic',
+      id: '향긋한',
       label: '향긋한',
     },
     {
-      id: 'rich',
+      id: '풍부한',
       label: '풍부한',
     },
     {
-      id: 'natural',
+      id: '자연그대로의',
       label: '자연그대로의',
     },
   ];
+
   const swiper = useSwiper();
   return (
-    <div className="flex flex-col">
-      <div className="text-xl font-semibold mb-4">
-        <div>어떤 향이 주로 나면</div>
-        <div>좋을 것 같나요?</div>
+    <div className="mx-4">
+      <div className="my-4">
+        <div>
+          <PreviousIcon onClick={() => swiper.slidePrev()} />
+        </div>
       </div>
-      <div className="text-gray-500 mb-4">*복수선택가능</div>
-      {/* Grid container */}
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
-        {options.map((option) => (
-          <div key={option.id} className="mb-2">
-            <input
-              id={option.id}
-              type="checkbox"
-              value={option.id}
-              checked={selectedOptions.includes(option.id)}
-              onChange={handleCheckboxChange}
-              className="sr-only"
-            />
-            <label
-              htmlFor={option.id}
-              className={`block w-full text-center py-2 px-4 border ${
-                selectedOptions.includes(option.id)
-                  ? 'bg-acodegray-50 border-acodegray-100'
-                  : 'bg-white border-acodegray-100'
-              } rounded cursor-pointer flex flex-col items-center justify-center`}
-            >
-              <div className="text-acodeblack">{option.label}</div>
-            </label>
+      <div className="flex flex-col">
+        <div className="h0 mb-20">
+          <div>
+            어떤{' '}
+            <span className="bg-black text-white px-3 rounded">개성적인</span>{' '}
+            향을
           </div>
-        ))}
+          <div>원하시나요?</div>
+        </div>
+
+        <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
+          {options.map((option) => (
+            <div key={option.id} className="">
+              <input
+                id={option.id}
+                type="checkbox"
+                value={option.id}
+                checked={selectedOptions.includes(option.id)}
+                onChange={handleCheckboxChange}
+                className="sr-only"
+              />
+              <label
+                htmlFor={option.id}
+                className={`block w-full text-center py-2 px-3.5 ${
+                  selectedOptions.includes(option.id)
+                    ? 'bg-acodeblack border-acodegray-100 '
+                    : 'bg-acodegray-50 border-acodegray-100'
+                } cursor-pointer flex flex-col items-center justify-center`}
+              >
+                <div
+                  className={`${
+                    selectedOptions.includes(option.id)
+                      ? 'text-white'
+                      : 'text-acodeblack'
+                  }`}
+                >
+                  {option.label}
+                </div>
+              </label>
+            </div>
+          ))}
+        </div>
       </div>
-      <button
-        onClick={() => swiper.slideNext()}
-        className="px-4 bg-black text-white rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center"
-      >
-        다음
-      </button>
+      <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+        <button
+          onClick={() => swiper.slideNext()}
+          className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
+            selectedOptions.length === 2
+              ? 'bg-black text-white' // 활성화 상태
+              : 'bg-acodegray-300 text-white' // 비활성화 상태
+          }`}
+          disabled={selectedOptions.length !== 2}
+        >
+          {selectedOptions.length === 2 ? '완료' : '2가지 선택해주세요'}
+        </button>
+      </div>
     </div>
   );
 };

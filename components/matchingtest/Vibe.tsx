@@ -1,6 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
+import Image from 'next/image';
+import { PreviousIcon } from '@/public/images';
+import Link from 'next/link';
 interface VibeProps {
   updateSelection: (selection: string[]) => void;
   handleSubmit: () => void;
@@ -11,76 +14,108 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    const newSelectedVibes = event.target.checked
-      ? [...selectedVibes, value]
-      : selectedVibes.filter((vibe) => vibe !== value);
+    let newSelectedVibes = selectedVibes;
+
+    if (event.target.checked) {
+      if (newSelectedVibes.length < 2) {
+        newSelectedVibes = [...newSelectedVibes, value];
+      } else {
+        return;
+      }
+    } else {
+      newSelectedVibes = newSelectedVibes.filter((vibe) => vibe !== value);
+    }
 
     setSelectedVibes(newSelectedVibes);
     updateSelection(newSelectedVibes);
   };
 
   const vibeOptions = [
-    { id: 'chic', label: '시크한' },
-    { id: 'mature', label: '성숙한' },
-    { id: 'luxurious', label: '고급스러운' },
-    { id: 'elegant', label: '우아한' },
-    { id: 'masculine', label: '남성적인' },
-    { id: 'comfortable', label: '편안한' },
-    { id: 'calm', label: '차분한' },
-    { id: 'neutral', label: '중성적인' },
-    { id: 'friendly', label: '친근한' },
-    { id: 'clean', label: '깨끗한' },
-    { id: 'lovely', label: '사랑스러운' },
-    { id: 'sensual', label: '관능적인' },
-    { id: 'subtle', label: '은은한' },
-    { id: 'lively', label: '활기찬' },
-    { id: 'bright', label: '밝은' },
-    { id: 'vivid', label: '화사한' },
-    { id: 'feminine', label: '여성스러운' },
-    { id: 'innocent', label: '청순한' },
-    { id: 'weighty', label: '무게감있는' },
-    { id: 'soft', label: '부드러운' },
-    { id: 'cozy', label: '포근한' },
-    { id: 'light', label: '가벼운' },
+    { id: '시크한', label: '시크한' },
+    { id: '성숙한', label: '성숙한' },
+    { id: '고급스러운', label: '고급스러운' },
+    { id: '우아한', label: '우아한' },
+    { id: '남성적인', label: '남성적인' },
+    { id: '편안한', label: '편안한' },
+    { id: '차분한', label: '차분한' },
+    { id: '중성적인', label: '중성적인' },
+    { id: '친근한', label: '친근한' },
+    { id: '깨끗한', label: '깨끗한' },
+    { id: '사랑스러운', label: '사랑스러운' },
+    { id: '관능적인', label: '관능적인' },
+    { id: '은은한', label: '은은한' },
+    { id: '활기찬', label: '활기찬' },
+    { id: '밝은', label: '밝은' },
+    { id: '화사한', label: '화사한' },
+    { id: '여성스러운', label: '여성스러운' },
+    { id: '청순한', label: '청순한' },
+    { id: '무게감있는', label: '무게감있는' },
+    { id: '부드러운', label: '부드러운' },
+    { id: '포근한', label: '포근한' },
+    { id: '가벼운', label: '가벼운' },
   ];
   const swiper = useSwiper();
   return (
-    <div className="flex flex-col">
-      <div className="text-xl font-semibold mb-4">
-        <div>어떤 분위기를 원하시나요?</div>
+    <div className="mx-4">
+      <div className=" my-4">
+        <div>
+          <PreviousIcon onClick={() => swiper.slidePrev()} />
+        </div>
       </div>
-      <div className="text-gray-500 mb-4">*복수선택가능</div>
-      {/* Grid container */}
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
-        {vibeOptions.map((option) => (
-          <div key={option.id} className="mb-2">
-            <input
-              id={option.id}
-              type="checkbox"
-              value={option.id}
-              checked={selectedVibes.includes(option.id)}
-              onChange={handleCheckboxChange}
-              className="sr-only"
-            />
-            <label
-              htmlFor={option.id}
-              className={`block w-full text-center py-2 px-4 border ${
-                selectedVibes.includes(option.id)
-                  ? 'bg-acodegray-50 border-acodegray-100'
-                  : 'bg-white border-acodegray-100'
-              } rounded cursor-pointer flex flex-col items-center justify-center`}
+      <div className="flex flex-col">
+        <div className="h0 mb-20">
+          <div>어떤 개성적인 향을</div>
+          <div>원하시나요?</div>
+        </div>
+
+        <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
+          {vibeOptions.map((option) => (
+            <div key={option.id} className="">
+              <input
+                id={option.id}
+                type="checkbox"
+                value={option.id}
+                checked={selectedVibes.includes(option.id)}
+                onChange={handleCheckboxChange}
+                className="sr-only"
+              />
+              <label
+                htmlFor={option.id}
+                className={`block w-full text-center py-2 px-4 ${
+                  selectedVibes.includes(option.id)
+                    ? 'bg-acodeblack border-acodegray-100 '
+                    : 'bg-acodegray-50 border-acodegray-100'
+                } cursor-pointer flex flex-col items-center justify-center`}
+              >
+                <div
+                  className={`${
+                    selectedVibes.includes(option.id)
+                      ? 'text-white'
+                      : 'text-acodeblack'
+                  }`}
+                >
+                  {option.label}
+                </div>
+              </label>
+            </div>
+          ))}
+        </div>
+        <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+          <Link href="/">
+            <button
+              onClick={handleSubmit}
+              className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
+                selectedVibes.length === 2
+                  ? 'bg-black text-white' // 활성화 상태
+                  : 'bg-acodegray-300 text-white' // 비활성화 상태
+              }`}
+              disabled={selectedVibes.length !== 2}
             >
-              <div className="text-acodeblack">{option.label}</div>
-            </label>
-          </div>
-        ))}
+              {selectedVibes.length === 2 ? '완료' : '2가지 선택해주세요'}
+            </button>
+          </Link>
+        </div>
       </div>
-      <button
-        onClick={handleSubmit}
-        className="mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-700" // Adjust the button styling as needed
-      >
-        제출
-      </button>
     </div>
   );
 };
