@@ -1,7 +1,7 @@
 import React from 'react';
 import testImg from '@/public/images/test.jpg';
 import Image from 'next/image';
-import { getReviewHeader } from '@/utils/getHeader';
+
 interface PerfumeReviewProps {
   korBrand: string;
   fragranceName: string;
