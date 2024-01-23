@@ -1,6 +1,6 @@
 import React from 'react';
 import BigLinkButton from '../common/BigLinkButton';
-
+import { Onboarding3 } from '@/public/images';
 const Slide3 = () => {
   return (
     <div>
@@ -9,8 +9,8 @@ const Slide3 = () => {
         <div>어코드에서</div>
         <div>나만의 향수 코드를 찾아보세요</div>
       </div>
-
-      <div className="justify-center px-4">
+      <Onboarding3 />
+      <div className="justify-center px-4 z-5">
         <BigLinkButton to="/login" buttonStyle="bg-black text-white">
           어코드 시작하기
         </BigLinkButton>

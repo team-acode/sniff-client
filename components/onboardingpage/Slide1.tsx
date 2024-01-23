@@ -1,4 +1,5 @@
 import React from 'react';
+import { Onboarding1 } from '@/public/images';
 const Slide1 = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const Slide1 = () => {
         <div>떠올리기 쉬운 향 비유로 향료 용어 이해</div>
         <div>실제 사용자들의 리뷰 기반 향수 특징 파악</div>
       </div>
+      <Onboarding1 />
     </div>
   );
 };

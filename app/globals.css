@@ -94,6 +94,12 @@
   background-color: #FF2D60;
 }
 
+.matching-slider .swiper-pagination-progressbar {
+  background-color: #FFF;
+}
+.matching-slider .swiper-pagination-progressbar-fill {
+  background-color: #FF2D60 !important;
+}
 
 .onboard-slider .swiper-pagination {
   position: absolute;
