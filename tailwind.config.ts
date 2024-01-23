@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         acodeblack: '#1C1818',
         acodewhite: '#ffffff',
-        acodered: '#ff003d',
+        acodered: '#FF2D60',
         acodegray: {
           50: '#f7f7f7',
           100: '#ecebea',
