@@ -2,6 +2,7 @@ import {
   intensityMapping,
   longevityMapping,
   seasonMapping,
+  styleMapping,
 } from '@/constants/stats';
 import PerfumeStatElement from './PerfumeStatElement';
 
@@ -28,8 +29,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.seasonStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword:
-                seasonMapping[stat.keyword as keyof typeof seasonMapping],
+              keyword: seasonMapping[stat.keyword],
             }),
           )}
         />
@@ -38,8 +38,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.longevityStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword:
-                longevityMapping[stat.keyword as keyof typeof longevityMapping],
+              keyword: longevityMapping[stat.keyword],
             }),
           )}
         />
@@ -48,8 +47,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.intensityStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword:
-                intensityMapping[stat.keyword as keyof typeof intensityMapping],
+              keyword: intensityMapping[stat.keyword],
             }),
           )}
         />
@@ -59,19 +57,25 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           </span>
           <div className="flex-1 flex overflow-x-auto body1 font-semibold items-center gap-[11px] pr-14">
             <div className="text-acodeblack shrink-0 flex">
-              <span className="mr-1 h-full">{stats.styleStat[0].keyword}</span>
+              <span className="mr-1 h-full">
+                {styleMapping[stats.styleStat[0].keyword]}
+              </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[0].percentage}%)
               </span>
             </div>
             <span className="text-acodegray-500 shrink-0 flex">
-              <span className="mr-1 h-full">{stats.styleStat[1].keyword}</span>
+              <span className="mr-1 h-full">
+                {styleMapping[stats.styleStat[1].keyword]}
+              </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[1].percentage}%)
               </span>
             </span>
             <span className="text-acodegray-300 shrink-0 flex">
-              <span className="mr-1 h-full">{stats.styleStat[2].keyword}</span>
+              <span className="mr-1 h-full">
+                {styleMapping[stats.styleStat[2].keyword]}
+              </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[2].percentage}%)
               </span>

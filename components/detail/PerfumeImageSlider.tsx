@@ -17,7 +17,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
       pagination={{ type: 'bullets' }}
       modules={[Navigation, Pagination]}
       // onSwiper={(swiper) => console.log(swiper)}
-      className="h-[295px] w-full"
+      className="h-[295px] w-full mt-[54px]"
     >
       {images.map((image, index) => (
         <SwiperSlide key={image} className="">

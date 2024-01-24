@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center w-full max-w-[430px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
+    <div className="flex fixed top-0 items-center w-full max-w-[430px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
       <button type="button" className="mr-auto" onClick={() => router.back()}>
         <ArrowLeftIcon className="fill-acodeblack" />
       </button>
