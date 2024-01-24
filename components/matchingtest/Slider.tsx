@@ -1,10 +1,12 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
 interface SliderProps {
   slides: React.ReactNode[];
 }
@@ -12,7 +14,6 @@ interface SliderProps {
 const Slider = ({ slides }: SliderProps) => {
   return (
     <div>
-      <div></div>
       <div className="slider-container">
         <Swiper
           modules={[Pagination, Navigation]}
@@ -30,8 +31,8 @@ const Slider = ({ slides }: SliderProps) => {
           simulateTouch={false}
           className="h-screen w-full matching-slider"
         >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>{slide}</SwiperSlide>
+          {slides.map((slide) => (
+            <SwiperSlide>{slide}</SwiperSlide>
           ))}
         </Swiper>
       </div>

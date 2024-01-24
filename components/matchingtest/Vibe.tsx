@@ -1,9 +1,9 @@
 'use client';
+
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
-import Image from 'next/image';
 import { PreviousIcon } from '@/public/images';
-import Link from 'next/link';
+
 interface VibeProps {
   updateSelection: (selection: string[]) => void;
   handleSubmit: () => void;
@@ -50,8 +50,8 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
     { id: '여성스러운', label: '여성스러운' },
     { id: '청순한', label: '청순한' },
     { id: '무게감있는', label: '무게감있는' },
-    { id: '부드러운', label: '부드러운' },
-    { id: '포근한', label: '포근한' },
+    { id: '부드러운1', label: '부드러운' },
+    { id: '포근한1', label: '포근한' },
     { id: '가벼운', label: '가벼운' },
   ];
   const swiper = useSwiper();
@@ -101,19 +101,18 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
           ))}
         </div>
         <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
-          <Link href="/">
-            <button
-              onClick={handleSubmit}
-              className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
-                selectedVibes.length === 2
-                  ? 'bg-black text-white' // 활성화 상태
-                  : 'bg-acodegray-300 text-white' // 비활성화 상태
-              }`}
-              disabled={selectedVibes.length !== 2}
-            >
-              {selectedVibes.length === 2 ? '완료' : '2가지 선택해주세요'}
-            </button>
-          </Link>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
+              selectedVibes.length === 2
+                ? 'bg-black text-white' // 활성화 상태
+                : 'bg-acodegray-300 text-white' // 비활성화 상태
+            }`}
+            disabled={selectedVibes.length !== 2}
+          >
+            {selectedVibes.length === 2 ? '완료' : '2가지 선택해주세요'}
+          </button>
         </div>
       </div>
     </div>

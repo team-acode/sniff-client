@@ -1,9 +1,10 @@
 import React from 'react';
 import { Onboarding2 } from '@/public/images';
+
 const Slide2 = () => {
   return (
     <div>
-      <div className="py-8"></div>
+      {/* <div className="py-8"></div> */}
       <div className="h0 px-4">
         <div>나의 취향과 어울리는</div>
         <div>제품과 계열까지 추천받는,</div>

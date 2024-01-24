@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
 import { PreviousIcon } from '@/public/images';
+
 interface PersistenceProps {
   updateSelection: (selection: string[]) => void;
 }
@@ -153,6 +153,7 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
       </div>
       <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
         <button
+          type="button"
           onClick={() => swiper.slideNext()}
           className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
             selectedOptions.length === 2

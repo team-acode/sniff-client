@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
-import { PreviousIcon } from '@/public/images';
 import Link from 'next/link';
+import { PreviousIcon } from '@/public/images';
+
 interface PersistenceProps {
-  updateSelection: (selection: string[]) => void;
+  updateSelection: (selection: string) => void;
 }
 
 const Persistence = ({ updateSelection }: PersistenceProps) => {
@@ -12,7 +13,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSelectedOption(value);
-    updateSelection([value]);
+    updateSelection(value);
   };
 
   const options = [
@@ -74,6 +75,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
         </div>
         <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
           <button
+            type="button"
             onClick={() => swiper.slideNext()}
             className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
               selectedOption ? 'bg-black text-white' : 'bg-gray-300 text-white'

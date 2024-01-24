@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -23,8 +24,8 @@ const Slider = ({ slides }: SliderProps) => {
         }}
         className="h-screen w-full onboard-slider"
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>{slide}</SwiperSlide>
+        {slides.map((slide) => (
+          <SwiperSlide>{slide}</SwiperSlide>
         ))}
       </Swiper>
     </div>
