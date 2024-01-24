@@ -6,21 +6,21 @@ import { useState } from 'react';
 interface PerfumeStatElementProps {
   label: string;
   contents: {
-    title: string;
-    portion: number;
+    keyword: string;
+    percentage: number;
   }[];
 }
 
 type ProgressProps = {
   backgroundColor: string;
-  portion: number;
+  percentage: number;
 };
 
-const Progress = ({ backgroundColor, portion }: ProgressProps) => (
+const Progress = ({ backgroundColor, percentage }: ProgressProps) => (
   <div className="flex-1 h-[5px] shrink-0 rounded bg-acodegray-200">
     <div
       className="h-full rounded"
-      style={{ width: `${portion}%`, backgroundColor }}
+      style={{ width: `${percentage}%`, backgroundColor }}
     />
   </div>
 );
@@ -38,11 +38,14 @@ const PerfumeStatElement = ({ label, contents }: PerfumeStatElementProps) => {
       <div className="flex-1 grid gap-[10px]">
         <div className="flex items-center text-acodeblack">
           <span className="body1 font-semibold w-[78px] shrink-0">
-            {firstContent.title}
+            {firstContent.keyword}
           </span>
-          <Progress portion={firstContent.portion} backgroundColor="#FF2D60" />
+          <Progress
+            percentage={firstContent.percentage}
+            backgroundColor="#FF2D60"
+          />
           <span className="body2 font-medium w-[45px] mr-[10px] text-right">
-            {firstContent.portion}%
+            {firstContent.percentage}%
           </span>
           <button
             type="button"
@@ -56,11 +59,14 @@ const PerfumeStatElement = ({ label, contents }: PerfumeStatElementProps) => {
           ? restContents.map((content) => (
               <div className="flex items-center text-acodegray-400">
                 <span className="body2 font-medium w-[78px] shrink-0">
-                  {content.title}
+                  {content.keyword}
                 </span>
-                <Progress portion={content.portion} backgroundColor="#A6A49F" />
+                <Progress
+                  percentage={content.percentage}
+                  backgroundColor="#A6A49F"
+                />
                 <span className="body2 font-medium w-[45px] mr-[10px] text-right">
-                  {content.portion}%
+                  {content.percentage}%
                 </span>
                 <span className="w-5 h-5" />
               </div>
