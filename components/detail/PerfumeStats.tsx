@@ -29,7 +29,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.seasonStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword: seasonMapping[stat.keyword],
+              keyword: seasonMapping[stat.keyword.toUpperCase()],
             }),
           )}
         />
@@ -38,7 +38,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.longevityStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword: longevityMapping[stat.keyword],
+              keyword: longevityMapping[stat.keyword.toUpperCase()],
             }),
           )}
         />
@@ -47,7 +47,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           contents={stats.intensityStat.map(
             (stat: { keyword: string; percentage: number }) => ({
               ...stat,
-              keyword: intensityMapping[stat.keyword],
+              keyword: intensityMapping[stat.keyword.toUpperCase()],
             }),
           )}
         />
@@ -58,7 +58,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
           <div className="flex-1 flex overflow-x-auto body1 font-semibold items-center gap-[11px] pr-14">
             <div className="text-acodeblack shrink-0 flex">
               <span className="mr-1 h-full">
-                {styleMapping[stats.styleStat[0].keyword]}
+                {styleMapping[stats.styleStat[0].keyword.toUpperCase()]}
               </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[0].percentage}%)
@@ -66,7 +66,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
             </div>
             <span className="text-acodegray-500 shrink-0 flex">
               <span className="mr-1 h-full">
-                {styleMapping[stats.styleStat[1].keyword]}
+                {styleMapping[stats.styleStat[1].keyword.toUpperCase()]}
               </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[1].percentage}%)
@@ -74,7 +74,7 @@ const PerfumeStats = async ({ id }: { id: string }) => {
             </span>
             <span className="text-acodegray-300 shrink-0 flex">
               <span className="mr-1 h-full">
-                {styleMapping[stats.styleStat[2].keyword]}
+                {styleMapping[stats.styleStat[2].keyword.toUpperCase()]}
               </span>
               <span className="body2 font-medium h-[21px] mt-[1px]">
                 ({stats.styleStat[2].percentage}%)

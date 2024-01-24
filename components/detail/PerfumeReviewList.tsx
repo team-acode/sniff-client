@@ -52,7 +52,7 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
   const averageRating = data.rateSum / data.reviewCnt;
 
   const fullStars = Math.floor(averageRating);
-  const halfStar = averageRating % 1 >= 0.5 ? 1 : 0;
+  const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
   const emptyStars = 5 - fullStars - halfStar;
   const reviewsToShow = data.reviewPreviewList.slice(0, 3);
   return (

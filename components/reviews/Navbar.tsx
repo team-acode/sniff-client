@@ -1,17 +1,15 @@
 import { XIcon } from '@/public/images';
 import Link from 'next/link';
+
 const Navbar = () => {
   return (
-    <div className="relative flex items-center w-full px-2.5 ">
-      <h1 className="absolute left-0 right-0 text-center mx-auto h1 ">
-        리뷰작성
-      </h1>
-      <div className="flex-grow" />
-      <div className="flex justify-end">
-        <Link href="/">
-          <XIcon className="cursor-pointer" />
-        </Link>
-      </div>
+    <div className="flex fixed top-0 items-center w-full max-w-[430px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
+      <h3 className="h1 h-[30px] absolute top-[13px] left-1/2 -translate-x-2/4 text-acodeblack">
+        리뷰
+      </h3>
+      <Link href="/" className="ml-auto">
+        <XIcon className=" fill-acodeblack" />
+      </Link>
     </div>
   );
 };

@@ -4,6 +4,7 @@ export const getSession = () => {
   const cookieStore = cookies();
   const jwt = cookieStore.get('jwt')?.value;
   const exp = Number(cookieStore.get('exp')?.value);
+
   if (!jwt || !exp) {
     return null;
   }
@@ -11,6 +12,7 @@ export const getSession = () => {
   if (exp < new Date().getTime()) {
     return null;
   }
+
   return { jwt, exp };
 };
 

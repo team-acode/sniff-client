@@ -19,6 +19,7 @@ interface DetailPageProps {
 const page = async ({ params, searchParams }: DetailPageProps) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}`,
+    { cache: 'no-cache' },
   );
 
   if (!res.ok) redirect('/');

@@ -1,43 +1,36 @@
-import React from 'react';
-import testImg from '@/public/images/test.jpg';
 import Image from 'next/image';
+import { SmallCircleIcon } from '@/public/images';
 
-interface PerfumeReviewProps {
-  korBrand: string;
-  fragranceName: string;
-  thumbnail: string;
-  concentration: string;
-}
+const ReviewHeader = async ({ id }: { id: string }) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${id}`,
+    { cache: 'no-cache' },
+  );
 
-const ReviewHeader = ({
-  korBrand,
-  fragranceName,
-  thumbnail,
-  concentration,
-}: PerfumeReviewProps) => {
-  const data = {
-    korBrand: korBrand,
-    fragranceName: fragranceName,
-    concentration: concentration,
-    thumbnail: thumbnail,
-  };
-  const photos = thumbnail ? thumbnail : testImg;
+  if (!response.ok) {
+    return null;
+  }
+
+  const { korBrand, fragranceName, thumbnail, concentration } =
+    await response.json();
 
   return (
-    <div className="mx-4 py-2 flex items-center bg-white">
-      <div className="relative w-[50.54px] h-[50.54px] rounded-md overflow-hidden mr-3">
-        <Image src={photos} alt="test" layout="fill" objectFit="cover" />
+    <div className="mx-4 mt-[64px] flex items-center bg-white">
+      <div className="relative w-[50px] h-[50px] mr-3">
+        <Image
+          src={thumbnail}
+          alt="test"
+          layout="fill"
+          objectFit="cover"
+          className="rounded-sm h-[50px] w-[50px]"
+        />
       </div>
-      <div className="flex flex-col justify-center">
-        <span className="text-acodegray-200 caption2 mt-1">
-          {data.korBrand}
-        </span>
-        <div className="flex flex-row items-center">
-          <span className="text-acodeblack review-1">{data.fragranceName}</span>
-          <span className="mx-1 text-acodegray-500">∙</span>
-          <span className="text-acodegray-500 similar-1">
-            {data.concentration}
-          </span>
+      <div className="flex flex-col">
+        <span className="text-acodegray-200 caption2 mb-[9px]">{korBrand}</span>
+        <div className="flex items-center">
+          <span className="text-acodeblack review-1">{fragranceName}</span>
+          <SmallCircleIcon className="mx-[6px] fill-acodegray-700" />
+          <span className="text-acodegray-500 similar-1">{concentration}</span>
         </div>
       </div>
     </div>
