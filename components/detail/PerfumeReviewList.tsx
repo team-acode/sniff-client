@@ -70,7 +70,7 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
             <div className="text-acodegray-400 ml-2">{data.reviewCnt}건</div>
           </div>
           <Link
-            href={`/morereviews/${data.fragranceId}`}
+            href={`/perfumes/${data.fragranceId}/reviews`}
             className="caption2 text-acodegray-300 text-right flex items-center"
           >
             <span className="">리뷰 더보기</span>
