@@ -9,6 +9,22 @@ import Main from '@/components/matchingtest/Main';
 import Persistence from '@/components/matchingtest/Persistence';
 import Season from '@/components/matchingtest/Season';
 
+interface Family {
+  familyKorName: string;
+  familyEngName: string;
+  summary: string;
+  icon: string;
+  keyword: string[];
+}
+
+interface Fragrance {
+  fragranceId: number;
+  fragranceName: string;
+  brandName: string;
+  familyName: string;
+  thumbnail: string;
+}
+
 interface SelectionsState {
   persistence: string;
   season: string;
@@ -42,12 +58,11 @@ const Page = () => {
       concentration: selections.persistence,
       season: selections.season,
       mainFamily: selections.main,
-      scent1: selections.individuality[0], // 첫 번째 선택된 개성
-      scent2: selections.individuality[1], // 두 번째 선택된 개성
+      scent1: selections.individuality[0],
+      scent2: selections.individuality[1],
       style1: selections.vibe[0],
       style2: selections.vibe[1],
     };
-    console.log('Submitting selections:', payload);
 
     const headers = new Headers();
     headers.set('AUTHORIZATION', token!);
@@ -63,9 +78,32 @@ const Page = () => {
       }
 
       const responseData = await res.json();
-      console.log('Response from server:', responseData);
 
-      // window.location.replace(`/result`);
+      const queryParams = new URLSearchParams();
+
+      responseData.families.forEach((family: Family, familyIndex: number) => {
+        Object.entries(family).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((val) =>
+              queryParams.append(`${key}[${familyIndex}]`, val),
+            );
+          } else {
+            queryParams.append(`${key}[${familyIndex}]`, value);
+          }
+        });
+      });
+
+      responseData.fragrances.forEach(
+        (fragrance: Fragrance, fragranceIndex: number) => {
+          Object.entries(fragrance).forEach(([key, value]) => {
+            queryParams.append(`${key}[${fragranceIndex}]`, value.toString());
+          });
+        },
+      );
+
+      queryParams.append(`style1`, selections.vibe[0]);
+      queryParams.append(`style2`, selections.vibe[1]);
+      window.location.replace(`/result/?${queryParams}`);
     } catch (error) {
       console.error('Error sending data:', error);
     }
