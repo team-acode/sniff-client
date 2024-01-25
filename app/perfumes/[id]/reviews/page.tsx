@@ -8,7 +8,7 @@ interface ReviewPageProps {
 
 const page = ({ params }: ReviewPageProps) => {
   return (
-    <div>
+    <div className="mb-10">
       <ReviewNavbar />
       <MoreReview id={params.id} />
       <div className="flex justify-center item-center">

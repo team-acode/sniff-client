@@ -57,7 +57,7 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
 
   return (
     <div className="mx-4 mt-[64px] mb-[46px]">
-      <div className="flex items-center">
+      <div className="flex items-center mb-11">
         <div className="text-[18px] font-medium leading-[18px] tracking-[-0.45px] text-acodeblack mr-4">
           리뷰 {data.reviewCnt}개
         </div>
@@ -79,10 +79,10 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
         const displayNickname =
           review.nickname.slice(0, 2) + '*'.repeat(review.nickname.length - 2);
         return (
-          <div key={review.reviewId} className="body2 flex flex-col mb-5">
-            <div className="flex flex-row mb-5">
+          <div key={review.reviewId} className="body2 flex flex-col">
+            <div className="flex flex-row">
               {photos.map((photo, photoIndex) => (
-                <div key={photo} className="item-center mr-1">
+                <div key={photo} className="item-center mr-1 mb-5">
                   <div className="relative w-[115px] h-[115px] overflow-hidden rounded-md">
                     <Image
                       src={photo}
@@ -110,10 +110,12 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
                     {displayNickname}
                   </div>
                 </div>
-                <div className="text-acodeblack mb-2.5">{review.comment}</div>
+                <div className="text-[16px] font-semibold leading-[18px] tracking-[-0.4px] text-acodeblack mb-2.5">
+                  {review.comment}
+                </div>
                 <div className="mb-5">{review.textReview}</div>
-                <div className="space-y-4">
-                  <div className="flex flex-row body2">
+                <div className="space-y-4 font-medium">
+                  <div className="flex flex-row gap-y-[42px]">
                     <div className="flex w-12 text-acodegray-500">계절감</div>
                     <div className="flex w-16">
                       {seasonMapping[review.season]}
@@ -138,7 +140,7 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
                           <span key={style}>
                             {styleMapping[style]}
                             {styleIndex < array.length - 1 ? (
-                              <span className="text-acodegray-200">|</span>
+                              <span className="text-acodegray-200 mx-1">|</span>
                             ) : (
                               ''
                             )}
@@ -150,7 +152,7 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
               </div>
             </div>
             {index !== data.reviewInfoList.length - 1 && (
-              <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
+              <hr className="my-11 border-t-[2px] border-acodegray-50" />
             )}
           </div>
         );
