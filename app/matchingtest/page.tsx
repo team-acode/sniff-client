@@ -103,7 +103,7 @@ const Page = () => {
 
       queryParams.append(`style1`, selections.vibe[0]);
       queryParams.append(`style2`, selections.vibe[1]);
-      window.location.replace(`/result/?${queryParams}`);
+      window.location.replace(`/loading/?${queryParams}`);
     } catch (error) {
       console.error('Error sending data:', error);
     }

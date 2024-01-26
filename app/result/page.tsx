@@ -1,6 +1,7 @@
 import UserStyle from '@/components/matchingtest/UserStyle';
-import BigLinkButton from '@/components/common/BigLinkButton';
 import Similar from '@/components/matchingtest/Similar';
+import HomeNav from '@/components/home/HomeNav';
+import Link from 'next/link';
 
 interface ResultPageProps {
   searchParams: { [key: string]: string | undefined };
@@ -20,10 +21,6 @@ interface Fragrance {
   brandName: string;
   familyName: string;
   thumbnail: string;
-}
-
-interface ResultPageProps {
-  searchParams: { [key: string]: string | undefined };
 }
 
 const Page = ({ searchParams }: ResultPageProps) => {
@@ -77,8 +74,6 @@ const Page = ({ searchParams }: ResultPageProps) => {
 
   const { Families, Fragrance } = parseAndStoreData(searchParams);
 
-  console.log(Families);
-  console.log(Fragrance);
   const style = {
     style1: searchParams.style1,
     style2: searchParams.style2,
@@ -86,6 +81,9 @@ const Page = ({ searchParams }: ResultPageProps) => {
   return (
     <div>
       <div>
+        <HomeNav />
+      </div>
+      <div className="mt-16">
         <UserStyle families={Families} />
       </div>
       <div>
@@ -94,18 +92,24 @@ const Page = ({ searchParams }: ResultPageProps) => {
 
       <div className="flex flex-row mt-20 justify-center py-3 px-4">
         <div className="flex mr-2.5">
-          <BigLinkButton
-            to="/"
-            buttonStyle="bg-acodegray-50 text-black w-[168px]"
+          <Link href="/">
+            <button
+              type="button"
+              className="rounded-lg bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
+            >
+              공유하기
+            </button>
+          </Link>
+        </div>
+
+        <Link href="/">
+          <button
+            type="button"
+            className="rounded-lg bg-black text-white w-[166px] h-[56px] inline-flex items-center justify-center"
           >
-            공유하기
-          </BigLinkButton>
-        </div>
-        <div className="flex">
-          <BigLinkButton to="/" buttonStyle="bg-black text-white w-[168px]">
             홈으로
-          </BigLinkButton>
-        </div>
+          </button>
+        </Link>
       </div>
     </div>
   );
