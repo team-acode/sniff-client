@@ -63,7 +63,7 @@ const Page = () => {
       style1: selections.vibe[0],
       style2: selections.vibe[1],
     };
-
+    console.log(payload);
     const headers = new Headers();
     headers.set('AUTHORIZATION', token!);
     try {

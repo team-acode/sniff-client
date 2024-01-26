@@ -36,7 +36,6 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
       setAlertMessage('URL이 클립보드에 복사되었습니다!');
       setShowAlert(true);
     } catch (err) {
-      console.error('Fallback: Could not copy text: ', err);
       setAlertMessage('URL 복사에 실패했습니다.');
       setShowAlert(true);
     } finally {
@@ -46,15 +45,13 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
 
   const copyToClipboard = () => {
     if (navigator.clipboard && window.isSecureContext) {
-      // Modern async clipboard API
       navigator.clipboard
         .writeText(window.location.href)
         .then(() => {
           setAlertMessage('URL이 클립보드에 복사되었습니다!');
           setShowAlert(true);
         })
-        .catch((err) => {
-          console.error('Failed to copy URL: ', err);
+        .catch(() => {
           setAlertMessage('URL 복사에 실패했습니다.');
           copyToClipboardFallback(window.location.href);
         });
@@ -66,10 +63,20 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
       onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClose();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Close modal"
     >
       <div
         className="bg-white p-6 w-[321px] h-[189px] rounded-lg shadow-lg"
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={() => {}}
+        role="none"
       >
         <div className="h1 text-center mb-4">공유하기</div>
         <div className="flex flex-row justify-center gap-x-10 h2">
@@ -79,7 +86,15 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
             </div>
             <div>카카오톡</div>
           </div>
-          <div className="flex flex-col" onClick={copyToClipboard}>
+          <div
+            className="flex flex-col"
+            onClick={copyToClipboard}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') copyToClipboard();
+            }}
+            role="button"
+            tabIndex={0}
+          >
             <div className="mb-2">
               <LinkLogo />
             </div>
