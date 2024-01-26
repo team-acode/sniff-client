@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-// import Slider from './Slider';
 
 interface Fragrance {
   fragranceId: string;
@@ -41,21 +40,15 @@ const Similar = ({ fragrance, style }: SimilarProps) => {
               alt={`Test Perfume ${index + 1}`}
               width={138}
               height={138}
-              objectFit="cover"
+              // objectFit="cover"
               className="w-[138px] h-[138px] rounded-[4px]"
             />
             <div className="w-[134px] h-[35px] flex flex-col justify-center bg-white pl-[2px] mt-[10px]">
-              <div className="text-acodegray-500 caption1 mb-0.5">
-                {perfume.familyName}
+              <div className="text-acodegray-500 caption2 mb-1">
+                {perfume.brandName}
               </div>
-              <div className="flex flex-row">
-                <div className="text-acodegray-500 body2 mb-0.5 truncate">
-                  {perfume.brandName}
-                </div>
-                <div className="text-acodegray-200 mx-1 ">|</div>
-                <div className="text-acodeblack body2 truncate">
-                  {perfume.fragranceName}
-                </div>
+              <div className="text-acodeblack similar-1">
+                {perfume.fragranceName}
               </div>
             </div>
           </Link>
