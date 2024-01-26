@@ -1,12 +1,12 @@
 import ImageSlider from '@/components/detail/PerfumeImageSlider';
 import PerfumeInfo from '@/components/detail/PerfumeInfo';
-// import PerfumeDetail from '@/components/detail/PerfumeDetail';
 import SimilarPerfume from '@/components/detail/SimilarPerfume';
 import HereTobuy from '@/components/detail/HereToBuy';
 import AddReview from '@/components/detail/AddReviewButton';
 import Navbar from '@/components/detail/NavBar';
 import PerfumeDetailList from '@/components/detail/PerfumeDetailList';
 import { redirect } from 'next/navigation';
+import { getSession } from '@/utils/auth';
 
 interface DetailPageProps {
   params: { id: string };
@@ -17,9 +17,16 @@ interface DetailPageProps {
 }
 
 const page = async ({ params, searchParams }: DetailPageProps) => {
+  const userInfo = getSession();
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}`,
-    { cache: 'no-cache' },
+    {
+      cache: 'no-cache',
+      headers: {
+        Authorization: `Bearer ${userInfo?.jwt}`,
+      },
+    },
   );
 
   if (!res.ok) redirect('/');
@@ -34,22 +41,20 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
     capacityList,
     image1,
     image2,
+    scraped,
   } = await res.json();
-
-  // 나중에 리스트로 바꿔달라고 요청하기
-  const styleList = style.split(',').map((s: string) => s.trim());
 
   const images = [thumbnail, image1, image2];
   return (
     <section className="">
-      <Navbar />
+      <Navbar id={params.id} initialWishState={scraped} />
       <ImageSlider images={images} />
       <PerfumeInfo
         korBrand={korBrand}
         fragranceName={fragranceName}
         concentration={concentration}
         familyList={familyList}
-        styleList={styleList}
+        styleList={style}
         capacityList={capacityList}
       />
       <hr className="my-11 border-t-[6px] border-[#FBFBFB]" />

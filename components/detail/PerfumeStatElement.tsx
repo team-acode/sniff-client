@@ -57,7 +57,10 @@ const PerfumeStatElement = ({ label, contents }: PerfumeStatElementProps) => {
         </div>
         {isSpread
           ? restContents.map((content) => (
-              <div className="flex items-center text-acodegray-400">
+              <div
+                key={content.keyword}
+                className="flex items-center text-acodegray-400"
+              >
                 <span className="body2 font-medium w-[78px] shrink-0">
                   {content.keyword}
                 </span>

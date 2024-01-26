@@ -15,6 +15,7 @@ const page = async ({ searchParams }: MyPageProps) => {
   if (!userInfo) redirect('/login');
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mypage`, {
+    cache: 'no-cache',
     headers: {
       AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },

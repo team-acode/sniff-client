@@ -20,7 +20,13 @@ const WishPreviewItem = ({ perfume }: WishPreviewItemProps) => {
         href={`/perfumes/${perfume.fragranceId}`}
         className="h-full w-full border-[1.5px] border-acodegray-50 rounded-[4px] overflow-clip flex items-center justify-center"
       >
-        <Image src={perfume.thumbnail} className="" alt="perfume" />
+        <Image
+          src={perfume.thumbnail}
+          className="w-[158px] h-[158px]"
+          alt="perfume"
+          width={158}
+          height={158}
+        />
         <button
           type="button"
           className="absolute top-[10px] right-[10px]"
