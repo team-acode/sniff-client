@@ -50,8 +50,8 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
     { id: '여성스러운', label: '여성스러운' },
     { id: '청순한', label: '청순한' },
     { id: '무게감있는', label: '무게감있는' },
-    { id: '부드러운1', label: '부드러운' },
-    { id: '포근한1', label: '포근한' },
+    { id: '부드러운', label: '부드러운' },
+    { id: '포근한', label: '포근한' },
     { id: '가벼운', label: '가벼운' },
   ];
   const swiper = useSwiper();
@@ -72,7 +72,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
           {vibeOptions.map((option) => (
             <div key={option.id} className="">
               <input
-                id={option.id}
+                id={`vibe-option-${option.id}`}
                 type="checkbox"
                 value={option.id}
                 checked={selectedVibes.includes(option.id)}
@@ -80,7 +80,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
                 className="sr-only"
               />
               <label
-                htmlFor={option.id}
+                htmlFor={`vibe-option-${option.id}`}
                 className={`block w-full text-center py-2 px-4 ${
                   selectedVibes.includes(option.id)
                     ? 'bg-acodeblack border-acodegray-100 '
