@@ -39,8 +39,10 @@ const UserStyle = ({ families }: UserStyleProps) => {
             </div>
             <div className="flex flex-col w-full">
               <div className="h2 text-acodegray-500 mb-2.5">
-                {family.familyKorName}{' '}
-                <span className="text-acodeblack">{family.familyEngName}</span>
+                {family.familyKorName}
+                <span className="text-acodeblack ml-2">
+                  {family.familyEngName}
+                </span>
               </div>
 
               <div className="body1 mb-6">{family.summary}</div>

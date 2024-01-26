@@ -1,7 +1,11 @@
+'use client';
+
 import UserStyle from '@/components/matchingtest/UserStyle';
 import Similar from '@/components/matchingtest/Similar';
 import HomeNav from '@/components/home/HomeNav';
 import Link from 'next/link';
+import { useState } from 'react';
+import ResultModal from '@/components/matchingtest/ResultModal';
 
 interface ResultPageProps {
   searchParams: { [key: string]: string | undefined };
@@ -78,6 +82,12 @@ const Page = ({ searchParams }: ResultPageProps) => {
     style1: searchParams.style1,
     style2: searchParams.style2,
   };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleShareClick = () => {
+    setModalOpen(true);
+  };
   return (
     <div>
       <div>
@@ -92,14 +102,13 @@ const Page = ({ searchParams }: ResultPageProps) => {
 
       <div className="flex flex-row mt-20 justify-center py-3 px-4">
         <div className="flex mr-2.5">
-          <Link href="/">
-            <button
-              type="button"
-              className="rounded-lg bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
-            >
-              공유하기
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="rounded-lg bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
+            onClick={handleShareClick}
+          >
+            공유하기
+          </button>
         </div>
 
         <Link href="/">
@@ -111,6 +120,7 @@ const Page = ({ searchParams }: ResultPageProps) => {
           </button>
         </Link>
       </div>
+      {isModalOpen && <ResultModal onClose={() => setModalOpen(false)} />}
     </div>
   );
 };
