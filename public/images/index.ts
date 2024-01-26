@@ -83,3 +83,6 @@ export { default as Loading1} from './Loading1.svg';
 export { default as Loading2} from './Loading2.svg';
 export { default as Loading3} from './Loading3.svg';
 export { default as Loading4} from './Loading4.svg';
+
+export { default as Klogo} from './klogo.svg';
+export { default as LinkLogo} from './linklogo.svg';
