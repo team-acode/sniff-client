@@ -76,3 +76,10 @@ export { default as Indiv } from './indiv.jpg';
 export { default as Wood } from './wood.jpg';
 export { default as Fruit } from './fruit.jpg';
 
+export { default as Testing } from './testing.svg';
+
+export { default as AcodeLogo } from './AcodeLogo.svg';
+export { default as Loading1} from './Loading1.svg';
+export { default as Loading2} from './Loading2.svg';
+export { default as Loading3} from './Loading3.svg';
+export { default as Loading4} from './Loading4.svg';
