@@ -5,11 +5,19 @@ import Slide2 from '@/components/onboardingpage/Slide2';
 import Slide3 from '@/components/onboardingpage/Slide3';
 
 const Page = () => {
-  const slides = [<Slide1 />, <Slide2 />, <Slide3 />];
-
+  // const slides = [<Slide1 />, <Slide2 />, <Slide3 />];
+  const slides = [
+    { name: 'slide1', component: <Slide1 /> },
+    { name: 'slide2', component: <Slide2 /> },
+    { name: 'slide3', component: <Slide3 /> },
+  ];
   return (
     <div>
-      <Slider slides={slides} />
+      {/* <Slider slides={slides} /> */}
+      <Slider
+        slides={slides.map((slide) => slide.component)}
+        keys={slides.map((slide) => slide.name)}
+      />
     </div>
   );
 };

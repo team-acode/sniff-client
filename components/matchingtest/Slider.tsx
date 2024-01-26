@@ -10,9 +10,10 @@ import 'swiper/css/navigation';
 interface SliderProps {
   slides: React.ReactNode[];
   swiperRef: React.RefObject<any>;
+  keys: string[];
 }
 
-const Slider = ({ slides, swiperRef }: SliderProps) => {
+const Slider = ({ slides, swiperRef, keys }: SliderProps) => {
   return (
     <div>
       <div className="slider-container">
@@ -34,8 +35,8 @@ const Slider = ({ slides, swiperRef }: SliderProps) => {
           allowTouchMove={false}
           className="h-screen w-full matching-slider"
         >
-          {slides.map((slide) => (
-            <SwiperSlide>{slide}</SwiperSlide>
+          {slides.map((slide, index) => (
+            <SwiperSlide key={keys[index]}>{slide}</SwiperSlide>
           ))}
         </Swiper>
       </div>

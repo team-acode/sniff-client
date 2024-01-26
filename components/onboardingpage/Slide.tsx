@@ -8,9 +8,10 @@ import 'swiper/css/pagination';
 
 interface SliderProps {
   slides: React.ReactNode[];
+  keys: string[];
 }
 
-const Slider = ({ slides }: SliderProps) => {
+const Slider = ({ slides, keys }: SliderProps) => {
   return (
     <div className="slider-container">
       <Swiper
@@ -24,8 +25,8 @@ const Slider = ({ slides }: SliderProps) => {
         }}
         className="h-screen w-full onboard-slider"
       >
-        {slides.map((slide) => (
-          <SwiperSlide>{slide}</SwiperSlide>
+        {slides.map((slide, index) => (
+          <SwiperSlide key={keys[index]}>{slide}</SwiperSlide>
         ))}
       </Swiper>
     </div>

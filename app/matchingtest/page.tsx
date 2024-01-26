@@ -111,33 +111,87 @@ const Page = () => {
     }
   };
 
+  // const slides = [
+  //   <Persistence
+  //     updateSelection={(selection: string) =>
+  //       updateSelections('persistence', selection)
+  //     }
+  //   />,
+  //   <Season
+  //     updateSelection={(selection: string) =>
+  //       updateSelections('season', selection)
+  //     }
+  //   />,
+  //   <Main
+  //     updateSelection={(selection: string) =>
+  //       updateSelections('main', selection)
+  //     }
+  //   />,
+  //   <Individuality
+  //     updateSelection={(selection: string[]) =>
+  //       updateSelections('individuality', selection)
+  //     }
+  //   />,
+  //   <Vibe
+  //     updateSelection={(selection: string[]) =>
+  //       updateSelections('vibe', selection)
+  //     }
+  //     handleSubmit={handleSubmit}
+  //   />,
+  // ];
+
   const slides = [
-    <Persistence
-      updateSelection={(selection: string) =>
-        updateSelections('persistence', selection)
-      }
-    />,
-    <Season
-      updateSelection={(selection: string) =>
-        updateSelections('season', selection)
-      }
-    />,
-    <Main
-      updateSelection={(selection: string) =>
-        updateSelections('main', selection)
-      }
-    />,
-    <Individuality
-      updateSelection={(selection: string[]) =>
-        updateSelections('individuality', selection)
-      }
-    />,
-    <Vibe
-      updateSelection={(selection: string[]) =>
-        updateSelections('vibe', selection)
-      }
-      handleSubmit={handleSubmit}
-    />,
+    {
+      name: 'persistence',
+      component: (
+        <Persistence
+          updateSelection={(selection: string) =>
+            updateSelections('persistence', selection)
+          }
+        />
+      ),
+    },
+    {
+      name: 'season',
+      component: (
+        <Season
+          updateSelection={(selection: string) =>
+            updateSelections('season', selection)
+          }
+        />
+      ),
+    },
+    {
+      name: 'main',
+      component: (
+        <Main
+          updateSelection={(selection: string) =>
+            updateSelections('main', selection)
+          }
+        />
+      ),
+    },
+    {
+      name: 'individuality',
+      component: (
+        <Individuality
+          updateSelection={(selection: string[]) =>
+            updateSelections('individuality', selection)
+          }
+        />
+      ),
+    },
+    {
+      name: 'vibe',
+      component: (
+        <Vibe
+          updateSelection={(selection: string[]) =>
+            updateSelections('vibe', selection)
+          }
+          handleSubmit={handleSubmit}
+        />
+      ),
+    },
   ];
   const swiperRef = useRef(null);
   return (
@@ -146,7 +200,11 @@ const Page = () => {
         <SwiperHeader swiperRef={swiperRef} />
       </div>
       <div>
-        <Slider slides={slides} swiperRef={swiperRef} />
+        <Slider
+          slides={slides.map((slide) => slide.component)}
+          keys={slides.map((slide) => slide.name)}
+          swiperRef={swiperRef}
+        />
       </div>
     </div>
   );
