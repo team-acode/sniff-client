@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wood, Indiv, Fruit, Flower, PreviousIcon } from '@/public/images';
+import { Wood, Indiv, Fruit, Flower } from '@/public/images';
 import Image from 'next/image';
 import { useSwiper } from 'swiper/react';
 
@@ -41,20 +41,15 @@ const Main = ({ updateSelection }: PersistenceProps) => {
   const swiper = useSwiper();
   return (
     <div className="mx-4">
-      <div className="my-4">
-        <div>
-          <PreviousIcon onClick={() => swiper.slidePrev()} />
-        </div>
-      </div>
       <div className="flex flex-col">
         <div className="h0 mb-12 ">
           <div>어떤 향이 주로 나면</div>
           <div>좋을 것 같나요?</div>
         </div>
         <div className="text-gray-500 mb-4">*복수선택가능</div>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4">
           {options.map((option) => (
-            <div key={option.id} className="mb-2">
+            <div key={option.id} className="flex flex-col items-center mb-4">
               <input
                 id={option.id}
                 type="radio"
@@ -66,11 +61,11 @@ const Main = ({ updateSelection }: PersistenceProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-center py-2 px-4 border ${
+                className={`block w-full text-center border ${
                   selectedOption.includes(option.id)
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
-                } rounded cursor-pointer flex flex-col items-center justify-center`}
+                } rounded cursor-pointer p-4 flex flex-col items-center`}
               >
                 <div className="w-20 h-20 mb-2 relative">
                   <Image

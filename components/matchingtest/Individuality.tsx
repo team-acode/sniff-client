@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
-import { PreviousIcon } from '@/public/images';
 
 interface PersistenceProps {
   updateSelection: (selection: string[]) => void;
@@ -103,11 +102,6 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
   const swiper = useSwiper();
   return (
     <div className="mx-4">
-      <div className="my-4">
-        <div>
-          <PreviousIcon onClick={() => swiper.slidePrev()} />
-        </div>
-      </div>
       <div className="flex flex-col">
         <div className="h0 mb-20">
           <div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Spring, Summer, Autumn, Winter, PreviousIcon } from '@/public/images';
+import { Spring, Summer, Autumn, Winter } from '@/public/images';
 import Image from 'next/image';
 import { useSwiper } from 'swiper/react';
 
@@ -41,11 +41,6 @@ const Season = ({ updateSelection }: PersistenceProps) => {
   const swiper = useSwiper();
   return (
     <div className="mx-4">
-      <div className="my-4">
-        <div>
-          <PreviousIcon onClick={() => swiper.slidePrev()} />
-        </div>
-      </div>
       <div className="flex flex-col">
         <div className="h0 mb-12">
           <div>어떤 계절에 뿌릴</div>

@@ -9,13 +9,15 @@ import 'swiper/css/navigation';
 
 interface SliderProps {
   slides: React.ReactNode[];
+  swiperRef: React.RefObject<any>;
 }
 
-const Slider = ({ slides }: SliderProps) => {
+const Slider = ({ slides, swiperRef }: SliderProps) => {
   return (
     <div>
       <div className="slider-container">
         <Swiper
+          ref={swiperRef}
           modules={[Pagination, Navigation]}
           pagination={{
             type: 'progressbar',

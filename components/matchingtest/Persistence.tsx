@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
-import Link from 'next/link';
-import { PreviousIcon } from '@/public/images';
 
 interface PersistenceProps {
   updateSelection: (selection: string) => void;
@@ -32,13 +30,6 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
   const swiper = useSwiper();
   return (
     <div className="mx-4">
-      <div className="my-4">
-        <div>
-          <Link href="/">
-            <PreviousIcon />
-          </Link>
-        </div>
-      </div>
       <div className="flex flex-col">
         <div className="h0 mb-12 ">
           <div>한 번 뿌릴 때,</div>

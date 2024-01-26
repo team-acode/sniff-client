@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSwiper } from 'swiper/react';
-import { PreviousIcon } from '@/public/images';
 
 interface VibeProps {
   updateSelection: (selection: string[]) => void;
@@ -54,14 +52,8 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
     { id: '포근한', label: '포근한' },
     { id: '가벼운', label: '가벼운' },
   ];
-  const swiper = useSwiper();
   return (
     <div className="mx-4">
-      <div className=" my-4">
-        <div>
-          <PreviousIcon onClick={() => swiper.slidePrev()} />
-        </div>
-      </div>
       <div className="flex flex-col">
         <div className="h0 mb-20">
           <div>어떤 개성적인 향을</div>

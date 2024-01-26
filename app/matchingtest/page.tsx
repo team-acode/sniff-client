@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSession } from '@/hooks/useSession';
 import Slider from '@/components/matchingtest/Slider';
 import Vibe from '@/components/matchingtest/Vibe';
@@ -8,6 +8,7 @@ import Individuality from '@/components/matchingtest/Individuality';
 import Main from '@/components/matchingtest/Main';
 import Persistence from '@/components/matchingtest/Persistence';
 import Season from '@/components/matchingtest/Season';
+import SwiperHeader from '@/components/matchingtest/SwiperHeader';
 
 interface Family {
   familyKorName: string;
@@ -63,7 +64,7 @@ const Page = () => {
       style1: selections.vibe[0],
       style2: selections.vibe[1],
     };
-    console.log(payload);
+
     const headers = new Headers();
     headers.set('AUTHORIZATION', token!);
     try {
@@ -105,6 +106,7 @@ const Page = () => {
       queryParams.append(`style2`, selections.vibe[1]);
       window.location.replace(`/loading/?${queryParams}`);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error sending data:', error);
     }
   };
@@ -137,10 +139,14 @@ const Page = () => {
       handleSubmit={handleSubmit}
     />,
   ];
+  const swiperRef = useRef(null);
   return (
     <div>
       <div>
-        <Slider slides={slides} />
+        <SwiperHeader swiperRef={swiperRef} />
+      </div>
+      <div>
+        <Slider slides={slides} swiperRef={swiperRef} />
       </div>
     </div>
   );
