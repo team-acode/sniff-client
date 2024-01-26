@@ -68,7 +68,12 @@ const Main = ({ updateSelection }: PersistenceProps) => {
                 } rounded cursor-pointer p-4 flex flex-col items-center`}
               >
                 <div className="w-[88px] h-[66px] mb-2 relative flex justify-center">
-                  <Image src={option.img} alt={`${option.id} main`} />
+                  <Image
+                    src={option.img}
+                    alt={`${option.id} main`}
+                    // layout="fill"
+                    // objectFit="cover"
+                  />
                 </div>
                 <div className="text-acodeblack body1">{option.label}</div>
               </label>

@@ -105,7 +105,7 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
       <div className="flex flex-col">
         <div className="h0 mb-20">
           <div>
-            어떤{' '}
+            어떤
             <span className="bg-black text-white px-3 rounded">개성적인</span>
             향을
           </div>
@@ -151,8 +151,8 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
           onClick={() => swiper.slideNext()}
           className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
             selectedOptions.length === 2
-              ? 'bg-black text-white' // 활성화 상태
-              : 'bg-acodegray-300 text-white' // 비활성화 상태
+              ? 'bg-black text-white'
+              : 'bg-acodegray-300 text-white'
           }`}
           disabled={selectedOptions.length !== 2}
         >

@@ -111,35 +111,6 @@ const Page = () => {
     }
   };
 
-  // const slides = [
-  //   <Persistence
-  //     updateSelection={(selection: string) =>
-  //       updateSelections('persistence', selection)
-  //     }
-  //   />,
-  //   <Season
-  //     updateSelection={(selection: string) =>
-  //       updateSelections('season', selection)
-  //     }
-  //   />,
-  //   <Main
-  //     updateSelection={(selection: string) =>
-  //       updateSelections('main', selection)
-  //     }
-  //   />,
-  //   <Individuality
-  //     updateSelection={(selection: string[]) =>
-  //       updateSelections('individuality', selection)
-  //     }
-  //   />,
-  //   <Vibe
-  //     updateSelection={(selection: string[]) =>
-  //       updateSelections('vibe', selection)
-  //     }
-  //     handleSubmit={handleSubmit}
-  //   />,
-  // ];
-
   const slides = [
     {
       name: 'persistence',

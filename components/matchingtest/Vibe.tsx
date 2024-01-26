@@ -98,8 +98,8 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
             onClick={handleSubmit}
             className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
               selectedVibes.length === 2
-                ? 'bg-black text-white' // 활성화 상태
-                : 'bg-acodegray-300 text-white' // 비활성화 상태
+                ? 'bg-black text-white'
+                : 'bg-acodegray-300 text-white'
             }`}
             disabled={selectedVibes.length !== 2}
           >

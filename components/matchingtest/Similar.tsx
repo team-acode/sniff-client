@@ -40,7 +40,7 @@ const Similar = ({ fragrance, style }: SimilarProps) => {
               alt={`Test Perfume ${index + 1}`}
               width={138}
               height={138}
-              // objectFit="cover"
+              priority
               className="w-[138px] h-[138px] rounded-[4px]"
             />
             <div className="w-[134px] h-[35px] flex flex-col justify-center bg-white pl-[2px] mt-[10px]">
