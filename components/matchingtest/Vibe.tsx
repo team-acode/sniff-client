@@ -53,11 +53,11 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
     { id: '가벼운', label: '가벼운' },
   ];
   return (
-    <div className="mx-4">
+    <div className="mx-4 mt-4">
       <div className="flex flex-col">
         <div className="h0 mb-20">
-          <div>어떤 개성적인 향을</div>
-          <div>원하시나요?</div>
+          <div>향수로 어떤 분위기를</div>
+          <div>내고 싶으신가요?</div>
         </div>
 
         <div className="flex flex-wrap h1 gap-x-3 gap-y-2">

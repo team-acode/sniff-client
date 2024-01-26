@@ -101,7 +101,7 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
 
   const swiper = useSwiper();
   return (
-    <div className="mx-4">
+    <div className="mx-4 mt-4">
       <div className="flex flex-col">
         <div className="h0 mb-20">
           <div>
