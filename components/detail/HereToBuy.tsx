@@ -23,7 +23,7 @@ const HereTobuy = async ({ id }: BuyProps) => {
   const data: { [key: string]: string } | null = await getPurchase(id);
 
   if (!data) return null;
-  // const data = mockupData;
+
   return (
     <div className="mx-4 mb-[186px]">
       <div className="h2 mb-[30px]">여기서 구매할 수 있어요</div>
