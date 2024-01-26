@@ -35,7 +35,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
           <div>한 번 뿌릴 때,</div>
           <div>향이 얼마나 지속되면 좋을까요?</div>
         </div>
-        <div className="text-gray-500 mb-4">*복수선택가능</div>
+        <div className="text-gray-500 body2 mb-3">*복수선택가능</div>
         <div>
           {options.map((option) => (
             <div key={option.id} className="flex items-center mb-5">
@@ -50,13 +50,13 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-start py-2 px-4 border ${
+                className={`block w-full text-start border ${
                   selectedOption.includes(option.id)
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
                 } rounded cursor-pointer`}
               >
-                <div className="flex flex-col body1">
+                <div className="flex flex-col body1 py-[13px] px-[20px]">
                   <div className="text-acodeblack">{option.label}</div>
                   <div className="text-acodegray-500">{option.label2}</div>
                 </div>

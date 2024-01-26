@@ -46,10 +46,10 @@ const Season = ({ updateSelection }: PersistenceProps) => {
           <div>어떤 계절에 뿌릴</div>
           <div>향수를 찾으시나요?</div>
         </div>
-        <div className="text-gray-500 mb-4">*복수선택가능</div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="text-gray-500 body2 mb-3">*복수선택가능</div>
+        <div className="flex flex-wrap gap-x-2.5 gap-y-3 justify-center">
           {options.map((option) => (
-            <div key={option.id} className="flex flex-col items-center mb-4">
+            <div key={option.id} className="flex flex-col items-center">
               <input
                 id={option.id}
                 type="radio"
@@ -61,13 +61,13 @@ const Season = ({ updateSelection }: PersistenceProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-center border ${
+                className={`block w-[166px] h-[126px] text-center border ${
                   selectedSeason === option.id
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
                 } rounded cursor-pointer p-4 flex flex-col items-center`}
               >
-                <div className="w-20 h-20 mb-2 relative flex justify-center">
+                <div className="w-[88px] h-[66px] mb-2 relative flex justify-center">
                   <Image
                     src={option.img}
                     alt={`${option.id} season`}

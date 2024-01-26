@@ -94,6 +94,9 @@
   background-color: #FF2D60;
 }
 
+.matching-slider .swiper-wrapper{
+  touch-action: pan-y;
+}
 .matching-slider .swiper-pagination-progressbar {
   background-color: #FFF;
 }
@@ -103,7 +106,7 @@
 
 .onboard-slider .swiper-pagination {
   position: absolute;
-  bottom: 95% !important;
+  bottom: 98% !important;
   justify-content: space-between;
   width: calc(100% - 24px);
 }
@@ -124,9 +127,8 @@
   background-color: #FF2D60;
   border-radius: 0;
   width: calc((100% - 24px) / 3);
-  height: 10px;
+  height: 4px;
 }
-
 
 
 .form-radio:checked + label {

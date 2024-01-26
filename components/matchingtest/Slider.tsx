@@ -31,6 +31,7 @@ const Slider = ({ slides, swiperRef }: SliderProps) => {
             prevEl: '.swiper-button-prev',
           }}
           simulateTouch={false}
+          allowTouchMove={false}
           className="h-screen w-full matching-slider"
         >
           {slides.map((slide) => (
