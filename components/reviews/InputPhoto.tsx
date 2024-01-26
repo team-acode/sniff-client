@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useState, ChangeEvent, useRef } from 'react';
 
 const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
@@ -35,13 +36,14 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
       </div>
       <div className="flex flex-row items-center space-x-2">
         {photos.map((photo, index) => (
-          <div key={index} className="relative">
-            <img
+          <div key={photo.name} className="relative">
+            <Image
               src={URL.createObjectURL(photo)}
               alt={`Preview ${index + 1}`}
               style={{ width: '96px', height: '96px' }}
             />
             <button
+              type="button"
               onClick={() => handleRemovePhoto(index)}
               className="absolute top-0 right-0 bg-acodegray-200 text-white rounded-full w-6 h-6 flex items-center justify-center"
               style={{ fontSize: '12px' }}
@@ -52,6 +54,7 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
         ))}
         {photos.length < 3 && (
           <button
+            type="button"
             onClick={handleClick}
             className="w-24 h-24 bg-acodegray-50 rounded flex items-center justify-center border border-acodegray-50"
           >

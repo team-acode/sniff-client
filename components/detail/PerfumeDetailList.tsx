@@ -2,8 +2,12 @@ import React from 'react';
 import PerfumeDetail from './PerfumeDetail';
 import PerfumeReviewList from './PerfumeReviewList';
 import PerfumeDetailElement from './PerfumeDetailElement';
+
 interface DetailCategoryBarProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: {
+    category: 'detail' | 'review' | undefined;
+    easy: 'on' | 'off' | undefined;
+  };
   searchId: { id: string };
 }
 
@@ -11,8 +15,8 @@ const PerfumeDetailList = ({
   searchParams,
   searchId,
 }: DetailCategoryBarProps) => {
-  const selectedTab = searchParams.category || 'Detail';
-  const selectedEasy = searchParams.easy || 'on';
+  const selectedTab = searchParams.category || 'detail';
+  const isEasy = searchParams.easy === undefined || searchParams.easy === 'on';
 
   return (
     <div className="">
@@ -21,10 +25,11 @@ const PerfumeDetailList = ({
         selectedTab={selectedTab}
         id={searchId.id}
       />
-      {selectedTab === 'Detail' && (
-        <PerfumeDetail selectedEasy={selectedEasy} id={searchId.id} />
+      {selectedTab === 'detail' ? (
+        <PerfumeDetail isEasy={isEasy} id={searchId.id} />
+      ) : (
+        <PerfumeReviewList id={searchId.id} />
       )}
-      {selectedTab === 'Review' && <PerfumeReviewList id={searchId.id} />}
     </div>
   );
 };

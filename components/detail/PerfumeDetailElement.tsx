@@ -3,52 +3,49 @@ import React from 'react';
 import AcodeExplain from './AcodeExplainButton';
 
 interface PerfumeDetailElementProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: {
+    category: 'detail' | 'review' | undefined;
+    easy: 'on' | 'off' | undefined;
+  };
   selectedTab: string;
   id: string;
 }
 
-const categories = ['Detail', 'Review'];
-const initialSearchParams = { category: 'Detail' };
+const categories = ['detail', 'review'];
+// const initialSearchParams = { category: 'detail' };
 const PerfumeDetailElement = ({
-  searchParams = initialSearchParams,
+  searchParams,
   selectedTab,
   id,
 }: PerfumeDetailElementProps) => {
   return (
-    <div className="mx-4 mb-6">
-      <div className="flex flex-row justify-between">
-        <div className="">
-          <div className="flex flex-row">
-            {categories.map((category) => (
-              <div key={category} className="mr-4">
-                <Link
-                  href={{
-                    pathname: `/perfumes/${id}`,
-                    query: {
-                      ...searchParams,
-                      category,
-                    },
-                  }}
-                  key={category}
-                  className={`text-left ${
-                    selectedTab === category
-                      ? 'text-acodeblack border-b-2 border-acodeblack'
-                      : 'text-acodegray-200'
-                  }`}
-                  scroll={false}
-                  id={category}
-                >
-                  {category}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-        {selectedTab === 'Detail' && (
-          <AcodeExplain searchParams={searchParams} id={id} />
-        )}
+    <div className="mx-4 mb-[30px] flex flex-row justify-between">
+      <div className="flex flex-row gap-x-[13px] pt-[3px]">
+        {categories.map((category) => (
+          <Link
+            key={category}
+            href={{
+              pathname: `/perfumes/${id}`,
+              query: {
+                ...searchParams,
+                category,
+              },
+            }}
+            className={`text-left text-[18px] font-bold leading-[18px] tracking-[-0.18px] h-[25px] px-[2px] block ${
+              selectedTab === category
+                ? 'text-acodeblack border-b-2 border-acodeblack'
+                : 'text-acodegray-200'
+            }`}
+            scroll={false}
+            id={category}
+          >
+            {category.charAt(0).toUpperCase().concat(category.slice(1))}
+          </Link>
+        ))}
       </div>
+      {selectedTab === 'detail' && (
+        <AcodeExplain searchParams={searchParams} id={id} />
+      )}
     </div>
   );
 };

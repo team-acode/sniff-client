@@ -7,143 +7,95 @@ import {
   BlackFullStar,
 } from '@/public/images';
 import Image from 'next/image';
+import {
+  intensityMapping,
+  longevityMapping,
+  seasonMapping,
+  styleMapping,
+} from '@/constants/stats';
 
 interface PerfumeReviewProps {
   id: string;
 }
 
-interface Review {
-  reviewId: number;
-  thumbnail: string;
-  image1: string;
-  image2: string;
-  comment: string;
-  rate: number;
-  nickname: string;
-  season: string;
-  intensity: string;
-  longevity: string;
-  style: string;
-  textReview: string;
-}
-function translateSeason(season: string): string {
-  const seasonMap: { [key: string]: string } = {
-    SPRING: '봄',
-    SUMMER: '여름',
-    AUTUMN: '가을',
-    WINTER: '겨울',
-    ALL: '사계절',
-  };
-
-  return seasonMap[season] || season;
-}
-function translateLongevity(longevity: string): string {
-  const longevityMap: { [key: string]: string } = {
-    ONEHOUR: '1시간',
-    FOURHOURS: '3-4시간',
-    HALFDAY: '반나절',
-    FULLDAY: '하루종일',
-  };
-
-  return longevityMap[longevity] || longevity;
-}
-function translateIntensity(intensity: string): string {
-  const intensityMap: { [key: string]: string } = {
-    WEAK: '약함',
-    MEDIUM: '보통',
-    STRONG: '진함',
-    INTENSE: '매우진함',
-  };
-
-  return intensityMap[intensity] || intensity;
-}
-function translateStyle(style: string): string {
-  const styleMap: { [key: string]: string } = {
-    CHIC: '시크한',
-    MATURE: '성숙한',
-    LUXURIOUS: '고급스러운',
-    ELEGANT: '우아한',
-    MASCULINE: '남성적인',
-    COMFORTABLE: '편안한',
-    SERENE: '차분한',
-    LIGHT: '가벼운',
-    NEUTRAL: '중성적인',
-    FRIENDLY: '친근한',
-    CLEAN: '깨끗한',
-    SENSUAL: '관능적인',
-    DELICATE: '은은한',
-    LIVELY: '활기찬',
-    LOVELY: '사랑스러운',
-    BRIGHT: '밝은',
-    RADIANT: '화사한',
-    FEMININE: '여성스러운',
-    INNOCENT: '청순한',
-    WEIGHTY: '무게감 있는',
-    SOFT: '부드러운',
-    COZY: '포근한',
-  };
-
-  return styleMap[style] || style;
-}
-
 export async function getReviewList(params: { id: string }) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review`,
-      { cache: `no-cache` },
-    );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review`,
+    { cache: `no-cache` },
+  );
 
-    if (!response.ok) {
-      console.error('API fetch failed:', response.status);
-      throw new Error(`API fetch failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Failed to fetch perfume data:', error);
+  if (!response.ok) {
+    return null;
   }
+
+  const data = await response.json();
+  return data;
 }
+
+const keyMapping: { [key: string]: string } = {
+  계절감: 'season',
+  '향의 세기': 'intensity',
+  지속성: 'longevity',
+};
+
+const engToKor = (key: string, value: string) => {
+  if (key === 'season') {
+    return seasonMapping[value];
+  }
+  if (key === 'intensity') {
+    return intensityMapping[value];
+  }
+  return longevityMapping[value];
+};
 
 const MoreReview = async ({ id }: PerfumeReviewProps) => {
   const data = await getReviewList({ id });
   const averageRating = data.rateSum / data.reviewCnt;
-
   const fullStars = Math.floor(averageRating);
-  const halfStar = averageRating % 1 >= 0.5 ? 1 : 0;
+  const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
   const emptyStars = 5 - fullStars - halfStar;
 
   return (
-    <div className="mx-4">
-      <div>
-        <div className="flex items-center">
-          <div className="text-acodeblack mr-4">리뷰 {data.reviewCnt}개</div>
-          <div className="flex items-center">
-            {Array.from({ length: fullStars }, (_, i) => (
-              <RedFullStar key={i} />
-            ))}
-            {halfStar > 0 && <RedHalfStar />}
-            {Array.from({ length: emptyStars }, (_, i) => (
-              <RedEmptyStar key={i} />
-            ))}
-          </div>
+    <div className="mx-4 mt-[64px] mb-[46px]">
+      <div className="flex items-center mb-11">
+        <div className="text-[18px] font-medium leading-[18px] tracking-[-0.45px] text-acodeblack mr-4">
+          리뷰 {data.reviewCnt}개
         </div>
-        <div className="flex flex-row mb-9"></div>
-        {data.reviewInfoList.map((review: Review, index: number) => {
+        <div className="flex items-center">
+          {Array.from({ length: fullStars }, (_, i) => (
+            <RedFullStar key={i} />
+          ))}
+          {halfStar > 0 && <RedHalfStar />}
+          {Array.from({ length: emptyStars }, (_, i) => (
+            <RedEmptyStar key={i} />
+          ))}
+        </div>
+      </div>
+
+      {data.reviewInfoList.map(
+        (review: { [key: string]: any }, index: number) => {
           const photos = [
             review.thumbnail,
             review.image1,
             review.image2,
           ].filter((url) => url);
-          const displayNickname =
-            review.nickname.slice(0, 2) +
-            '*'.repeat(review.nickname.length - 2);
+
+          const maskingNickname = (value: string) => {
+            if (value.length === 2) {
+              return value.replace(/(?<=.{1})./gi, '*');
+            }
+            if (value.length > 2) {
+              return value.replace(/(?<=.{2})./gi, '*');
+            }
+            return '*';
+          };
+
           return (
-            <div key={index} className="body2 flex flex-col mb-5">
-              <div className="flex flex-row mb-5">
+            <div key={review.reviewId} className="body2 flex flex-col">
+              <div className="flex flex-row">
                 {photos.map((photo, photoIndex) => (
-                  <div key={photoIndex} className="item-center mr-1">
-                    <div className="relative w-[115px] h-[115px] overflow-hidden rounded-md">
+                  <div key={photo} className="item-center mr-1 mb-5">
+                    <div className="relative w-[115px] h-[115px] overflow-hidden rounded-[4px]">
                       <Image
                         src={photo}
                         alt={`Review Image ${photoIndex}`}
@@ -166,56 +118,54 @@ const MoreReview = async ({ id }: PerfumeReviewProps) => {
                       ))}
                     </div>
 
-                    <div className="text-acodegray-400 caption2 ml-3">
-                      {displayNickname}
+                    <div className="text-acodegray-400 caption2 ml-[10px]">
+                      {maskingNickname(review.nickname)}
                     </div>
                   </div>
-                  <div className="text-acodeblack mb-2.5">{review.comment}</div>
+                  <div className="text-[16px] font-semibold leading-[18px] tracking-[-0.4px] text-acodeblack mb-2.5">
+                    {review.comment}
+                  </div>
                   <div className="mb-5">{review.textReview}</div>
-                  <div className="space-y-4">
-                    <div className="flex flex-row body2">
-                      <div className="flex w-12 text-acodegray-500">계절감</div>
-                      <div className="flex w-16">
-                        {translateSeason(review.season)}
+                  <div className="body2 font-medium grid grid-cols-[95px_128px] gap-x-[42px]">
+                    {Object.entries(keyMapping).map(([key, value], idx) => (
+                      <div className="flex">
+                        <span
+                          className={`${
+                            idx % 2 ? 'w-[63px]' : 'w-12'
+                          } mr-3 text-acodegray-500 shrink-0`}
+                        >
+                          {key}
+                        </span>
+                        <span className="shrink-0 text-acodeblack">
+                          {engToKor(value, review[value])}
+                        </span>
                       </div>
-                      <div className="flex w-16 text-acodegray-500">
-                        향의 세기
-                      </div>
-                      <div className="flex w-16">
-                        {translateIntensity(review.intensity)}
-                      </div>
-                    </div>
-                    <div className="flex flex-row">
-                      <div className="flex w-12 text-acodegray-500">지속성</div>
-                      <div className="flex w-16">
-                        {translateLongevity(review.longevity)}
-                      </div>
-                      <div className="flex w-16 text-acodegray-500">스타일</div>
-                      <div className="flex flex-wrap w-32">
-                        {review.style
-                          .split(', ')
-                          .map((style, styleIndex, array) => (
-                            <span key={styleIndex}>
-                              {translateStyle(style)}
-                              {styleIndex < array.length - 1 ? (
-                                <span className="text-acodegray-200">|</span>
-                              ) : (
-                                ''
-                              )}
-                            </span>
-                          ))}
+                    ))}
+                    <div className="flex">
+                      <span className="w-[63px] mr-3 text-acodegray-500 shrink-0">
+                        스타일
+                      </span>
+                      <div className="text-acodeblack shrink-0 flex flex-wrap w-[128px]">
+                        {review.style.map((style: string, idx: number) => (
+                          <span key={style} className="">
+                            <span className="">{styleMapping[style]}</span>
+                            {idx < review.style.length - 1 && (
+                              <span className="text-acodegray-200 mx-1">|</span>
+                            )}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               {index !== data.reviewInfoList.length - 1 && (
-                <div className="border-t border-acodegray-100 w-11/12 my-11 mx-auto" />
+                <hr className="my-11 border-t-[2px] border-acodegray-50" />
               )}
             </div>
           );
-        })}
-      </div>
+        },
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import BlurryNav from '@/components/common/BlurryNav';
+import DetailCommonNav from '@/components/common/DetailCommonNav';
 import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
 import WishPreviewItem from '@/components/mypage/WishPreviewItem';
@@ -25,7 +25,7 @@ const page = async ({ searchParams }: MyPageProps) => {
 
   return (
     <div className="">
-      <BlurryNav />
+      <DetailCommonNav />
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
           <h1 className="h0 mr-1">

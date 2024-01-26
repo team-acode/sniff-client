@@ -1,4 +1,5 @@
 import React from 'react';
+
 interface KeyWordReviewProps {
   onSeasonSelect: (season: string) => void;
   onPersistenceSelect: (persistence: string) => void;
@@ -23,7 +24,7 @@ const KeyWordReview = ({
     <div className="mx-4">
       <div className="review-2 mb-5">키워드 리뷰</div>
       {/* Seasons */}
-      <div className="flex overflow-x-auto mb-5">
+      <div className="flex overflow-x-auto mb-5 h-[30px]">
         <div className="flex w-1/5 items-center justify-start review-3">
           계절감{' '}
         </div>

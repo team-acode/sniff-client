@@ -18,7 +18,10 @@ const LogoutButton = () => {
               method: 'POST',
               cache: 'no-cache',
             });
-            if (res.ok) router.push('/');
+            if (res.ok) {
+              router.refresh();
+              router.replace('/');
+            }
           }}
           title="로그아웃"
           height="h-[176px]"

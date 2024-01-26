@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { EasyOffIcon, EasyOnIcon } from '@/public/images';
@@ -22,7 +23,7 @@ const AcodeExplain = ({ searchParams, id }: AcodeExplainProps) => {
 
   const updatedSearchParams = {
     ...searchParams,
-    category: 'Detail',
+    category: 'detail',
     easy: selectedTab === 'on' ? 'off' : 'on',
   };
 

@@ -17,7 +17,7 @@ const PerfumeListElement = ({ perfume }: PerfumeListElementProps) => {
         quality={100}
       />
       <Link
-        href="/"
+        href={`perfumes/${perfume.fragranceId}`}
         className="w-full pt-[27px] px-[26px] text-left h-60 bg-gradient-to-b from-black/80 to-[#292323]/20 inline-flex flex-col"
       >
         <div className="flex">

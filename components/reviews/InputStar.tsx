@@ -16,11 +16,12 @@ const InputStar = ({ maxRating = 5, onRatingChange }: InputStarProps) => {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="flex flex-col items-center justify-center space-y-4 py-8">
-        <div className="text-acodeblack review-1">별점 남기기</div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="text-acodeblack review-1 mb-[6px]">별점 남기기</div>
         <div className="flex space-x-1">
           {Array.from({ length: maxRating }, (_, i) => (
-            <span
+            <button
+              type="button"
               key={i}
               onClick={() => handleRating(i + 1)}
               className="cursor-pointer"
@@ -30,7 +31,7 @@ const InputStar = ({ maxRating = 5, onRatingChange }: InputStarProps) => {
               ) : (
                 <RedEmptyStar className="text-gray-300" />
               )}
-            </span>
+            </button>
           ))}
         </div>
       </div>

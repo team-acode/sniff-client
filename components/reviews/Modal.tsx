@@ -73,11 +73,15 @@ function Modal({ onReturn }: ModalProps) {
         </div>
         <div className="flex w-full overflow-x-auto">
           <div className="flex whitespace-nowrap">
-            {selectedOptions.map((option, index) => (
-              <div key={index} className="flex items-center mr-1">
+            {selectedOptions.map((option) => (
+              <div key={option} className="flex items-center mr-1">
                 <span className="px-2.5 py-2 body2 text-white bg-black rounded-full border flex items-center justify-center">
                   {option}
-                  <button className="ml-1" onClick={() => removeOption(option)}>
+                  <button
+                    type="button"
+                    className="ml-1"
+                    onClick={() => removeOption(option)}
+                  >
                     X
                   </button>
                 </span>
@@ -86,6 +90,7 @@ function Modal({ onReturn }: ModalProps) {
           </div>
           {selectedOptions.length < 3 && (
             <button
+              type="button"
               onClick={handleModalOpen}
               className="px-2.5 py-2 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
             >
@@ -108,9 +113,10 @@ function Modal({ onReturn }: ModalProps) {
               </div>
             </div>
             <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 p-4">
-              {MODALOPTIONS.map((option, index) => (
+              {MODALOPTIONS.map((option) => (
                 <button
-                  key={index}
+                  type="button"
+                  key={option}
                   className={`${
                     selectedOptions.includes(option)
                       ? 'bg-acodeblack text-white border-acodeblack'
@@ -124,6 +130,7 @@ function Modal({ onReturn }: ModalProps) {
             </div>
             <div className="flex justify-center p-4">
               <button
+                type="button"
                 className="bg-acodeblack w-full text-white py-3 px-4 rounded"
                 onClick={completeSelection}
                 disabled={selectedOptions.length === 0}
