@@ -106,7 +106,7 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
         <div className="h0 mb-20">
           <div>
             어떤{' '}
-            <span className="bg-black text-white px-3 rounded">개성적인</span>{' '}
+            <span className="bg-black text-white px-3 rounded">개성적인</span>
             향을
           </div>
           <div>원하시나요?</div>

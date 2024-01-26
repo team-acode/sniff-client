@@ -23,35 +23,34 @@ const UserStyle = ({ families }: UserStyleProps) => {
           <div className="flex flex-row justify-center gap-x-4">
             {families.map((family) => (
               <div key={`${family.familyKorName}`}>
-                <SceneIcon />
+                <SceneIcon className="w-[52px] h-[68px]" />
               </div>
             ))}
           </div>
         </div>
 
         {families.map((family) => (
-          <div
-            key={`${family.familyKorName}-${family.familyEngName}`}
-            className="flex flex-row mb-4"
-          >
-            <div>
-              <Testing className="mr-7" />
-            </div>
-            <div className="flex flex-col w-full">
-              <div className="h2 text-acodegray-500 mb-2.5">
-                {family.familyKorName}
-                <span className="text-acodeblack ml-2">
-                  {family.familyEngName}
-                </span>
+          <div key={`${family.familyKorName}-${family.familyEngName}`}>
+            <div className="flex flex-row mb-4">
+              <div>
+                <Testing className="mr-7" />
               </div>
+              <div className="flex flex-col w-full">
+                <div className="h2 text-acodegray-500 mb-2.5">
+                  {family.familyKorName}
+                  <span className="text-acodeblack ml-2">
+                    {family.familyEngName}
+                  </span>
+                </div>
 
-              <div className="body1 mb-6">{family.summary}</div>
-              <div className="body2">
-                <span className="text-acodegray-400">#</span>
-                {family.keyword}
+                <div className="body1 mb-6">{family.summary}</div>
+                <div className="body2">
+                  <span className="text-acodegray-400">#</span>
+                  {family.keyword}
+                </div>
               </div>
-              <hr className="my-11 border-acodegray-50" />
             </div>
+            <hr className="my-11 border-acodegray-50" />
           </div>
         ))}
       </div>

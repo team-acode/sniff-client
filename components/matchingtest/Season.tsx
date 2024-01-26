@@ -46,7 +46,7 @@ const Season = ({ updateSelection }: PersistenceProps) => {
           <div>어떤 계절에 뿌릴</div>
           <div>향수를 찾으시나요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*복수선택가능</div>
+        <div className="text-gray-500 body2 mb-3">*최대 2개 선택 가능</div>
         <div className="flex flex-wrap gap-x-2.5 gap-y-3 justify-center">
           {options.map((option) => (
             <div key={option.id} className="flex flex-col items-center">
@@ -71,8 +71,8 @@ const Season = ({ updateSelection }: PersistenceProps) => {
                   <Image
                     src={option.img}
                     alt={`${option.id} season`}
-                    layout="fill"
-                    objectFit="cover"
+                    // layout="fill"
+                    // objectFit="cover"
                   />
                 </div>
                 <div className="text-acodeblack body1">{option.label}</div>

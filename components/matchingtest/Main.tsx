@@ -46,7 +46,7 @@ const Main = ({ updateSelection }: PersistenceProps) => {
           <div>어떤 향이 주로 나면</div>
           <div>좋을 것 같나요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*복수선택가능</div>
+        <div className="text-gray-500 body2 mb-3">*최대 2개 선택 가능</div>
         <div className="flex flex-wrap gap-x-2.5 gap-y-3 justify-center">
           {options.map((option) => (
             <div key={option.id} className="flex flex-col items-center">
@@ -68,12 +68,7 @@ const Main = ({ updateSelection }: PersistenceProps) => {
                 } rounded cursor-pointer p-4 flex flex-col items-center`}
               >
                 <div className="w-[88px] h-[66px] mb-2 relative flex justify-center">
-                  <Image
-                    src={option.img}
-                    alt={`${option.id} main`}
-                    layout="fill"
-                    objectFit="cover"
-                  />
+                  <Image src={option.img} alt={`${option.id} main`} />
                 </div>
                 <div className="text-acodeblack body1">{option.label}</div>
               </label>

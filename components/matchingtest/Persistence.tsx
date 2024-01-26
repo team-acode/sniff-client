@@ -35,7 +35,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
           <div>한 번 뿌릴 때,</div>
           <div>향이 얼마나 지속되면 좋을까요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*복수선택가능</div>
+        <div className="text-gray-500 body2 mb-3">*최대 2개 선택 가능</div>
         <div>
           {options.map((option) => (
             <div key={option.id} className="flex items-center mb-5">
