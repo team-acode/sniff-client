@@ -1,3 +1,4 @@
+import { STYLEOPTIONS } from '@/constants/styles';
 import React, { useState, useEffect } from 'react';
 
 interface ModalProps {
@@ -7,31 +8,6 @@ interface ModalProps {
 function Modal({ onReturn }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
-  const MODALOPTIONS = [
-    '시크한',
-    '성숙한',
-    '고급스러운',
-    '우아한',
-    '남성적인',
-    '편안한',
-    '차분한',
-    '중성적인',
-    '친근한',
-    '깨끗한',
-    '포근한',
-    '사랑스러운',
-    '관능적인',
-    '은은한',
-    '활기찬',
-    '밝은',
-    '화사한',
-    '여성스러운',
-    '청순한',
-    '무게감있는',
-    '가벼운',
-    '부드러운',
-  ];
 
   const handleModalOpen = () => {
     setIsOpen(true);
@@ -105,32 +81,32 @@ function Modal({ onReturn }: ModalProps) {
 
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end">
-          <div className="bg-white shadow-lg mx-auto w-full">
-            <div className="flex justify-center item-center p-4">
-              <div>
-                <div className="h1 text-acodblack text-center">스타일</div>
-                <div className="caption2 text-acodegray-500">
-                  *최대 3개까지 고를 수 있습니다.
-                </div>
+          <div className="bg-white shadow-lg mx-auto w-full h-[491px]">
+            <div className="flex flex-col justify-center items-center mt-[26px] w-full">
+              <div className="h1 text-acodblack mb-[10px]">스타일</div>
+              <div className="caption2 text-acodegray-300">
+                *최대 3개까지 고를 수 있습니다
               </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 p-4">
-              {MODALOPTIONS.map((option) => (
+            <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 mt-6 mb-5 mx-[30px]">
+              {STYLEOPTIONS.map((option) => (
                 <button
                   type="button"
                   key={option}
-                  className={`${
+                  className={`h-8 px-[9px] py-[2px] border-[1.5px] ${
                     selectedOptions.includes(option)
                       ? 'bg-acodeblack text-white border-acodeblack'
-                      : 'text-acodegray-400 border-acodeblack'
-                  } rounded-full p-2 border-2 border-acodegray-100 `}
+                      : 'text-acodegray-400 border-acodegray-100'
+                  } rounded-[50px]`}
                   onClick={() => toggleOption(option)}
                 >
-                  {option}
+                  <span className="text-[18px] font-semibold leading-[27px] tracking-[-0.45px]">
+                    {option}
+                  </span>
                 </button>
               ))}
             </div>
-            <div className="flex justify-center p-4">
+            <div className="flex justify-center pb-[18px]">
               <button
                 type="button"
                 className="bg-acodeblack w-full text-white py-3 px-4 rounded"
