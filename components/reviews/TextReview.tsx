@@ -32,7 +32,7 @@ const TextReview = ({ onChange }: TextReviewProps) => {
             value={text}
             onChange={handleTextChange}
             maxLength={1000}
-            className="w-full bg-acodegray-50 px-[14px] py-[11px] body2 h-40 resize-none"
+            className="w-full bg-acodegray-50 px-[14px] py-[11px] body2 h-40 resize-none outline-none rounded-[8px]"
           />
           <div className="text-right caption1 mr-[14px] text-acodegray-700">
             {text.length}/<span className="text-acodegray-300">1000</span>

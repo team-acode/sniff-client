@@ -139,7 +139,7 @@ function Modal({ onReturn }: ModalProps) {
                     selectedOptions.includes(option)
                       ? 'bg-acodeblack text-white border-acodeblack'
                       : 'text-acodegray-400 border-acodegray-100'
-                  } rounded-[50px]`}
+                  } rounded-[50px] transition`}
                   onClick={() => toggleOption(option)}
                 >
                   <span className="text-[18px] font-semibold leading-[27px] tracking-[-0.45px]">
@@ -151,7 +151,11 @@ function Modal({ onReturn }: ModalProps) {
             <div className="flex justify-center pb-[18px]">
               <button
                 type="button"
-                className="bg-acodeblack w-full text-white py-3 px-4 rounded"
+                className={`${
+                  selectedOptions.length > 0
+                    ? 'bg-acodeblack'
+                    : 'bg-acodegray-300'
+                } w-full text-white py-3 px-4 rounded transition`}
                 onClick={completeSelection}
                 disabled={selectedOptions.length === 0}
               >

@@ -32,7 +32,7 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
   };
 
   return (
-    <div className="mx-4 mb-[131px]">
+    <div className="mx-4 mb-[52px]">
       <div className="review-2 mb-5 h-[30px] flex items-center">
         <span>사진 첨부</span>
         <span className="block text-acodegray-300 ml-3 h-4 text-[16px] font-medium mb-[2px] leading-[16px] mr-auto">
@@ -44,7 +44,7 @@ const InputPhoto = ({ onChange }: { onChange: (photos: File[]) => void }) => {
         </button>
       </div>
       {isSpread ? (
-        <div className="flex flex-row items-center space-x-2 mb-[26px]">
+        <div className="flex flex-row items-center space-x-2">
           {photos.map((photo, index) => (
             <div key={photo.name} className="relative">
               <Image
