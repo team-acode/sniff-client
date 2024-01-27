@@ -30,7 +30,7 @@ export default function Home({ searchParams }: HomePageProps) {
           <span className="body1 mr-1 font-semibold shrink-0">
             더 보러 가기
           </span>
-          <ArrowRightIcon />
+          <ArrowRightIcon className="fill-acodewhite" />
         </Link>
       </div>
     </div>
