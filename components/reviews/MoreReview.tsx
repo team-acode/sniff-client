@@ -10,7 +10,6 @@ import {
 } from '@/constants/stats';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { maskingNickname } from '@/utils/common';
 import MoreReviewTop from '@/components/reviews/MoreReviewTop';
 
 interface TReview {
@@ -108,7 +107,7 @@ const MoreReview = ({ id, initialReviewData }: PerfumeReviewProps) => {
                 </div>
 
                 <div className="text-acodegray-400 caption2 ml-[10px]">
-                  {maskingNickname(review.nickname)}
+                  {review.nickname}
                 </div>
               </div>
               <div className="text-[16px] font-semibold leading-[18px] tracking-[-0.4px] text-acodeblack mb-2.5">

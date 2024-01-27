@@ -19,6 +19,7 @@ import {
   styleMappingR,
 } from '@/constants/stats';
 import { useRouter } from 'next/navigation';
+import { CompressImage } from '@/utils/compression';
 
 export async function getPresignedUrl(name: string) {
   const response = await fetch(
@@ -91,10 +92,11 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
 
       const presignedUrl = await getPresignedUrl(photoName);
 
-      if (presignedUrl) {
+      const compressedPhoto = await CompressImage(photo);
+      if (presignedUrl && compressedPhoto) {
         const uploadResponse = await fetch(presignedUrl, {
           method: 'PUT',
-          body: photo,
+          body: compressedPhoto,
         });
 
         if (!uploadResponse.ok) {
