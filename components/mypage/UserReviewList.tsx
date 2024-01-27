@@ -17,7 +17,7 @@ const UserReviewList = ({ initialReviewData }: UserReviewListProps) => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView && page < initialReviewData.totalPages) {
+    if (userInfo && inView && page < initialReviewData.totalPages) {
       (async () => {
         const nextPage = page + 1;
         const response = await fetch(
@@ -25,7 +25,7 @@ const UserReviewList = ({ initialReviewData }: UserReviewListProps) => {
           {
             cache: `no-cache`,
             headers: {
-              Authorization: `Bearer ${userInfo?.jwt}`,
+              AUTHORIZATION: `Bearer ${userInfo.jwt}`,
             },
           },
         );

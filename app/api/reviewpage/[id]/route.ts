@@ -29,6 +29,7 @@ export async function POST(
         body: JSON.stringify(body.payload),
       },
     );
+
     if (!res.ok) {
       throw new Error(`Server responded with an error: ${res.status}`);
     }

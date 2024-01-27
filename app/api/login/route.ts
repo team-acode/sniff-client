@@ -43,6 +43,7 @@ export const POST = async (request: Request) => {
       status: 200,
     });
   }
+
   return new Response(LOGIN_FAILED, {
     status: 401,
   });

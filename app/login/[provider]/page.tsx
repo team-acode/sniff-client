@@ -13,30 +13,10 @@ interface RedirectPageProps {
 
 const RedirectPage = ({ params, searchParams }: RedirectPageProps) => {
   const router = useRouter();
+
   const { provider } = params;
   const { code } = searchParams;
   if (!provider && !code) router.push('/login');
-
-  // // const jwt = searchParams.jwtAccessToken;
-  // // const isInit = searchParams.init === 'true';
-  // const host = headers().get('host');
-  // const protocal = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
-
-  // const res = await fetch(`${protocal}://${host}/api/login`, {
-  //   method: 'POST',
-  //   body: JSON.stringify({
-  //     code,
-  //     provider,
-  //   }),
-  // });
-
-  // if (res.ok) {
-  //   if (res.status === 201) {
-  //     redirect('/mypage/username?init=true');
-  //   } else redirect('/');
-  // }
-
-  // redirect('/login');
 
   useEffect(() => {
     (async () => {

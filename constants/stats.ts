@@ -50,7 +50,7 @@ export const seasonMappingR: { [key: string]: string } = {
   여름: 'SUMMER',
   가을: 'AUTUMN',
   겨울: 'WINTER',
-  사계절: 'ALL',
+  사계절: 'ALLSEASONS',
 };
 export const longevityMappingR: { [key: string]: string } = {
   '1시간': 'ONEHOUR',

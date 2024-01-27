@@ -8,6 +8,8 @@ const nextConfig = {
       'acode-bucket-fragrance.s3.ap-northeast-2.amazonaws.com',
       'acode-bucket-review.s3.ap-northeast-2.amazonaws.com',
       'acode-bucket-brand.s3.ap-northeast-2.amazonaws.com',
+      'acode-bucket-family.s3.ap-northeast-2.amazonaws.com',
+      'acode-bucket-ingredient.s3.ap-northeast-2.amazonaws.com',
     ],
   },
   webpack: (config) => {

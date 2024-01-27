@@ -39,7 +39,7 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
   if (!data) return null;
 
   const photos: string[] = data.reviewPreviewList
-    .filter((review: Review) => review.thumbnail.length > 0)
+    .filter((review: Review) => review.thumbnail)
     .map((review: Review) => review.thumbnail)
     .slice(0, 3);
   if (data.reviewCnt === 0) {
@@ -133,7 +133,7 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
                     {review.nickname}
                   </div>
                 </div>
-                {review.thumbnail.length > 0 && (
+                {review.thumbnail && (
                   <div className="item-center">
                     <div className="relative w-[71px] h-[71px]">
                       <Image
