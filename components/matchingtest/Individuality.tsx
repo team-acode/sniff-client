@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSwiper } from 'swiper/react';
 
-interface PersistenceProps {
+interface IndividualProps {
   updateSelection: (selection: string[]) => void;
 }
 
-const Individuality = ({ updateSelection }: PersistenceProps) => {
+const Individuality = ({ updateSelection }: IndividualProps) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,15 +103,17 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
   return (
     <div className="mx-4 mt-4">
       <div className="flex flex-col">
-        <div className="h0 mb-20">
+        <div className="h0 mb-[49px]">
           <div>
             어떤
-            <span className="bg-black text-white px-3 rounded">개성적인</span>
+            <span className="bg-black text-white px-3 mx-[12px] rounded-sm">
+              개성적인
+            </span>
             향을
           </div>
           <div>원하시나요?</div>
         </div>
-
+        <div className="text-gray-500 body2 mb-3">*2개 선택 필수</div>
         <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
           {options.map((option) => (
             <div key={option.id} className="">
@@ -145,11 +147,11 @@ const Individuality = ({ updateSelection }: PersistenceProps) => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+      <div className="mt-[40px] left-0 right-0 flex justify-center ">
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
+          className={`px-4 rounded-lg h-[56px] w-full inline-flex items-center justify-center ${
             selectedOptions.length === 2
               ? 'bg-black text-white'
               : 'bg-acodegray-300 text-white'

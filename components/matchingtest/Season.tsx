@@ -3,19 +3,31 @@ import { Spring, Summer, Autumn, Winter } from '@/public/images';
 import Image from 'next/image';
 import { useSwiper } from 'swiper/react';
 
-interface PersistenceProps {
-  updateSelection: (selection: string) => void;
+interface SeasonProps {
+  updateSelection: (selection: string[]) => void;
 }
 
-const Season = ({ updateSelection }: PersistenceProps) => {
-  const [selectedSeason, setSelectedSeason] = useState<string>('');
-
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const Season = ({ updateSelection }: SeasonProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSelectedSeason(value);
-    updateSelection(value);
-  };
 
+    let newSelectedOptions = [...selectedOptions];
+
+    if (event.target.checked) {
+      if (newSelectedOptions.length >= 2) {
+        return;
+      }
+      newSelectedOptions.push(value);
+    } else {
+      newSelectedOptions = newSelectedOptions.filter(
+        (option) => option !== value,
+      );
+    }
+
+    setSelectedOptions(newSelectedOptions);
+    updateSelection(newSelectedOptions);
+  };
   const options = [
     {
       img: Spring,
@@ -52,17 +64,17 @@ const Season = ({ updateSelection }: PersistenceProps) => {
             <div key={option.id} className="flex flex-col items-center">
               <input
                 id={option.id}
-                type="radio"
+                type="checkbox"
                 name="season"
                 value={option.id}
-                checked={selectedSeason === option.id}
-                onChange={handleRadioChange}
+                checked={selectedOptions.includes(option.id)}
+                onChange={handleCheckboxChange}
                 className="sr-only"
               />
               <label
                 htmlFor={option.id}
                 className={`block w-[166px] h-[126px] text-center border ${
-                  selectedSeason === option.id
+                  selectedOptions.includes(option.id)
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
                 } rounded cursor-pointer p-4 flex flex-col items-center`}
@@ -75,14 +87,16 @@ const Season = ({ updateSelection }: PersistenceProps) => {
             </div>
           ))}
         </div>
-        <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+        <div className="mt-[40px] left-0 right-0 flex justify-center px-4">
           <button
             type="button"
             onClick={() => swiper.slideNext()}
             className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
-              selectedSeason ? 'bg-black text-white' : 'bg-gray-300 text-white'
+              selectedOptions.length > 0
+                ? 'bg-black text-white'
+                : 'bg-gray-300 text-white'
             }`}
-            disabled={!selectedSeason}
+            disabled={selectedOptions.length === 0}
           >
             다음
           </button>

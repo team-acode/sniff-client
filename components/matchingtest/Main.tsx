@@ -3,17 +3,30 @@ import { Wood, Indiv, Fruit, Flower } from '@/public/images';
 import Image from 'next/image';
 import { useSwiper } from 'swiper/react';
 
-interface PersistenceProps {
-  updateSelection: (selection: string) => void;
+interface MainProps {
+  updateSelection: (selection: string[]) => void;
 }
 
-const Main = ({ updateSelection }: PersistenceProps) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
-
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const Main = ({ updateSelection }: MainProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSelectedOption(value);
-    updateSelection(value);
+
+    let newSelectedOptions = [...selectedOptions];
+
+    if (event.target.checked) {
+      if (newSelectedOptions.length >= 2) {
+        return;
+      }
+      newSelectedOptions.push(value);
+    } else {
+      newSelectedOptions = newSelectedOptions.filter(
+        (option) => option !== value,
+      );
+    }
+
+    setSelectedOptions(newSelectedOptions);
+    updateSelection(newSelectedOptions);
   };
 
   const options = [
@@ -52,28 +65,23 @@ const Main = ({ updateSelection }: PersistenceProps) => {
             <div key={option.id} className="flex flex-col items-center">
               <input
                 id={option.id}
-                type="radio"
+                type="checkbox"
                 name="main"
                 value={option.id}
-                checked={selectedOption === option.id}
-                onChange={handleRadioChange}
+                checked={selectedOptions.includes(option.id)}
+                onChange={handleCheckboxChange}
                 className="sr-only"
               />
               <label
                 htmlFor={option.id}
                 className={`block w-[166px] h-[126px] text-center border ${
-                  selectedOption.includes(option.id)
+                  selectedOptions.includes(option.id)
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
                 } rounded cursor-pointer p-4 flex flex-col items-center`}
               >
                 <div className="w-[88px] h-[66px] mb-2 relative flex justify-center">
-                  <Image
-                    src={option.img}
-                    alt={`${option.id} main`}
-                    // layout="fill"
-                    // objectFit="cover"
-                  />
+                  <Image src={option.img} alt={`${option.id} main`} />
                 </div>
                 <div className="text-acodeblack body1">{option.label}</div>
               </label>
@@ -81,14 +89,16 @@ const Main = ({ updateSelection }: PersistenceProps) => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+      <div className="mt-[40px] left-0 right-0 flex justify-center">
         <button
           type="button"
           onClick={() => swiper.slideNext()}
           className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
-            selectedOption ? 'bg-black text-white' : 'bg-gray-300 text-white'
+            selectedOptions.length > 0
+              ? 'bg-black text-white'
+              : 'bg-gray-300 text-white'
           }`}
-          disabled={!selectedOption}
+          disabled={selectedOptions.length === 0}
         >
           다음
         </button>

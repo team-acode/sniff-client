@@ -55,11 +55,11 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
   return (
     <div className="mx-4 mt-4">
       <div className="flex flex-col">
-        <div className="h0 mb-20">
+        <div className="h0 mb-[49px]">
           <div>향수로 어떤 분위기를</div>
           <div>내고 싶으신가요?</div>
         </div>
-
+        <div className="text-gray-500 body2 mb-3">*2개 선택 필수</div>
         <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
           {vibeOptions.map((option) => (
             <div key={option.id} className="">
@@ -92,11 +92,11 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
             </div>
           ))}
         </div>
-        <div className="fixed bottom-20 left-0 right-0 flex justify-center px-4">
+        <div className="mt-[40px] left-0 right-0 flex justify-center">
           <button
             type="button"
             onClick={handleSubmit}
-            className={`px-4 rounded-lg h-[56px] w-[343px] inline-flex items-center justify-center ${
+            className={`px-4 rounded-lg h-[56px] w-full inline-flex items-center justify-center ${
               selectedVibes.length === 2
                 ? 'bg-black text-white'
                 : 'bg-acodegray-300 text-white'
