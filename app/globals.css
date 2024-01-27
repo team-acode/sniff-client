@@ -103,7 +103,7 @@
   background-color: #FF2D60 !important;
 }
 
-.swiper-pagination-horizontal {
+.detail-slider .swiper-pagination-horizontal {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -112,7 +112,7 @@
   height: 43px;
   bottom: 0 !important;
 }
-.swiper-pagination-bullet {
+.detail-slider .swiper-pagination-bullet {
   background-color: #fff !important;
   /* bottom: 11px !important; */
   margin-top: 20px !important;
@@ -120,7 +120,7 @@
   width: 6px !important;
 }
 
-.swiper-pagination-bullet-active {
+.detail-slider .swiper-pagination-bullet-active {
   background-color: #ff2d60 !important;
 }
 
