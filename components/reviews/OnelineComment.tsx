@@ -17,14 +17,16 @@ const OnelineComment = ({ onChange }: OnelineCommentProps) => {
     <div className="text-acodeblack">
       <div className="flex flex-row mx-4 justify-between">
         <div className="review-2  mb-5">한줄 리뷰</div>
-        <div className="text-right text-acodegray-400">{comment.length}/25</div>
+        <div className="body2 text-right text-acodegray-400">
+          {comment.length}/25
+        </div>
       </div>
       <div className="flex mx-4 justify-center items-center">
         <input
           type="text"
           value={comment}
           onChange={handleCommentChange}
-          className="w-full h-10 pl-2.5 bg-acodegray-50"
+          className="body2 font-medium w-full h-10 pl-2.5 bg-acodegray-50 placeholder:text-acodegray-300"
           placeholder="한줄 리뷰는 공백 포함 최대 25자 쓸 수 있어요"
           maxLength={25}
         />

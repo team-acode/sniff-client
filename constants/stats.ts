@@ -23,7 +23,7 @@ export const intensityMapping: { [key: string]: string } = {
 export const styleMapping: { [key: string]: string } = {
   CHIC: '시크한',
   MATURE: '성숙한',
-  LUXURIUS: '고급스러운',
+  LUXURIOUS: '고급스러운',
   ELEGANT: '우아한',
   MASCULINE: '남성적인',
   COMFORTABLE: '편안한',

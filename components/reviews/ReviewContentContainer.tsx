@@ -19,6 +19,7 @@ import {
   styleMappingR,
 } from '@/constants/stats';
 import { useRouter } from 'next/navigation';
+import { CompressImage } from '@/utils/compression';
 
 export async function getPresignedUrl(name: string) {
   const response = await fetch(
@@ -41,14 +42,14 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
   const [selectedSeason, setSelectedSeason] = useState<string>('');
   const [selectedPersistence, setSelectedPersistence] = useState<string>('');
   const [selectedIntensity, setSelectedIntensity] = useState<string>('');
-  const [modalValue, setModalValue] = useState<string>('');
+  const [modalValue, setModalValue] = useState<string[]>([]);
   const [starRatingError, setStarRatingError] = useState<boolean>(false);
   const [oneLineCommentError, setOneLineCommentError] =
     useState<boolean>(false);
   const [keyWordReviewError, setKeyWordReviewError] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleModalReturn = (value: any) => {
+  const handleModalReturn = (value: string[]) => {
     setModalValue(value);
   };
   const session = useSession();
@@ -74,7 +75,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
       !selectedSeason.trim() ||
       !selectedPersistence.trim() ||
       !selectedIntensity.trim() ||
-      !modalValue
+      modalValue.length === 0
     ) {
       setKeyWordReviewError(true);
       isValid = false;
@@ -91,10 +92,11 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
 
       const presignedUrl = await getPresignedUrl(photoName);
 
-      if (presignedUrl) {
+      const compressedPhoto = await CompressImage(photo);
+      if (presignedUrl && compressedPhoto) {
         const uploadResponse = await fetch(presignedUrl, {
           method: 'PUT',
-          body: photo,
+          body: compressedPhoto,
         });
 
         if (!uploadResponse.ok) {
@@ -112,14 +114,9 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
       longevityMappingR[selectedPersistence] || selectedPersistence;
     const translatedIntensity =
       intensityMappingR[selectedIntensity] || selectedIntensity;
-    let translatedModalValue = modalValue;
-    if (Array.isArray(modalValue)) {
-      translatedModalValue = modalValue
-        .map((val) => styleMappingR[val] || val)
-        .join(', ');
-    } else {
-      translatedModalValue = styleMappingR[modalValue] || modalValue;
-    }
+    const translatedModalValue = modalValue
+      .map((val) => styleMappingR[val])
+      .join(', ');
 
     const payload = {
       rate: starRating,
@@ -146,13 +143,10 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
     if (!res.ok) {
       return;
     }
-
-    // 서버로부터 반환된 응답을 로그로 출력
-    // const responseData = await res.json();
-    // console.log('Response from server:', responseData);
     router.refresh();
     router.push(`/perfumes/${id}?category=review`);
   };
+
   return (
     <>
       <InputStar onRatingChange={setStarRating} />
@@ -162,29 +156,23 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
         </div>
       )}
       <hr className="my-11 mx-4 border-t-[1.5px] border-acodegray-50" />
-      <div>
-        <OnelineComment onChange={setOneLineComment} />
-      </div>
+      <OnelineComment onChange={setOneLineComment} />
       {oneLineCommentError && (
         <div className="my-3">
           <ErrorMessage2 />
         </div>
       )}
       <hr className="my-11 mx-4 border-t-[1.5px] border-acodegray-50" />
-      <div>
-        <KeyWordReview
-          selectedSeason={selectedSeason}
-          selectedPersistence={selectedPersistence}
-          selectedIntensity={selectedIntensity}
-          onSeasonSelect={setSelectedSeason}
-          onPersistenceSelect={setSelectedPersistence}
-          onIntensitySelect={setSelectedIntensity}
-        />
+      <KeyWordReview
+        selectedSeason={selectedSeason}
+        selectedPersistence={selectedPersistence}
+        selectedIntensity={selectedIntensity}
+        onSeasonSelect={setSelectedSeason}
+        onPersistenceSelect={setSelectedPersistence}
+        onIntensitySelect={setSelectedIntensity}
+      />
 
-        <div>
-          <Modal onReturn={handleModalReturn} />
-        </div>
-      </div>
+      <Modal onReturn={handleModalReturn} />
       {keyWordReviewError && (
         <div className="my-3">
           <ErrorMessage3 />
@@ -194,7 +182,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
       <TextReview onChange={setTextReview} />
       <hr className="my-11 mx-4 border-t-[1.5px] border-acodegray-50" />
       <InputPhoto onChange={setPhotos} />
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center pb-4">
         <button
           type="button"
           className="bg-acodeblack w-full text-white  py-3 px-4 rounded"
