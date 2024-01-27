@@ -26,7 +26,9 @@ function Modal({ onReturn }: ModalProps) {
   };
 
   const removeOption = (option: string) => {
-    setSelectedOptions(selectedOptions.filter((o) => o !== option));
+    const newOptions = selectedOptions.filter((o) => o !== option);
+    setSelectedOptions(newOptions);
+    onReturn(newOptions);
   };
 
   const completeSelection = () => {

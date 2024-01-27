@@ -41,14 +41,14 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
   const [selectedSeason, setSelectedSeason] = useState<string>('');
   const [selectedPersistence, setSelectedPersistence] = useState<string>('');
   const [selectedIntensity, setSelectedIntensity] = useState<string>('');
-  const [modalValue, setModalValue] = useState<string>('');
+  const [modalValue, setModalValue] = useState<string[]>([]);
   const [starRatingError, setStarRatingError] = useState<boolean>(false);
   const [oneLineCommentError, setOneLineCommentError] =
     useState<boolean>(false);
   const [keyWordReviewError, setKeyWordReviewError] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleModalReturn = (value: any) => {
+  const handleModalReturn = (value: string[]) => {
     setModalValue(value);
   };
   const session = useSession();
@@ -74,7 +74,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
       !selectedSeason.trim() ||
       !selectedPersistence.trim() ||
       !selectedIntensity.trim() ||
-      !modalValue
+      modalValue.length === 0
     ) {
       setKeyWordReviewError(true);
       isValid = false;
@@ -112,14 +112,9 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
       longevityMappingR[selectedPersistence] || selectedPersistence;
     const translatedIntensity =
       intensityMappingR[selectedIntensity] || selectedIntensity;
-    let translatedModalValue = modalValue;
-    if (Array.isArray(modalValue)) {
-      translatedModalValue = modalValue
-        .map((val) => styleMappingR[val] || val)
-        .join(', ');
-    } else {
-      translatedModalValue = styleMappingR[modalValue] || modalValue;
-    }
+    const translatedModalValue = modalValue
+      .map((val) => styleMappingR[val])
+      .join(', ');
 
     const payload = {
       rate: starRating,
@@ -146,13 +141,10 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
     if (!res.ok) {
       return;
     }
-
-    // 서버로부터 반환된 응답을 로그로 출력
-    // const responseData = await res.json();
-    // console.log('Response from server:', responseData);
     router.refresh();
     router.push(`/perfumes/${id}?category=review`);
   };
+
   return (
     <>
       <InputStar onRatingChange={setStarRating} />
