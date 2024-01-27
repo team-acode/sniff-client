@@ -68,7 +68,7 @@ function Modal({ onReturn }: ModalProps) {
   return (
     <div>
       <div className="flex mx-4">
-        <div className="flex w-1/4 items-center justify-start review-3">
+        <div className="flex w-[71px] shrink-0 items-center justify-start review-3">
           스타일
         </div>
         <div className="flex w-full overflow-x-auto">
@@ -92,9 +92,11 @@ function Modal({ onReturn }: ModalProps) {
             <button
               type="button"
               onClick={handleModalOpen}
-              className="px-2.5 py-2 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
+              className="px-2.5 py-1 body2 h-[30px] text-acodegray-400 rounded-full border flex items-center justify-center"
             >
-              <span className="mr-2 ml-2 text-acodeblack">+</span>
+              <span className="w-6 h-6 text-acodeblack mr-[2px] text-[20px]">
+                +
+              </span>
               {selectedOptions.length === 0 && '어떤 스타일과 어울릴까요?'}
             </button>
           )}

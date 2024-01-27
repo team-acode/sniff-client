@@ -162,29 +162,23 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
         </div>
       )}
       <hr className="my-11 mx-4 border-t-[1.5px] border-acodegray-50" />
-      <div>
-        <OnelineComment onChange={setOneLineComment} />
-      </div>
+      <OnelineComment onChange={setOneLineComment} />
       {oneLineCommentError && (
         <div className="my-3">
           <ErrorMessage2 />
         </div>
       )}
       <hr className="my-11 mx-4 border-t-[1.5px] border-acodegray-50" />
-      <div>
-        <KeyWordReview
-          selectedSeason={selectedSeason}
-          selectedPersistence={selectedPersistence}
-          selectedIntensity={selectedIntensity}
-          onSeasonSelect={setSelectedSeason}
-          onPersistenceSelect={setSelectedPersistence}
-          onIntensitySelect={setSelectedIntensity}
-        />
+      <KeyWordReview
+        selectedSeason={selectedSeason}
+        selectedPersistence={selectedPersistence}
+        selectedIntensity={selectedIntensity}
+        onSeasonSelect={setSelectedSeason}
+        onPersistenceSelect={setSelectedPersistence}
+        onIntensitySelect={setSelectedIntensity}
+      />
 
-        <div>
-          <Modal onReturn={handleModalReturn} />
-        </div>
-      </div>
+      <Modal onReturn={handleModalReturn} />
       {keyWordReviewError && (
         <div className="my-3">
           <ErrorMessage3 />
