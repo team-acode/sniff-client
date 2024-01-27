@@ -43,3 +43,17 @@ export interface TReviewData {
   totalElements: number;
   data: TUserReview[];
 }
+
+export interface TWish {
+  fragranceId: number;
+  fragranceName: string;
+  brandName: string;
+  concentration: string;
+  thumbnail: string;
+}
+
+export interface TWishData {
+  totalPages: number;
+  totalElements: number;
+  data: TWish[];
+}
