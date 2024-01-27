@@ -1,5 +1,6 @@
 import React from 'react';
 import { Onboarding1 } from '@/public/images';
+import Image from 'next/image';
 
 const Slide1 = () => {
   return (
@@ -12,8 +13,8 @@ const Slide1 = () => {
         <div>떠올리기 쉬운 향 비유로 향료 용어 이해</div>
         <div>실제 사용자들의 리뷰 기반 향수 특징 파악</div>
       </div>
-      <div className="fixed bottom-0">
-        <Onboarding1 />
+      <div className="fixed bottom-0 w-full h-[500px]">
+        <Image src={Onboarding1} fill priority alt="Onboarding1" />
       </div>
     </div>
   );

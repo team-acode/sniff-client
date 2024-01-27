@@ -47,7 +47,7 @@ const Similar = ({ fragrance, style }: SimilarProps) => {
               <div className="text-acodegray-500 caption2 mb-1">
                 {perfume.brandName}
               </div>
-              <div className="text-acodeblack similar-1">
+              <div className="text-acodeblack similar-1 truncate">
                 {perfume.fragranceName}
               </div>
             </div>

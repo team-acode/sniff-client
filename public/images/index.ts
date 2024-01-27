@@ -62,9 +62,9 @@ export { default as BookMarkOffIcon } from './bookmarkoff.svg';
 export { default as BookMarkOnIcon } from './bookmarkon.svg';
 
 
-export { default as Onboarding1 } from './onboarding1.svg';
-export { default as Onboarding2 } from './onboarding2.svg';
-export { default as Onboarding3 } from './onboarding3.svg';
+export { default as Onboarding1 } from './onboarding1.png';
+export { default as Onboarding2 } from './onboarding2.png';
+export { default as Onboarding3 } from './onboarding3.png';
 
 export { default as Spring } from './Spring.jpg';
 export { default as Summer } from './Summer.jpg';
@@ -86,3 +86,5 @@ export { default as Loading4} from './Loading4.svg';
 
 export { default as Klogo} from './klogo.svg';
 export { default as LinkLogo} from './linklogo.svg';
+export {default as AcodeLogoSmallBlack} from './AcodeLogobaby.svg';
+export {default as RealArrow} from './realArrow.svg';
