@@ -44,9 +44,13 @@ const UserStyle = ({ families }: UserStyleProps) => {
                 </div>
 
                 <div className="body1 mb-6">{family.summary}</div>
-                <div className="body2">
-                  <span className="text-acodegray-400">#</span>
-                  {family.keyword}
+                <div className="flex flex-row">
+                  {family.keyword.split(',').map((keywords) => (
+                    <div key={keywords} className="body2 mr-2.5">
+                      <span className="text-acodegray-400">#</span>
+                      {keywords}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
