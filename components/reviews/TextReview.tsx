@@ -17,12 +17,16 @@ const TextReview = ({ onChange }: TextReviewProps) => {
 
   return (
     <div className="mx-4">
-      <div className="review-2 mb-5 h-[30px] flex items-center">
+      <div
+        className="review-2 mb-5 h-[30px] flex items-center"
+        onClick={() => setIsSpread(!isSpread)}
+        aria-hidden
+      >
         <span>텍스트 리뷰</span>
         <span className="block text-acodegray-300 ml-3 h-4 text-[16px] font-medium mb-[2px] leading-[16px] mr-auto">
           (선택)
         </span>
-        <button type="button" onClick={() => setIsSpread(!isSpread)}>
+        <button type="button">
           {isSpread ? <ArrowUpIcon3 /> : <ArrowDownIcon3 />}
         </button>
       </div>
