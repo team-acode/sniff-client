@@ -1,16 +1,4 @@
-import { getSession } from "@/utils/auth";
-
 export async function POST(req: Request)  {
-  const userInfo = getSession();
-
-  if (!userInfo) {
-    return new Response(JSON.stringify({ message: 'Unauthorized' }), {
-      status: 401,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
 
   try {
     const body = await req.json();
@@ -18,7 +6,6 @@ export async function POST(req: Request)  {
     {
       headers: {
         'Content-Type': 'application/json',
-        AUTHORIZATION: `Bearer ${userInfo.jwt}`,
       },
       method: 'POST',
       body: JSON.stringify(body.payload),
