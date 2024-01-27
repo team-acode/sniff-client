@@ -38,7 +38,7 @@ const page = async ({ searchParams }: MyPageProps) => {
         </div>
         <Link
           href="/mypage/reviews"
-          className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
+          className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px] rounded-sm"
         >
           <span className="body1 mr-[9px]">
             {searchParams.nickname || user.nickname}님이 작성한 리뷰

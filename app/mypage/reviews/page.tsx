@@ -1,24 +1,29 @@
 import SimpleNav from '@/components/mypage/SimpleNav';
-import UserReviewItem from '@/components/mypage/UserReviewItem';
-import { USER_REVIEWS } from '@/constants/tempUserReviews';
-import { TUserReview } from '@/types';
+import { getSession } from '@/utils/auth';
+import { redirect } from 'next/navigation';
+import { TReviewData } from '@/types';
+import UserReviewList from '@/components/mypage/UserReviewList';
 
-const page = () => {
-  const reviews = USER_REVIEWS;
+const page = async () => {
+  const userInfo = getSession();
+  if (!userInfo) redirect('/login');
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/mypage/review`,
+    {
+      cache: 'no-cache',
+      headers: {
+        Authorization: `Bearer ${userInfo.jwt}`,
+      },
+    },
+  );
+  if (!res.ok) return null;
+  const reviewData: TReviewData = await res.json();
 
   return (
     <div>
       <SimpleNav title="작성한 리뷰" />
-      <ul className="mt-[70px] mx-4">
-        {reviews.data.map((review: TUserReview, idx) => (
-          <>
-            <UserReviewItem review={review} />
-            {idx !== reviews.count - 1 ? (
-              <hr className="my-5 border-t-[2px] border-[#f5f5f5]" />
-            ) : null}
-          </>
-        ))}
-      </ul>
+      <UserReviewList initialReviewData={reviewData} />
     </div>
   );
 };

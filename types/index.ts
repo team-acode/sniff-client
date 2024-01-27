@@ -29,10 +29,31 @@ export interface TBrand {
 }
 
 export interface TUserReview {
+  reviewId: number;
+  fragranceId: number;
+  fragranceName: string;
   brandName: string;
-  perfumeName: string;
-  perfumeId: number;
-  content: string;
-  rating: number;
-  imageUrl: string;
+  comment: string;
+  rate: number;
+  thumbnail: string;
+}
+
+export interface TReviewData {
+  totalPages: number;
+  totalElements: number;
+  data: TUserReview[];
+}
+
+export interface TWish {
+  fragranceId: number;
+  fragranceName: string;
+  brandName: string;
+  concentration: string;
+  thumbnail: string;
+}
+
+export interface TWishData {
+  totalPages: number;
+  totalElements: number;
+  data: TWish[];
 }

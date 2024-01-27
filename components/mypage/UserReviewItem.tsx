@@ -1,12 +1,8 @@
 'use client';
 
 import MyPageModalTemplate from '@/components/mypage/MyPageModalTemplate';
-import {
-  EmptyStarIcon,
-  FullStarIcon,
-  SmallCircleIcon,
-  SmallXIcon,
-} from '@/public/images';
+import { useSession } from '@/hooks/useSession';
+import { EmptyStarIcon, FullStarIcon, SmallCircleIcon } from '@/public/images';
 import { TUserReview } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,14 +26,30 @@ export const rateStarHandler = (rating: number) => {
 };
 
 const UserReviewItem = ({ review }: UserReviewItemProps) => {
+  const userInfo = useSession();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleClickDeleteButton = async () => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/review/${review.reviewId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${userInfo?.jwt}`,
+        },
+      },
+    );
+    if (res.ok) {
+      setIsModalOpen(false);
+    }
+  };
 
   return (
     <>
       {isModalOpen ? (
         <MyPageModalTemplate
           closeModal={() => setIsModalOpen(false)}
-          handleClickOk={() => {}}
+          handleClickOk={handleClickDeleteButton}
           title="리뷰를 삭제할까요?"
           height="h-[176px]"
           titleBodyMargin="mt-1"
@@ -46,7 +58,7 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
         </MyPageModalTemplate>
       ) : null}
       <li className="h-[101px] w-full relative">
-        <Link href={`/perfumes/${review.perfumeId}`} className="">
+        <Link href={`/perfumes/${review.fragranceId}`} className="">
           <button
             type="button"
             className="absolute top-0 right-[2px]"
@@ -55,7 +67,20 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
               setIsModalOpen(true);
             }}
           >
-            <SmallXIcon />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="17"
+              viewBox="0 0 16 17"
+              fill="none"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M3.75824 3.4082L2.81543 4.35101L7.05827 8.59385L2.81572 12.8364L3.75853 13.7792L8.00108 9.53666L12.2435 13.7791L13.1863 12.8363L8.94389 8.59385L13.1866 4.35111L12.2438 3.4083L8.00108 7.65104L3.75824 3.4082Z"
+                fill="#A6A49F"
+              />
+            </svg>
           </button>
           <div className="body2 text-acodegray-500 flex items-center gap-[5px]">
             <button
@@ -65,18 +90,26 @@ const UserReviewItem = ({ review }: UserReviewItemProps) => {
             >
               {review.brandName}
             </button>
-            <SmallCircleIcon className=" fill-acodegray-700" />
-            <span className="">{review.perfumeName}</span>
+            <SmallCircleIcon className=" fill-acodegray-500" />
+            <span className="">{review.fragranceName}</span>
           </div>
           <div className="mt-2 flex pr-[9px]">
             <div className="mr-auto">
               <p className="body1 font-semibold text-ellipsis whitespace-nowrap overflow-hidden w-[248px]">
-                {review.content}
+                {review.comment}
               </p>
-              <div className="flex mt-3">{rateStarHandler(review.rating)}</div>
+              <div className="flex mt-3">{rateStarHandler(review.rate)}</div>
             </div>
 
-            <Image src="/" alt="perfume" width={72} height={72} />
+            {review.thumbnail ? (
+              <Image
+                src={review.thumbnail}
+                alt="perfume"
+                width={72}
+                height={72}
+                className="w-[72px] h-[72px]"
+              />
+            ) : null}
           </div>
         </Link>
       </li>
