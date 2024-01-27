@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { useSession } from '@/hooks/useSession';
 import Slider from '@/components/matchingtest/Slider';
 import Vibe from '@/components/matchingtest/Vibe';
 import Individuality from '@/components/matchingtest/Individuality';
@@ -27,18 +26,18 @@ interface Fragrance {
 }
 
 interface SelectionsState {
-  persistence: string;
-  season: string;
-  main: string;
+  persistence: string[];
+  season: string[];
+  main: string[];
   vibe: string[];
   individuality: string[];
 }
 
 const Page = () => {
   const [selections, setSelections] = useState<SelectionsState>({
-    persistence: '',
-    season: '',
-    main: '',
+    persistence: [],
+    season: [],
+    main: [],
     vibe: [],
     individuality: [],
   });
@@ -47,31 +46,22 @@ const Page = () => {
     category: keyof SelectionsState,
     selection: string | string[],
   ) => {
-    setSelections((prevSelections) => ({
-      ...prevSelections,
-      [category]: selection,
-    }));
+    setSelections((prev) => ({ ...prev, [category]: selection }));
   };
-  const session = useSession();
-  const token = session?.jwt;
+
   const handleSubmit = async () => {
     const payload = {
       concentration: selections.persistence,
       season: selections.season,
       mainFamily: selections.main,
-      scent1: selections.individuality[0],
-      scent2: selections.individuality[1],
-      style1: selections.vibe[0],
-      style2: selections.vibe[1],
+      scent: selections.individuality,
+      style: selections.vibe,
     };
 
-    const headers = new Headers();
-    headers.set('AUTHORIZATION', token!);
     try {
       const res = await fetch(`/api/extract`, {
         method: 'POST',
         body: JSON.stringify({ payload }),
-        headers,
       });
 
       if (!res.ok) {
@@ -93,7 +83,6 @@ const Page = () => {
           }
         });
       });
-
       responseData.fragrances.forEach(
         (fragrance: Fragrance, fragranceIndex: number) => {
           Object.entries(fragrance).forEach(([key, value]) => {
@@ -110,13 +99,12 @@ const Page = () => {
       console.error('Error sending data:', error);
     }
   };
-
   const slides = [
     {
       name: 'persistence',
       component: (
         <Persistence
-          updateSelection={(selection: string) =>
+          updateSelection={(selection: string[]) =>
             updateSelections('persistence', selection)
           }
         />
@@ -126,7 +114,7 @@ const Page = () => {
       name: 'season',
       component: (
         <Season
-          updateSelection={(selection: string) =>
+          updateSelection={(selection: string[]) =>
             updateSelections('season', selection)
           }
         />
@@ -136,7 +124,7 @@ const Page = () => {
       name: 'main',
       component: (
         <Main
-          updateSelection={(selection: string) =>
+          updateSelection={(selection: string[]) =>
             updateSelections('main', selection)
           }
         />
