@@ -22,7 +22,9 @@ const page = async ({ params, searchParams }: CategoryPageProps) => {
         }`
       : ''
   }`;
-  const { data, totalPages } = await getPerfumes(searchParamString);
+  const { data, totalPages } = await getPerfumes(
+    `/display?${searchParamString}`,
+  );
 
   if (!data) return null;
 

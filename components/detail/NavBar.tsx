@@ -1,43 +1,43 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import {
-  PreviousIcon,
   BookMarkOnIcon,
   BookMarkOffIcon,
   HomeIcon,
+  ArrowLeftIcon,
 } from '@/public/images';
+import { useRouter } from 'next/navigation';
+import { useWish } from '@/hooks/useWish';
 
-const Navbar = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+interface NavBarProps {
+  id: string;
+  initialWishState: boolean;
+}
 
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-  };
+const Navbar = ({ id, initialWishState }: NavBarProps) => {
+  const { isWishOn, handleClickWish } = useWish(Number(id), initialWishState);
+
+  const router = useRouter();
 
   return (
-    <nav className="flex justify-between items-center py-2 bg-white">
-      <Link href={'/'}>
-        <PreviousIcon className="cursor-pointer text-black" />
-      </Link>
-      <div className="flex space-x-4">
-        {isBookmarked ? (
-          <BookMarkOnIcon
-            className="cursor-pointer text-black"
-            onClick={toggleBookmark}
-          />
+    <div className="flex fixed top-0 items-center w-full max-w-[430px] pt-[13px] pl-[10px] pr-[13px] pb-[11px] bg-acodewhite z-20">
+      <button type="button" className="mr-auto" onClick={() => router.back()}>
+        <ArrowLeftIcon className="fill-acodeblack" />
+      </button>
+
+      <button type="button" className="mr-[11px]" onClick={handleClickWish}>
+        {isWishOn ? (
+          <BookMarkOnIcon className="cursor-pointer text-black" />
         ) : (
-          <BookMarkOffIcon
-            className="cursor-pointer text-black"
-            onClick={toggleBookmark}
-          />
+          <BookMarkOffIcon className="cursor-pointer text-black" />
         )}
-        <Link href={'/'}>
-          <HomeIcon className="cursor-pointer text-black" />
-        </Link>
-      </div>
-    </nav>
+      </button>
+      <Link href="/" className="">
+        <HomeIcon className=" fill-acodeblack" />
+      </Link>
+    </div>
   );
 };
 

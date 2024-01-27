@@ -14,8 +14,9 @@ const page = async ({ params }: CategoryPageProps) => {
 
   const searchParamString = `ingredient=${query}`;
 
-  const { data, totalElements, totalPages } =
-    await getPerfumes(searchParamString);
+  const { data, totalElements, totalPages } = await getPerfumes(
+    `/display?${searchParamString}`,
+  );
 
   if (!data) return null;
 

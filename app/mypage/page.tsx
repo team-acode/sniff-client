@@ -1,4 +1,4 @@
-import BlurryNav from '@/components/common/BlurryNav';
+import DetailCommonNav from '@/components/common/DetailCommonNav';
 import LeaveButton from '@/components/mypage/LeaveButton';
 import LogoutButton from '@/components/mypage/LogoutButton';
 import WishPreviewItem from '@/components/mypage/WishPreviewItem';
@@ -15,6 +15,7 @@ const page = async ({ searchParams }: MyPageProps) => {
   if (!userInfo) redirect('/login');
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mypage`, {
+    cache: 'no-cache',
     headers: {
       AUTHORIZATION: `Bearer ${userInfo.jwt}`,
     },
@@ -25,7 +26,7 @@ const page = async ({ searchParams }: MyPageProps) => {
 
   return (
     <div className="">
-      <BlurryNav />
+      <DetailCommonNav />
       <div className="pt-[70px] mx-4">
         <div className="flex items-center">
           <h1 className="h0 mr-1">
@@ -37,7 +38,7 @@ const page = async ({ searchParams }: MyPageProps) => {
         </div>
         <Link
           href="/mypage/reviews"
-          className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px]"
+          className="bg-acodeblack text-acodewhite flex items-center mt-3 h-[42px] px-[10px] rounded-sm"
         >
           <span className="body1 mr-[9px]">
             {searchParams.nickname || user.nickname}님이 작성한 리뷰

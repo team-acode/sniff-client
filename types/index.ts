@@ -9,6 +9,7 @@ export interface TPerfume {
   fragranceName?: string;
   thumbnail?: string;
   brandName?: string;
+  korBrand?: string;
   style?: string[];
   poster?: string;
   id?: number;
@@ -22,17 +23,37 @@ export interface TPerfume {
 }
 
 export interface TBrand {
-  id: number;
-  brandNameKor: string;
-  brandNameEng: string;
-  imageUrl: string;
+  brandId: number;
+  korName: string;
+  roundImg: string | null;
 }
 
 export interface TUserReview {
+  reviewId: number;
+  fragranceId: number;
+  fragranceName: string;
   brandName: string;
-  perfumeName: string;
-  perfumeId: number;
-  content: string;
-  rating: number;
-  imageUrl: string;
+  comment: string;
+  rate: number;
+  thumbnail: string;
+}
+
+export interface TReviewData {
+  totalPages: number;
+  totalElements: number;
+  data: TUserReview[];
+}
+
+export interface TWish {
+  fragranceId: number;
+  fragranceName: string;
+  brandName: string;
+  concentration: string;
+  thumbnail: string;
+}
+
+export interface TWishData {
+  totalPages: number;
+  totalElements: number;
+  data: TWish[];
 }

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { STYLEOPTIONS } from '@/constants/styles';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface ModalProps {
   onReturn: (value: any) => void;
@@ -7,31 +8,6 @@ interface ModalProps {
 function Modal({ onReturn }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
-  const MODALOPTIONS = [
-    '시크한',
-    '성숙한',
-    '고급스러운',
-    '우아한',
-    '남성적인',
-    '편안한',
-    '차분한',
-    '중성적인',
-    '친근한',
-    '깨끗한',
-    '포근한',
-    '사랑스러운',
-    '관능적인',
-    '은은한',
-    '활기찬',
-    '밝은',
-    '화사한',
-    '여성스러운',
-    '청순한',
-    '무게감있는',
-    '가벼운',
-    '부드러운',
-  ];
 
   const handleModalOpen = () => {
     setIsOpen(true);
@@ -50,7 +26,9 @@ function Modal({ onReturn }: ModalProps) {
   };
 
   const removeOption = (option: string) => {
-    setSelectedOptions(selectedOptions.filter((o) => o !== option));
+    const newOptions = selectedOptions.filter((o) => o !== option);
+    setSelectedOptions(newOptions);
+    onReturn(newOptions);
   };
 
   const completeSelection = () => {
@@ -65,32 +43,78 @@ function Modal({ onReturn }: ModalProps) {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleOutsideClose = (e: { target: any }) => {
+      if (isOpen && !modalRef?.current?.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('click', handleOutsideClose);
+
+    return () => document.removeEventListener('click', handleOutsideClose);
+  }, [isOpen]);
+
   return (
     <div>
       <div className="flex mx-4">
-        <div className="flex w-1/4 items-center justify-start review-3">
+        <div className="flex w-[71px] shrink-0 items-center justify-start review-3">
           스타일
         </div>
         <div className="flex w-full overflow-x-auto">
-          <div className="flex whitespace-nowrap">
-            {selectedOptions.map((option, index) => (
-              <div key={index} className="flex items-center mr-1">
-                <span className="px-2.5 py-2 body2 text-white bg-black rounded-full border flex items-center justify-center">
-                  {option}
-                  <button className="ml-1" onClick={() => removeOption(option)}>
-                    X
-                  </button>
-                </span>
+          <div className="flex whitespace-nowrap h-[30px]">
+            {selectedOptions.map((option) => (
+              <div
+                key={option}
+                className="body2 text-acodewhite bg-black border flex items-center justify-center rounded-[50px] mr-1 px-[10px]"
+              >
+                <span className="">{option}</span>
+                <button
+                  type="button"
+                  className="ml-[2px]"
+                  onClick={() => removeOption(option)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="16"
+                    viewBox="0 0 15 16"
+                    fill="none"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M3.52451 3.13867L2.64062 4.02256L6.61829 8.00022L2.6409 11.9776L3.52479 12.8615L7.50217 8.8841L11.4795 12.8614L12.3633 11.9775L8.38605 8.00022L12.3636 4.02265L11.4797 3.13877L7.50217 7.11633L3.52451 3.13867Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
               </div>
             ))}
           </div>
+          {}
           {selectedOptions.length < 3 && (
             <button
+              type="button"
               onClick={handleModalOpen}
-              className="px-2.5 py-2 body2 text-acodegray-400 rounded-full border flex items-center justify-center"
+              className="h-[30px] body2 text-acodegray-400 rounded-full border flex items-center justify-center"
             >
-              <span className="mr-2 ml-2 text-acodeblack">+</span>
-              {selectedOptions.length === 0 && '어떤 스타일과 어울릴까요?'}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="mx-[3px]"
+              >
+                <path
+                  d="M11.2857 11.2857V7H12.7143V11.2857H17V12.7143H12.7143V17H11.2857V12.7143H7V11.2857H11.2857Z"
+                  fill="#292323"
+                />
+              </svg>
+              {selectedOptions.length === 0 && (
+                <span className="mr-[10px]">어떤 스타일과 어울릴까요?</span>
+              )}
             </button>
           )}
         </div>
@@ -98,33 +122,42 @@ function Modal({ onReturn }: ModalProps) {
 
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end">
-          <div className="bg-white shadow-lg mx-auto w-full">
-            <div className="flex justify-center item-center p-4">
-              <div>
-                <div className="h1 text-acodblack text-center">스타일</div>
-                <div className="caption2 text-acodegray-500">
-                  *최대 3개까지 고를 수 있습니다.
-                </div>
+          <div
+            className="bg-white shadow-lg mx-auto w-full h-[491px]"
+            ref={modalRef}
+          >
+            <div className="flex flex-col justify-center items-center mt-[26px] w-full">
+              <div className="h1 text-acodblack mb-[10px]">스타일</div>
+              <div className="caption2 text-acodegray-300">
+                *최대 3개까지 고를 수 있습니다
               </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 p-4">
-              {MODALOPTIONS.map((option, index) => (
+            <div className="flex flex-row flex-wrap gap-x-2.5 gap-y-3 mt-6 mb-5 mx-[30px]">
+              {STYLEOPTIONS.map((option) => (
                 <button
-                  key={index}
-                  className={`${
+                  type="button"
+                  key={option}
+                  className={`h-8 px-[9px] py-[2px] border-[1.5px] ${
                     selectedOptions.includes(option)
                       ? 'bg-acodeblack text-white border-acodeblack'
-                      : 'text-acodegray-400 border-acodeblack'
-                  } rounded-full p-2 border-2 border-acodegray-100 `}
+                      : 'text-acodegray-400 border-acodegray-100'
+                  } rounded-[50px] transition`}
                   onClick={() => toggleOption(option)}
                 >
-                  {option}
+                  <span className="text-[18px] font-semibold leading-[27px] tracking-[-0.45px]">
+                    {option}
+                  </span>
                 </button>
               ))}
             </div>
-            <div className="flex justify-center p-4">
+            <div className="flex justify-center pb-[18px]">
               <button
-                className="bg-acodeblack w-full text-white py-3 px-4 rounded"
+                type="button"
+                className={`${
+                  selectedOptions.length > 0
+                    ? 'bg-acodeblack'
+                    : 'bg-acodegray-300'
+                } w-full text-white py-3 px-4 rounded transition`}
                 onClick={completeSelection}
                 disabled={selectedOptions.length === 0}
               >

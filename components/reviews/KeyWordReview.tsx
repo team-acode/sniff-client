@@ -1,4 +1,5 @@
 import React from 'react';
+
 interface KeyWordReviewProps {
   onSeasonSelect: (season: string) => void;
   onPersistenceSelect: (persistence: string) => void;
@@ -19,13 +20,14 @@ const KeyWordReview = ({
   const seasons = ['봄', '여름', '가을', '겨울', '사계절'];
   const persistence = ['1시간', '3-4시간', '반나절', '하루종일'];
   const intensity = ['약함', '보통', '진함', '아주진함'];
+
   return (
     <div className="mx-4">
       <div className="review-2 mb-5">키워드 리뷰</div>
       {/* Seasons */}
-      <div className="flex overflow-x-auto mb-5">
-        <div className="flex w-1/5 items-center justify-start review-3">
-          계절감{' '}
+      <div className="flex overflow-x-auto mb-5 h-[30px]">
+        <div className="flex w-[71px] items-center justify-start review-3">
+          계절감
         </div>
         {seasons.map((season) => (
           <div key={season} className="form-radio-group overflow-auto-x">
@@ -48,8 +50,8 @@ const KeyWordReview = ({
         ))}
       </div>
       {/* Persistence */}
-      <div className="flex overflow-auto mb-5">
-        <div className="flex w-1/5 items-center justify-start review-3">
+      <div className="flex overflow-auto mb-5 h-[30px]">
+        <div className="flex w-[71px] items-center justify-start review-3">
           지속성
         </div>
         {persistence.map((duration) => (
@@ -73,8 +75,8 @@ const KeyWordReview = ({
         ))}
       </div>
       {/* Intensity */}
-      <div className="flex overflow-auto mb-5">
-        <div className="flex w-1/5 items-center justify-start review-3">
+      <div className="flex overflow-auto mb-5 h-[30px]">
+        <div className="flex w-[71px] items-center justify-start review-3">
           향의 세기
         </div>
         {intensity.map((intensityLevel) => (

@@ -1,26 +1,27 @@
-import {
-  RedFullStar,
-  RedEmptyStar,
-  RedHalfStar,
-  BlackEmptyStar,
-  BlackFullStar,
-  NoReview,
-} from '@/public/images';
-import testImg from '@/public/images/test.jpg';
-import Image from 'next/image';
 import MoreReview from '@/components/reviews/MoreReview';
 import ReviewNavbar from '@/components/reviews/ReviewNavbar';
 import AddReview from '@/components/detail/AddReviewButton';
+
 interface ReviewPageProps {
   params: { id: string };
 }
-const page = ({ params }: ReviewPageProps) => {
+
+const page = async ({ params }: ReviewPageProps) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review`,
+    { cache: `no-cache` },
+  );
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const data = await response.json();
+
   return (
-    <div>
+    <div className="mb-10">
       <ReviewNavbar />
-      <div>
-        <MoreReview id={params.id} />
-      </div>
+      <MoreReview id={params.id} initialReviewData={data} />
       <div className="flex justify-center item-center">
         <AddReview id={params.id} />
       </div>

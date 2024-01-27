@@ -63,13 +63,15 @@ const DetailPageTemplate = async ({
             />
           ) : null}
         </div>
-        <div className="flex text-[14px] font-medium tracking-[-0.14px] gap-[10px] mb-[20px]">
-          {info.keyword.map((tag: string) => (
-            <span key={tag} className="">
-              #{tag}
-            </span>
-          ))}
-        </div>
+        {sort !== 'ingredient' ? (
+          <div className="flex text-[14px] font-medium tracking-[-0.14px] gap-[10px] mb-[20px]">
+            {info.keyword.map((tag: string) => (
+              <span key={tag} className="">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
         <p className="w-[281px] text-[16px] font-medium leading-[24px] tracking-[-0.4px] break-keep">
           {info.summary}
         </p>

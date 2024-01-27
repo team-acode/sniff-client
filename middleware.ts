@@ -4,6 +4,7 @@ import { getSession } from './utils/auth';
 
 export function middleware(request: NextRequest) {
   const userInfo = getSession();
+
   const { pathname } = request.nextUrl;
 
   if (pathname === '/login' && userInfo)
@@ -25,6 +26,6 @@ export const config = {
     '/welcome',
     '/mypage/:path',
     '/find-taste/:path',
-    '/reviews/:path',
+    '/perfumes/:path/reviews/new',
   ],
 };

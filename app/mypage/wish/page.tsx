@@ -1,23 +1,30 @@
 import SimpleNav from '@/components/mypage/SimpleNav';
-import WishItem from '@/components/mypage/WishItem';
-import { PERFUMES } from '@/constants/tempPurfumes';
+import UserWishList from '@/components/mypage/UserWishList';
+import { TWishData } from '@/types';
+import { getSession } from '@/utils/auth';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
-const page = () => {
-  const perfumes = PERFUMES.data;
+const page = async () => {
+  const userInfo = getSession();
+  if (!userInfo) redirect('/login');
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/mypage/scrap`,
+    {
+      cache: 'no-cache',
+      headers: {
+        Authorization: `Bearer ${userInfo.jwt}`,
+      },
+    },
+  );
+  if (!res.ok) return null;
+  const wishData: TWishData = await res.json();
 
   return (
     <div>
       <SimpleNav title="스크랩" />
-      <ul className="mt-[70px] mx-4">
-        {perfumes.map((perfume, idx) => (
-          <>
-            <WishItem perfume={perfume} />
-            {idx !== PERFUMES.count - 1 ? (
-              <hr className="my-5 border-t-[2px] border-[#f5f5f5]" />
-            ) : null}
-          </>
-        ))}
-      </ul>
+      <UserWishList initialWishData={wishData} />
     </div>
   );
 };

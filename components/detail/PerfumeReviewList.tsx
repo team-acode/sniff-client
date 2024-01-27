@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import {
   RedFullStar,
   RedEmptyStar,
@@ -9,7 +9,7 @@ import {
   BlackFullStar,
   NoReview,
 } from '@/public/images';
-import Image from 'next/image';
+
 interface Review {
   comment: string;
   rate: number;
@@ -21,26 +21,22 @@ interface PerfumeReviewProps {
 }
 
 export async function getPreReviewList(params: { id: string }) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review/preview`,
-      { cache: `no-cache` },
-    );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}/review/preview`,
+    { cache: `no-cache` },
+  );
 
-    if (!response.ok) {
-      console.error('API fetch failed:', response.status);
-      throw new Error(`API fetch failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Failed to fetch perfume data:', error);
+  if (!response.ok) {
+    return null;
   }
+
+  const data = await response.json();
+  return data;
 }
 
 const ReviewContent = async ({ id }: PerfumeReviewProps) => {
   const data = await getPreReviewList({ id });
+  if (!data) return null;
 
   const photos: string[] = data.reviewPreviewList
     .filter((review: Review) => review.thumbnail.length > 0)
@@ -56,83 +52,106 @@ const ReviewContent = async ({ id }: PerfumeReviewProps) => {
   const averageRating = data.rateSum / data.reviewCnt;
 
   const fullStars = Math.floor(averageRating);
-  const halfStar = averageRating % 1 >= 0.5 ? 1 : 0; //반올림
+  const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
   const emptyStars = 5 - fullStars - halfStar;
   const reviewsToShow = data.reviewPreviewList.slice(0, 3);
   return (
     <div className="mx-4">
       <div>
-        <div className="flex justify-between items-center mb-9">
-          <div className="flex items-center">
+        <div className="flex justify-between items-center mb-[30px]">
+          <div className="flex">
             {Array.from({ length: fullStars }, (_, i) => (
-              <RedFullStar key={i} />
+              <RedFullStar key={i} className="mt-[1px]" />
             ))}
-            {halfStar > 0 && <RedHalfStar />}
+            {halfStar > 0 && <RedHalfStar className="mt-[1px]" />}
             {Array.from({ length: emptyStars }, (_, i) => (
-              <RedEmptyStar key={i} />
+              <RedEmptyStar key={i} className="mt-[1px]" />
             ))}
             <div className="text-acodegray-400 ml-2">{data.reviewCnt}건</div>
           </div>
           <Link
-            href={`/morereviews/${data.fragranceId}`}
-            className="caption2 text-acodegray-300 text-right"
+            href={`/perfumes/${data.fragranceId}/reviews`}
+            className="caption2 text-acodegray-300 text-right flex items-center"
           >
-            {' '}
-            리뷰 더보기 {'>'}
+            <span className="">리뷰 더보기</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <g clipPath="url(#clip0_1793_22309)">
+                <path
+                  d="M10.9766 10.0006L6.85156 5.8756L8.0299 4.69727L13.3332 10.0006L8.0299 15.3039L6.85156 14.1256L10.9766 10.0006Z"
+                  fill="#C0BEBB"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1793_22309">
+                  <rect width="20" height="20" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
           </Link>
         </div>
 
-        <div className="flex flex-row mb-9">
+        <div className="flex gap-[14px] w-full">
           {photos.map((photo, index: number) => (
-            <div key={index} className="w-1/3 flex items-center justify-center">
-              <div className="relative w-[110px] h-[110px] overflow-hidden rounded-md">
-                <Image
-                  src={photo}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="rounded-md"
-                  fill
-                />
-              </div>
+            <div key={photo} className="relative w-1/3 pb-[30.7%] mb-5">
+              <Image
+                src={photo}
+                alt={`Thumbnail ${index + 1}`}
+                className="rounded-[4px]"
+                fill
+              />
             </div>
           ))}
         </div>
-        {reviewsToShow.map((review: Review, index: number) => (
-          <div key={index} className="body2 flex flex-col mb-5">
-            <div className="justify-between flex flex-row">
-              <div className="flex flex-col">
-                <div className=" text-acodeblack mb-1">{review.comment}</div>
+        <div className="pb-[30px]">
+          {reviewsToShow.map((review: Review, index: number) => (
+            <div
+              key={`${review.comment}${review.thumbnail}`}
+              className="body2 font-medium flex flex-col"
+            >
+              <div className="justify-between flex flex-row">
+                <div className="flex flex-col">
+                  <div className=" text-acodeblack mb-[6px]">
+                    {review.comment}
+                  </div>
 
-                <div className="flex items-center mb-3">
-                  {Array.from({ length: review.rate }, (_, i) => (
-                    <BlackFullStar key={`full-${i}`} />
-                  ))}
-                  {Array.from({ length: 5 - review.rate }, (_, i) => (
-                    <BlackEmptyStar key={`empty-${i}`} />
-                  ))}
-                </div>
+                  <div className="flex items-center mb-3">
+                    {Array.from({ length: review.rate }, (_, i) => (
+                      <BlackFullStar key={`full-${i}`} />
+                    ))}
+                    {Array.from({ length: 5 - review.rate }, (_, i) => (
+                      <BlackEmptyStar key={`empty-${i}`} />
+                    ))}
+                  </div>
 
-                <div className="text-acodegray-400 caption2">
-                  {review.nickname}
-                </div>
-              </div>
-              {review.thumbnail.length > 0 && (
-                <div className="item-center">
-                  <div className="relative w-[71px] h-[71px] overflow-hidden rounded-md">
-                    <Image
-                      src={review.thumbnail}
-                      alt={`review thumbnail`}
-                      className="rounded-md"
-                      fill
-                    />
+                  <div className="text-acodegray-400 caption2 font-medium">
+                    {review.nickname}
                   </div>
                 </div>
+                {review.thumbnail.length > 0 && (
+                  <div className="item-center">
+                    <div className="relative w-[71px] h-[71px]">
+                      <Image
+                        src={review.thumbnail}
+                        alt="review thumbnail"
+                        className="rounded-sm"
+                        fill
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              {index !== reviewsToShow.length - 1 && (
+                <hr className="my-5 mborder-t-[2px] border-acodegray-50" />
               )}
             </div>
-            {index !== reviewsToShow.length - 1 && (
-              <div className="border-t border-acodegray-100 w-full my-4 mx-auto" />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
