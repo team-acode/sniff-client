@@ -3,6 +3,7 @@
 import { Loading1, Loading2, Loading3, Loading4 } from '@/public/images';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Header from '@/components/matchingtest/Header';
 
 interface LoadingPageProps {
   searchParams: { [key: string]: string | undefined };
@@ -22,7 +23,6 @@ const Page = ({ searchParams }: LoadingPageProps) => {
       }
     });
 
-    // let timer ;
     let timer: NodeJS.Timeout;
     if (currentIconIndex === lastIconIndex) {
       timer = setTimeout(() => {
@@ -48,9 +48,17 @@ const Page = ({ searchParams }: LoadingPageProps) => {
   }, [currentIconIndex, lastIconIndex]);
 
   return (
-    <div>
-      <div className="flex justify-center items-center h-screen">
+    <div className="mx-[17px]">
+      <Header />
+      <div className="h0 mt-[51px]">
+        <div>당신에게 딱 어울리는 향을 </div>
+        <div>추출하고 있어요!</div>
+      </div>
+      <div className="flex justify-center items-center mt-[126px] mb-[110px]">
         {icons[currentIconIndex]}
+      </div>
+      <div className="border border-acodegray-100 bg-acodegray-100 flex justify-center items-center h-[106px]">
+        광고
       </div>
     </div>
   );
