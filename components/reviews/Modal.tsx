@@ -1,5 +1,5 @@
 import { STYLEOPTIONS } from '@/constants/styles';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface ModalProps {
   onReturn: (value: any) => void;
@@ -41,6 +41,18 @@ function Modal({ onReturn }: ModalProps) {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleOutsideClose = (e: { target: any }) => {
+      if (isOpen && !modalRef?.current?.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('click', handleOutsideClose);
+
+    return () => document.removeEventListener('click', handleOutsideClose);
+  }, [isOpen]);
+
   return (
     <div>
       <div className="flex mx-4">
@@ -81,7 +93,10 @@ function Modal({ onReturn }: ModalProps) {
 
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end">
-          <div className="bg-white shadow-lg mx-auto w-full h-[491px]">
+          <div
+            className="bg-white shadow-lg mx-auto w-full h-[491px]"
+            ref={modalRef}
+          >
             <div className="flex flex-col justify-center items-center mt-[26px] w-full">
               <div className="h1 text-acodblack mb-[10px]">스타일</div>
               <div className="caption2 text-acodegray-300">
