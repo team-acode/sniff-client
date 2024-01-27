@@ -27,7 +27,7 @@ const Page = ({ searchParams }: LoadingPageProps) => {
     if (currentIconIndex === lastIconIndex) {
       timer = setTimeout(() => {
         router.push(`/result?${params.toString()}`);
-      }, 2000);
+      }, 1500);
     }
 
     return () => {
@@ -42,7 +42,7 @@ const Page = ({ searchParams }: LoadingPageProps) => {
       if (currentIconIndex < lastIconIndex) {
         setCurrentIconIndex((prevIndex) => prevIndex + 1);
       }
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, [currentIconIndex, lastIconIndex]);
