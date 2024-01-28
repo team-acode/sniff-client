@@ -61,3 +61,31 @@ export { default as XIcon } from './Xicon.svg';
 export { default as HomeIcon } from './Homeicon.svg';
 export { default as BookMarkOffIcon } from './bookmarkoff.svg';
 export { default as BookMarkOnIcon } from './bookmarkon.svg';
+
+
+export { default as Onboarding1 } from './onboarding1.png';
+export { default as Onboarding2 } from './onboarding2.png';
+export { default as Onboarding3 } from './onboarding3.png';
+
+export { default as Spring } from './Spring.jpg';
+export { default as Summer } from './Summer.jpg';
+export { default as Autumn } from './Autumn.jpg';
+export { default as Winter } from './Winter.jpg';
+
+export { default as Flower } from './flower.jpg';
+export { default as Indiv } from './indiv.jpg';
+export { default as Wood } from './wood.jpg';
+export { default as Fruit } from './fruit.jpg';
+
+export { default as Testing } from './testing.svg';
+
+export { default as AcodeLogo } from './AcodeLogo.svg';
+export { default as Loading1} from './Loading1.svg';
+export { default as Loading2} from './Loading2.svg';
+export { default as Loading3} from './Loading3.svg';
+export { default as Loading4} from './Loading4.svg';
+
+export { default as Klogo} from './klogo.svg';
+export { default as LinkLogo} from './linklogo.svg';
+export {default as AcodeLogoSmallBlack} from './AcodeLogobaby.svg';
+export {default as RealArrow} from './realArrow.svg';

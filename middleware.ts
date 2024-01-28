@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
   if (pathname === '/login' && userInfo)
     return NextResponse.redirect(new URL('/', request.url));
   if (
-    (pathname === '/onboarding' ||
+    (pathname === '/welcome' ||
       pathname.includes('/mypage') ||
       pathname.includes('/find-taste') ||
       pathname.includes('/reviews')) &&
@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/login',
-    '/onboarding',
+    '/welcome',
     '/mypage/:path',
     '/find-taste/:path',
     '/perfumes/:path/reviews/new',

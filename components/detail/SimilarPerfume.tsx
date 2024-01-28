@@ -80,7 +80,7 @@ const SimilarPerfume = async ({ id }: SimilarProps) => {
                 {perfume.fragranceName}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </Slider> */}
     </div>
