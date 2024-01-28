@@ -20,7 +20,7 @@ const UsernameSettingPage = () => {
     if (/^([a-zA-Z가-힣]){1,8}$/.test(username)) {
       setIsUsernameError(false);
       const res = await fetch('/api/set-username', {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify({ username }),
         cache: 'no-cache',
       });

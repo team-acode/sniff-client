@@ -5,7 +5,7 @@ import { NextRequest } from 'next/server';
 
 const EXP_LIMIT = 1000 * 60 * 60 * 24;
 
-export async function PATCH(request: NextRequest) {
+export async function PUT(request: NextRequest) {
   const userInfo = getSession();
   if (!userInfo) {
     cookies().delete('jwt');
@@ -19,12 +19,15 @@ export async function PATCH(request: NextRequest) {
 
   const body = await request.json();
   const { username } = body;
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/nickname/${username}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/users/nickname`,
     {
       headers: {
         AUTHORIZATION: `Bearer ${userInfo.jwt}`,
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ nickname: username }),
       method: 'PUT',
       cache: 'no-cache',
     },
