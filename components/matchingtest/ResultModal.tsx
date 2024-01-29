@@ -25,6 +25,13 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     };
   }, [showAlert]);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   const copyToClipboardFallback = (text: string) => {
     const textArea = document.createElement('textarea');
     textArea.value = text;
@@ -32,7 +39,6 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     textArea.focus();
     textArea.select();
     try {
-      document.execCommand('copy');
       setAlertMessage('URL이 클립보드에 복사되었습니다!');
       setShowAlert(true);
     } catch (err) {
