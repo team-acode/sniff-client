@@ -22,15 +22,15 @@ const PerfumeInfo = ({
 }: PerfumeInfoProps) => {
   return (
     <div className="mt-4">
-      <div className="body2 mx-4 text-acodegray-300 max-w-md mb-4">
-        {korBrand}
+      <div className="flex flex-row items-center mx-4 mb-4">
+        <div className="body2  text-acodegray-300 max-w-md">{korBrand}</div>
+        <SmallCircleIcon className="fill-acodegray-300 mx-[8px]" />
+        <div className="body3 text-acodegray-300">{concentration}</div>
       </div>
       <div className="flex flex-row justify-between h-16">
         <div className="flex flex-col mb-1">
           <div className="flex items-center gap-[10px] ml-4">
             <div className="h1 text-acodeblack">{fragranceName}</div>
-            <SmallCircleIcon className="fill-acodegray-500" />
-            <div className="h2 text-acodegray-500">{concentration}</div>
           </div>
           {capacityList.length ? (
             <DropdownButton options={capacityList} />
