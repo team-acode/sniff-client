@@ -2,7 +2,7 @@
 
 import UserStyle from '@/components/matchingtest/UserStyle';
 import Similar from '@/components/matchingtest/Similar';
-import HomeNav from '@/components/home/HomeNav';
+import ResultNav from '@/components/matchingtest/ResultNav';
 import Link from 'next/link';
 import { useState } from 'react';
 import ResultModal from '@/components/matchingtest/ResultModal';
@@ -90,7 +90,7 @@ const Page = ({ searchParams }: ResultPageProps) => {
   return (
     <div>
       <div>
-        <HomeNav />
+        <ResultNav />
       </div>
       <div className="mt-16">
         <UserStyle families={Families} />
