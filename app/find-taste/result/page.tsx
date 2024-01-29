@@ -102,7 +102,7 @@ const Page = ({ searchParams }: ResultPageProps) => {
       <div className="flex flex-row mt-20 justify-center mx-4 gap-x-[11px]">
         <button
           type="button"
-          className="rounded bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
+          className="h2 rounded bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
           onClick={handleShareClick}
         >
           공유하기
@@ -111,7 +111,7 @@ const Page = ({ searchParams }: ResultPageProps) => {
         <Link href="/">
           <button
             type="button"
-            className="rounded bg-black text-white w-[166px] h-[56px] inline-flex items-center justify-center"
+            className="h2 rounded bg-black text-white w-[166px] h-[56px] inline-flex items-center justify-center"
           >
             홈으로
           </button>
