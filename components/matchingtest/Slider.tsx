@@ -16,7 +16,7 @@ interface SliderProps {
 const Slider = ({ slides, swiperRef, keys }: SliderProps) => {
   return (
     <div>
-      <div className="slider-container">
+      <div className="slider-container mt-[54px]">
         <Swiper
           ref={swiperRef}
           modules={[Pagination, Navigation]}

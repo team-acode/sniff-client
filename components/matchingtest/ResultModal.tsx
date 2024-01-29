@@ -25,6 +25,13 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     };
   }, [showAlert]);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   const copyToClipboardFallback = (text: string) => {
     const textArea = document.createElement('textarea');
     textArea.value = text;

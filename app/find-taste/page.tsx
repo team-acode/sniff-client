@@ -5,7 +5,7 @@ import More from '@/components/matchingtest/More';
 
 const Page = () => {
   return (
-    <div className="mx-3">
+    <div>
       <Header />
       <Test />
       <More />

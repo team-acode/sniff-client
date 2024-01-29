@@ -104,19 +104,19 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
     <div className="mx-4 mt-4">
       <div className="flex flex-col">
         <div className="h0 mb-[49px]">
-          <div>
+          <div className="flex items-center">
             어떤
-            <span className="bg-black text-white px-3 mx-[12px] rounded-sm">
-              개성적인
+            <span className="bg-black ml-[8px] mr-[8px] text-white px-[14px] py-[4px] rounded-sm text-[20px]">
+              개성적인 향
             </span>
-            향을
+            을
           </div>
           <div>원하시나요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*2개 선택 필수</div>
-        <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
+        <div className="text-gray-300 body2 mb-3">*2개 선택 필수</div>
+        <div className="flex flex-wrap h1 gap-x-3 gap-y-2 ">
           {options.map((option) => (
-            <div key={option.id} className="">
+            <div key={option.id}>
               <input
                 id={option.id}
                 type="checkbox"
@@ -127,7 +127,7 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-center py-2 px-3.5 ${
+                className={`block w-full text-center py-2 px-3.5 rounded-sm ${
                   selectedOptions.includes(option.id)
                     ? 'bg-acodeblack border-acodegray-100 '
                     : 'bg-acodegray-50 border-acodegray-100'
@@ -151,7 +151,7 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`px-4 rounded-lg h-[56px] w-full inline-flex items-center justify-center ${
+          className={`h2 rounded h-[56px] w-full inline-flex items-center justify-center ${
             selectedOptions.length === 2
               ? 'bg-black text-white'
               : 'bg-acodegray-300 text-white'

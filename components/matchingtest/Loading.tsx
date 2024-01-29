@@ -1,32 +1,24 @@
-'use client';
-
 import { Loading1, Loading2, Loading3, Loading4 } from '@/public/images';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/matchingtest/Header';
 
 interface LoadingPageProps {
-  searchParams: { [key: string]: string | undefined };
+  setIsDone: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Page = ({ searchParams }: LoadingPageProps) => {
+const Loading = ({ setIsDone }: LoadingPageProps) => {
   const router = useRouter();
+
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const icons = [<Loading1 />, <Loading2 />, <Loading3 />, <Loading4 />];
   const lastIconIndex = icons.length - 1;
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    Object.entries(searchParams).forEach(([key, value]) => {
-      if (value !== undefined) {
-        params.append(key, value);
-      }
-    });
-
     let timer: NodeJS.Timeout;
     if (currentIconIndex === lastIconIndex) {
       timer = setTimeout(() => {
-        router.push(`/result?${params.toString()}`);
+        setIsDone(true);
       }, 1500);
     }
 
@@ -35,7 +27,7 @@ const Page = ({ searchParams }: LoadingPageProps) => {
         clearTimeout(timer);
       }
     };
-  }, [router, searchParams, currentIconIndex, lastIconIndex]);
+  }, [router, currentIconIndex, lastIconIndex, setIsDone]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,19 +40,19 @@ const Page = ({ searchParams }: LoadingPageProps) => {
   }, [currentIconIndex, lastIconIndex]);
 
   return (
-    <div className="mx-[17px]">
+    <div>
       <Header />
-      <div className="h0 mt-[51px]">
+      <div className="h0 mt-[54px] mx-4">
         <div>당신에게 딱 어울리는 향을 </div>
         <div>추출하고 있어요!</div>
       </div>
       <div className="flex justify-center items-center mt-[126px] mb-[110px]">
         {icons[currentIconIndex]}
       </div>
-      <div className="border border-acodegray-100 bg-acodegray-100 flex justify-center items-center h-[106px]">
+      <div className="border text-[#909090] text-2xl border-acodegray-100 bg-acodegray-100 flex justify-center items-center h-[106px]">
         광고
       </div>
     </div>
   );
 };
-export default Page;
+export default Loading;
