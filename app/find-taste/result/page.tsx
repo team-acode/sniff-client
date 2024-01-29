@@ -89,16 +89,9 @@ const Page = ({ searchParams }: ResultPageProps) => {
   };
   return (
     <div>
-      <div>
-        <ResultNav />
-      </div>
-      <div className="mt-16">
-        <UserStyle families={Families} />
-      </div>
-      <div>
-        <Similar fragrance={Fragrance} style={style} />
-      </div>
-
+      <ResultNav />
+      <UserStyle families={Families} />
+      <Similar fragrance={Fragrance} style={style} />
       <div className="flex flex-row mt-[79px] justify-center mx-4 gap-x-[11px] pb-[28px]">
         <button
           type="button"
