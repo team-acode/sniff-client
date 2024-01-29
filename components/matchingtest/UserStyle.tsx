@@ -114,7 +114,7 @@ const UserStyle = ({ families }: UserStyleProps) => {
                   </span>
                 </div>
 
-                <div className="body1 mb-6">{family.summary}</div>
+                <div className="body2 mb-6">{family.summary}</div>
                 <div className="flex flex-row">
                   {family.keyword.map((keywords) => (
                     <div key={keywords} className="body2 mr-2.5">
