@@ -39,6 +39,7 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     textArea.focus();
     textArea.select();
     try {
+      document.execCommand('copy');
       setAlertMessage('URL이 클립보드에 복사되었습니다!');
       setShowAlert(true);
     } catch (err) {
