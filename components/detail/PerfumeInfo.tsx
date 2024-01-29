@@ -44,7 +44,7 @@ const PerfumeInfo = ({
               alt="family badge"
               width={52}
               height={68}
-              className="w-13 h-27"
+              className="w-[52px] h-[68px]"
             />
           ))}
         </div>
