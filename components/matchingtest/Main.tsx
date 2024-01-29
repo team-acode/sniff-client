@@ -127,7 +127,7 @@ const Main = ({ updateSelection }: MainProps) => {
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
+          className={`px-4 h2 rounded h-[56px] w-full inline-flex items-center justify-center ${
             selectedOptions.length > 0
               ? 'bg-black text-white'
               : 'bg-gray-300 text-white'

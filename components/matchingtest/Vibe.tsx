@@ -96,7 +96,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
           <button
             type="button"
             onClick={handleSubmit}
-            className={`px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
+            className={`h2 px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
               selectedVibes.length === 2
                 ? 'bg-black text-white'
                 : 'bg-acodegray-300 text-white'

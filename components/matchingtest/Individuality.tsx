@@ -151,7 +151,7 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`rounded h-[56px] w-full inline-flex items-center justify-center ${
+          className={`h2 rounded h-[56px] w-full inline-flex items-center justify-center ${
             selectedOptions.length === 2
               ? 'bg-black text-white'
               : 'bg-acodegray-300 text-white'
