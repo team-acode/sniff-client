@@ -48,7 +48,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
           <div>한 번 뿌릴 때,</div>
           <div>향이 얼마나 지속되면 좋을까요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*최대 2개 선택 가능</div>
+        <div className="text-gray-300 body2 mb-3">*최대 2개 선택 가능</div>
         <div>
           {options.map((option) => (
             <div key={option.id} className="flex items-center mb-5">
@@ -81,7 +81,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
           <button
             type="button"
             onClick={() => swiper.slideNext()}
-            className={`px-4 rounded-lg h-[56px] w-full inline-flex items-center justify-center ${
+            className={`semi-bold px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
               selectedOptions.length > 0
                 ? 'bg-black text-white'
                 : 'bg-gray-300 text-white'

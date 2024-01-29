@@ -99,26 +99,25 @@ const Page = ({ searchParams }: ResultPageProps) => {
         <Similar fragrance={Fragrance} style={style} />
       </div>
 
-      <div className="flex flex-row mt-20 justify-center py-3 px-4">
-        <div className="flex mr-2.5">
-          <button
-            type="button"
-            className="rounded-lg bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
-            onClick={handleShareClick}
-          >
-            공유하기
-          </button>
-        </div>
+      <div className="flex flex-row mt-20 justify-center mx-4 ">
+        <button
+          type="button"
+          className="rounded bg-acodegray-50 text-black w-[166px] h-[56px] inline-flex items-center justify-center"
+          onClick={handleShareClick}
+        >
+          공유하기
+        </button>
 
         <Link href="/">
           <button
             type="button"
-            className="rounded-lg bg-black text-white w-[166px] h-[56px] inline-flex items-center justify-center"
+            className="rounded bg-black text-white h-[56px] inline-flex items-center justify-center"
           >
             홈으로
           </button>
         </Link>
       </div>
+
       {isModalOpen && <ResultModal onClose={() => setModalOpen(false)} />}
     </div>
   );

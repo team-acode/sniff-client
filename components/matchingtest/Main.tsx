@@ -59,7 +59,7 @@ const Main = ({ updateSelection }: MainProps) => {
           <div>어떤 향이 주로 나면</div>
           <div>좋을 것 같나요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3 mx-4">*최대 2개 선택 가능</div>
+        <div className="text-gray-300 body2 mb-3 mx-4">*최대 2개 선택 가능</div>
         <div className="w-full">
           <div className="flex flex-row mx-4 gap-[10px] pb-[12px]">
             {options.slice(0, 2).map((option) => (

@@ -58,7 +58,7 @@ const Season = ({ updateSelection }: SeasonProps) => {
           <div>어떤 계절에 뿌릴</div>
           <div>향수를 찾으시나요?</div>
         </div>
-        <div className="text-gray-00 body2 mb-3 mx-4">*최대 2개 선택 가능</div>
+        <div className="text-gray-300 body2 mb-3 mx-4">*최대 2개 선택 가능</div>
         <div className="w-full">
           <div className="flex flex-row mx-4 gap-[10px] pb-[12px]">
             {options.slice(0, 2).map((option) => (

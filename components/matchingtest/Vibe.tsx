@@ -59,7 +59,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
           <div>향수로 어떤 분위기를</div>
           <div>내고 싶으신가요?</div>
         </div>
-        <div className="text-gray-500 body2 mb-3">*2개 선택 필수</div>
+        <div className="text-gray-300 body2 mb-3">*2개 선택 필수</div>
         <div className="flex flex-wrap h1 gap-x-3 gap-y-2">
           {vibeOptions.map((option) => (
             <div key={option.id} className="">
@@ -73,7 +73,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
               />
               <label
                 htmlFor={`vibe-option-${option.id}`}
-                className={`block w-full text-center py-2 px-4 ${
+                className={`block w-full text-center py-2 px-4 rounded-sm ${
                   selectedVibes.includes(option.id)
                     ? 'bg-acodeblack border-acodegray-100 '
                     : 'bg-acodegray-50 border-acodegray-100'
@@ -96,7 +96,7 @@ const Vibe = ({ updateSelection, handleSubmit }: VibeProps) => {
           <button
             type="button"
             onClick={handleSubmit}
-            className={`px-4 rounded-lg h-[56px] w-full inline-flex items-center justify-center ${
+            className={`px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
               selectedVibes.length === 2
                 ? 'bg-black text-white'
                 : 'bg-acodegray-300 text-white'
