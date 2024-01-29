@@ -52,7 +52,7 @@ const Season = ({ updateSelection }: SeasonProps) => {
   ];
   const swiper = useSwiper();
   return (
-    <div className="mt-4">
+    <div className="mt-[25px]">
       <div className="flex flex-col">
         <div className="h0 mb-12 mx-4">
           <div>어떤 계절에 뿌릴</div>
@@ -126,7 +126,7 @@ const Season = ({ updateSelection }: SeasonProps) => {
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`h2 px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
+          className={`h2 px-4 rounded h-[56px] w-full inline-flex items-center justify-center transition ${
             selectedOptions.length > 0
               ? 'bg-black text-white'
               : 'bg-gray-300 text-white'

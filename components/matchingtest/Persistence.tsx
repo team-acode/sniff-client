@@ -42,7 +42,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
   ];
   const swiper = useSwiper();
   return (
-    <div className="mx-4 mt-4">
+    <div className="mx-4 mt-[25px]">
       <div className="flex flex-col">
         <div className="h0 mb-12 ">
           <div>한 번 뿌릴 때,</div>
@@ -63,7 +63,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-start border ${
+                className={`block w-full text-start border transition ${
                   selectedOptions.includes(option.id)
                     ? 'bg-acodegray-50 border-acodegray-100'
                     : 'bg-white border-acodegray-100'
@@ -81,7 +81,7 @@ const Persistence = ({ updateSelection }: PersistenceProps) => {
           <button
             type="button"
             onClick={() => swiper.slideNext()}
-            className={`h2 px-4 rounded h-[56px] w-full inline-flex items-center justify-center ${
+            className={`h2 px-4 rounded h-[56px] w-full inline-flex items-center justify-center transition ${
               selectedOptions.length > 0
                 ? 'bg-black text-white'
                 : 'bg-gray-300 text-white'

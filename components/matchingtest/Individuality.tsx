@@ -101,12 +101,12 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
 
   const swiper = useSwiper();
   return (
-    <div className="mx-4 mt-4">
+    <div className="mx-4 mt-[22px]">
       <div className="flex flex-col">
         <div className="h0 mb-[49px]">
           <div className="flex items-center">
             어떤
-            <span className="bg-black ml-[8px] mr-[8px] text-white px-[14px] py-[4px] rounded-sm text-[20px]">
+            <span className="h1 h-[34px]  bg-black ml-[8px] mr-[8px] text-white px-[14px] pt-[2px] rounded-sm">
               개성적인 향
             </span>
             을
@@ -114,7 +114,7 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
           <div>원하시나요?</div>
         </div>
         <div className="text-gray-300 body2 mb-3">*2개 선택 필수</div>
-        <div className="flex flex-wrap h1 gap-x-3 gap-y-2 ">
+        <div className="flex flex-wrap h1 gap-x-3 gap-y-[18px]">
           {options.map((option) => (
             <div key={option.id}>
               <input
@@ -127,14 +127,14 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
               />
               <label
                 htmlFor={option.id}
-                className={`block w-full text-center py-2 px-3.5 rounded-sm ${
+                className={`block h-[34px] w-full text-center justify-center px-[14px] rounded-sm transition ${
                   selectedOptions.includes(option.id)
                     ? 'bg-acodeblack border-acodegray-100 '
                     : 'bg-acodegray-50 border-acodegray-100'
                 } cursor-pointer flex flex-col items-center justify-center`}
               >
                 <div
-                  className={`${
+                  className={`transition ${
                     selectedOptions.includes(option.id)
                       ? 'text-white'
                       : 'text-acodeblack'
@@ -151,7 +151,7 @@ const Individuality = ({ updateSelection }: IndividualProps) => {
         <button
           type="button"
           onClick={() => swiper.slideNext()}
-          className={`h2 rounded h-[56px] w-full inline-flex items-center justify-center ${
+          className={`h2 rounded h-[56px] w-full inline-flex items-center justify-center transition ${
             selectedOptions.length === 2
               ? 'bg-black text-white'
               : 'bg-acodegray-300 text-white'

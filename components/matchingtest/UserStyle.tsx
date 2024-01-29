@@ -77,7 +77,7 @@ const UserStyle = ({ families }: UserStyleProps) => {
     );
   };
   return (
-    <div>
+    <div className="mt-16">
       <div className="flex flex-col mx-4">
         <div className="mb-16">
           <div className="h1 text-center mb-3.5">
