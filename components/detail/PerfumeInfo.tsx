@@ -42,9 +42,9 @@ const PerfumeInfo = ({
               key={`${family.familyIcon}${family.familyName}`}
               src={family.familyIcon || '/'}
               alt="family badge"
-              width={44}
-              height={56}
-              className="w-11 h-14"
+              width={52}
+              height={68}
+              className="w-13 h-27"
             />
           ))}
         </div>
