@@ -65,8 +65,8 @@ function Modal({ onReturn }: ModalProps) {
           <div className="flex whitespace-nowrap h-[30px]">
             {selectedOptions.map((option) => (
               <div
-                key={option}
-                className="body2 text-acodewhite bg-black border flex items-center justify-center rounded-[50px] mr-1 px-[10px]"
+                key={option} ///여기로추정
+                className="body2 text-acodewhite bg-black border-black flex items-center justify-center rounded-[50px] mr-1 px-[10px]"
               >
                 <span className="">{option}</span>
                 <button
@@ -138,6 +138,7 @@ function Modal({ onReturn }: ModalProps) {
                   type="button"
                   key={option}
                   className={`h-8 px-[9px] py-[2px] border-[1.5px] ${
+                    //얘네들이 옵션들임
                     selectedOptions.includes(option)
                       ? 'bg-acodeblack text-white border-acodeblack'
                       : 'text-acodegray-400 border-acodegray-100'
@@ -153,7 +154,7 @@ function Modal({ onReturn }: ModalProps) {
             <div className="flex justify-center pb-[18px]">
               <button
                 type="button"
-                className={`${
+                className={`mx-4 ${
                   selectedOptions.length > 0
                     ? 'bg-acodeblack'
                     : 'bg-acodegray-300'
