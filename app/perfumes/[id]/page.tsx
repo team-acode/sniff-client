@@ -18,7 +18,6 @@ interface DetailPageProps {
 
 const page = async ({ params, searchParams }: DetailPageProps) => {
   const userInfo = getSession();
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/fragrance/${params.id}`,
     {
