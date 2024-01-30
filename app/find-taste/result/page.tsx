@@ -111,7 +111,12 @@ const Page = ({ searchParams }: ResultPageProps) => {
         </Link>
       </div>
 
-      {isModalOpen && <ResultModal onClose={() => setModalOpen(false)} />}
+      {isModalOpen && (
+        <ResultModal
+          onClose={() => setModalOpen(false)}
+          params={searchParams}
+        />
+      )}
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { LinkLogo, KakaoShare } from '@/public/images';
 import Image from 'next/image';
-import KakaoShareScript from './KakaoShareScript';
 
 interface ResultModalProps {
   onClose: () => void;
+  params: { [key: string]: string | undefined };
 }
 
-const ResultModal = ({ onClose }: ResultModalProps) => {
+const ResultModal = ({ onClose, params }: ResultModalProps) => {
   const [alertMessage, setAlertMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
@@ -67,7 +67,19 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
       copyToClipboardFallback(window.location.href);
     }
   };
-
+  const URL = window.location.href;
+  URL.replace('http://localhost:3000', 'https://acode-fragrance.com');
+  const kakaoShare = () => {
+    const kakao = window.Kakao;
+    const templateId = 103731;
+    kakao.Share.sendCustom({
+      templateId,
+      templateArgs: {
+        btnTitle: '테스트하러 가기',
+        id: URL,
+      },
+    });
+  };
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -90,11 +102,7 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
         <div className="h1 text-center mb-4">공유하기</div>
         <div className="flex flex-row justify-center gap-x-10 h2">
           <div className="flex flex-col">
-            <button
-              type="button"
-              id="kakaotalk-sharing-btn"
-              onClick={() => KakaoShareScript()}
-            >
+            <button type="button" onClick={() => kakaoShare()}>
               <div className="mb-2">
                 <Image src={KakaoShare} alt="공유하기" />
               </div>
