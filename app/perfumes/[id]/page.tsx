@@ -29,7 +29,12 @@ const page = async ({ params, searchParams }: DetailPageProps) => {
     },
   );
 
-  if (!res.ok) redirect('/');
+  if (!res.ok) {
+    if (res.status === 401) {
+      redirect('/login?invalid=true');
+    }
+    redirect('/');
+  }
 
   const {
     thumbnail,
