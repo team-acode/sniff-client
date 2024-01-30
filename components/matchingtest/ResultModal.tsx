@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
-import { LinkLogo, Klogo } from '@/public/images';
+import { LinkLogo, KakaoShare } from '@/public/images';
+import Image from 'next/image';
+import KakaoShareScript from './KakaoShareScript';
 
 interface ResultModalProps {
   onClose: () => void;
@@ -66,6 +67,7 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
       copyToClipboardFallback(window.location.href);
     }
   };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -88,10 +90,16 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
         <div className="h1 text-center mb-4">공유하기</div>
         <div className="flex flex-row justify-center gap-x-10 h2">
           <div className="flex flex-col">
-            <div className="mb-2">
-              <Klogo />
-            </div>
-            <div>카카오톡</div>
+            <button
+              type="button"
+              id="kakaotalk-sharing-btn"
+              onClick={() => KakaoShareScript()}
+            >
+              <div className="mb-2">
+                <Image src={KakaoShare} alt="공유하기" />
+              </div>
+              <div>카카오톡</div>
+            </button>
           </div>
           <div
             className="flex flex-col"
