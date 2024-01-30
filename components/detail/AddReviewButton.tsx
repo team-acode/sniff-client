@@ -10,8 +10,7 @@ const AddReview = ({ id }: Props) => {
     <div
       className="fixed bottom-3 z-50 bg-white py-2 px-4 rounded-full flex items-center justify-center space-x-2 border-2 border-white "
       style={{
-        boxShadow:
-          '0px 2px 16.9px 0px rgba(0, 0, 0, 0.15), 0px -2px 16.9px 0px rgba(0, 0, 0, 0.15)',
+        boxShadow: '0px 2px 17px 0px rgba(0, 0, 0, 0.15)',
       }}
     >
       <Link href={`/perfumes/${id}/reviews/new`}>
