@@ -29,8 +29,6 @@ const PerfumeInfo = ({
         <div className="flex flex-col mb-1">
           <div className="flex items-center gap-[10px] ml-4">
             <div className="h1 text-acodeblack">{fragranceName}</div>
-            <SmallCircleIcon className="fill-acodegray-500" />
-            <div className="h2 text-acodegray-500">{concentration}</div>
           </div>
           {capacityList.length ? (
             <DropdownButton options={capacityList} />
@@ -42,9 +40,9 @@ const PerfumeInfo = ({
               key={`${family.familyIcon}${family.familyName}`}
               src={family.familyIcon || '/'}
               alt="family badge"
-              width={44}
-              height={56}
-              className="w-11 h-14"
+              width={52}
+              height={68}
+              className="w-[52px] h-[68px]"
             />
           ))}
         </div>
