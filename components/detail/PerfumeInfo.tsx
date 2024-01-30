@@ -4,7 +4,7 @@ import Image from 'next/image';
 import DropdownButton from './PerfumeDropdown';
 
 interface PerfumeInfoProps {
-  korBrand: string;
+  brandName: string;
   fragranceName: string;
   concentration: string;
   familyList: Array<{ familyId: number; familyIcon: any; familyName: string }>;
@@ -13,7 +13,7 @@ interface PerfumeInfoProps {
 }
 
 const PerfumeInfo = ({
-  korBrand,
+  brandName,
   fragranceName,
   concentration,
   familyList,
@@ -22,10 +22,8 @@ const PerfumeInfo = ({
 }: PerfumeInfoProps) => {
   return (
     <div className="mt-4">
-      <div className="flex flex-row items-center mx-4 mb-4">
-        <div className="body2  text-acodegray-300 max-w-md">{korBrand}</div>
-        <SmallCircleIcon className="fill-acodegray-300 mx-[8px]" />
-        <div className="body3 text-acodegray-300">{concentration}</div>
+      <div className="body2 mx-4 text-acodegray-300 max-w-md mb-4">
+        {brandName}
       </div>
       <div className="flex flex-row justify-between h-16">
         <div className="flex flex-col mb-1">
