@@ -67,7 +67,7 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
     }
   };
   const Currentlocation = window.location.search;
-  console.log(Currentlocation);
+
   const kakaoShare = () => {
     if (window.Kakao) {
       const kakao = window.Kakao;
