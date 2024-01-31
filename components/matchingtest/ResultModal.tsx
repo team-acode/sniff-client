@@ -66,8 +66,8 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
       copyToClipboardFallback(window.location.href);
     }
   };
-  const Currentlocation = window.location.href;
-
+  const Currentlocation = window.location.search;
+  console.log(Currentlocation);
   const kakaoShare = () => {
     if (window.Kakao) {
       const kakao = window.Kakao;
@@ -80,43 +80,11 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
         templateId,
         templateArgs: {
           btnTitle: '테스트하러가기',
-          id: 'perfumes/1',
+          id: Currentlocation,
         },
       });
     }
   };
-
-  // const kakaoshare2 = () => {
-  //   const { Kakao } = window;
-  //   // process.env.NODE_ENV ? 'development'
-  //   // const location = 'http://acode-fragrance.com';
-  //   const location = window.location.href;
-  //   // const modifiedLocation = location.replace('http://localhost:3000', '');
-  //   const modifiedLocation = location.replace('http://172.30.1.78:3000', '');
-  //   console.log(`https://acode-fragrance.com${modifiedLocation}`);
-  //   Kakao.Share.sendDefault({
-  //     objectType: 'feed',
-  //     content: {
-  //       title: 'Acode',
-  //       description:
-  //         '나만의 취향과 분위기에 맞는 향수가 궁금하다면, 어코드에서 확인해보세요',
-  //       imageUrl: '',
-  //       link: {
-  //         mobileWebUrl: `https://acode-fragrance.com${modifiedLocation}`,
-  //         webUrl: `https://acode-fragrance.com${modifiedLocation}`,
-  //       },
-  //     },
-  //     buttons: [
-  //       {
-  //         title: '웹으로 보기',
-  //         link: {
-  //           mobileWebUrl: `https://acode-fragrance.com${modifiedLocation}`,
-  //           webUrl: `https://acode-fragrance.com${modifiedLocation}`,
-  //         },
-  //       },
-  //     ],
-  //   });
-  // };
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -146,14 +114,6 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
               <div>카카오톡</div>
             </button>
           </div>
-          {/* <div className="flex flex-col">
-            <button type="button" onClick={() => kakaoshare2()}>
-              <div className="mb-2">
-                <Image src={KakaoShare} alt="공유하기" />
-              </div>
-              <div>카카오톡</div>
-            </button>
-          </div> */}
           <div
             className="flex flex-col"
             onClick={copyToClipboard}
