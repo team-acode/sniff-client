@@ -35,13 +35,6 @@ const Page = ({ searchParams }: ResultPageProps) => {
     style1: searchParams.vibe ? searchParams.vibe[0] : '',
     style2: searchParams.vibe ? searchParams.vibe[1] : '',
   };
-  // const payload = {
-  //   concentration: searchParams.persistence,
-  //   season: searchParams.season,
-  //   mainFamily: searchParams.main,
-  //   scent: searchParams.individuality,
-  //   style: searchParams.vibe,
-  // };
   const payload = {
     concentration: Array.isArray(searchParams.persistence)
       ? searchParams.persistence
@@ -58,7 +51,6 @@ const Page = ({ searchParams }: ResultPageProps) => {
     scent: searchParams.individuality,
     style: searchParams.vibe,
   };
-  console.log(payload);
   const datafetch = async () => {
     try {
       const res = await fetch('/api/extract', {
