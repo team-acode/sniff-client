@@ -71,20 +71,20 @@ const ResultModal = ({ onClose }: ResultModalProps) => {
   const kakaoShare = () => {
     if (window.Kakao) {
       const kakao = window.Kakao;
-      const appKey = process.env.NEXT_PUBLIC_KAKAO_APP_KEY;
-      const templateId = 103731;
+      const appKey = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
+      const templateId = 103843;
       if (!kakao.isInitialized()) {
         kakao.init(appKey);
       }
       kakao.Share.sendCustom({
         templateId,
         templateArgs: {
-          btnTitle: '테스트하러가기',
           id: Currentlocation,
         },
       });
     }
   };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"

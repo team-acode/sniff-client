@@ -34,6 +34,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
   const [oneLineCommentError, setOneLineCommentError] =
     useState<boolean>(false);
   const [keyWordReviewError, setKeyWordReviewError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const userInfo = useSession();
 
@@ -62,6 +63,8 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
   const token = session?.jwt;
 
   const handleSubmit = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
     let isValid = true;
     setStarRatingError(false);
     setOneLineCommentError(false);
@@ -88,6 +91,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
     }
 
     if (!isValid) {
+      setIsLoading(false);
       return;
     }
 
@@ -106,6 +110,7 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
         });
 
         if (!uploadResponse.ok) {
+          setIsLoading(false);
           return;
         }
 
@@ -151,10 +156,12 @@ const ReviewContentContainer = ({ id }: { id: string }) => {
           method: 'POST',
         });
       }
+      setIsLoading(false);
       router.push('/login?invalid=true');
       return;
     }
 
+    setIsLoading(false);
     router.refresh();
     router.push(`/perfumes/${id}?category=review`);
   };
